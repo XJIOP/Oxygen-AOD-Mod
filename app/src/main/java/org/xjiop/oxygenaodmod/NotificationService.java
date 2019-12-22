@@ -24,6 +24,7 @@ public class NotificationService extends NotificationListenerService {
     private ScreenPowerReceiver screenPowerReceiver;
     private Handler handler;
     private PowerManager powerManager;
+    //private NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
     @Override
     public void onCreate() {
@@ -74,17 +75,25 @@ public class NotificationService extends NotificationListenerService {
     }
 
     @Override
-    public void onNotificationPosted(StatusBarNotification sbn) {
-        //Log.d(TAG, "onNotificationPosted =  " + sbn);
+    public void onNotificationPosted(final StatusBarNotification sbn) {
+        Log.d(TAG, "onNotificationPosted =  " + sbn);
         //Log.d(TAG, " - notification package = " + sbn.getPackageName());
         //Log.d(TAG, " - notification content = " + sbn.getNotification().extras.getString(Notification.EXTRA_TEXT));
         //Log.d(TAG, " - notification is ongoing = " + sbn.isOngoing());
         //Log.d(TAG, " - notification id = " + sbn.getId());
-        //Log.d(TAG, " - notification category = " + sbn.getNotification().category);
+        Log.d(TAG, " - notification category = " + sbn.getNotification().category);
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
+        //Log.d(TAG, " - notification key = " + sbn.getKey());
 
-        if(sbn.getId() == 123)
+        if(sbn.getId() == 123) {
+            new Handler().postDelayed(new Runnable() {
+                public void run() {
+                    cancelNotification(sbn.getKey());
+                    startReminder();
+                }
+            }, 1000);
             return;
+        }
 
         if(sbn.isOngoing())
             return;
@@ -96,6 +105,9 @@ public class NotificationService extends NotificationListenerService {
 
         if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
             return;
+
+        //if(sbn.getNotification().category != null && Helper.blackList.contains(sbn.getNotification().category))
+        //    return;
 
         NOTIFICATION_COUNT++;
 
@@ -111,6 +123,7 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification id = " + sbn.getId());
         //Log.d(TAG, " - notification category = " + sbn.getNotification().category);
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
+        //Log.d(TAG, " - notification key = " + sbn.getKey());
 
         if(sbn.getId() == 123)
             return;
@@ -123,8 +136,11 @@ public class NotificationService extends NotificationListenerService {
             return;
         }
 
-        if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
+        if(sbn.getNotification().category != null && Helper.blackList.contains(sbn.getNotification().category))
             return;
+
+        //if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
+        //    return;
 
         if(NOTIFICATION_COUNT > 0)
             NOTIFICATION_COUNT--;
@@ -133,7 +149,7 @@ public class NotificationService extends NotificationListenerService {
     public void startReminder() {
         //Log.d(TAG, "startReminder | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT);
 
-        if(NOTIFICATION_COUNT < 1)
+        if(NOTIFICATION_COUNT == 0)
             return;
 
         boolean isScreenOn = powerManager != null && powerManager.isInteractive();
