@@ -76,12 +76,12 @@ public class NotificationService extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(final StatusBarNotification sbn) {
-        Log.d(TAG, "onNotificationPosted =  " + sbn);
+        //Log.d(TAG, "onNotificationPosted =  " + sbn);
         //Log.d(TAG, " - notification package = " + sbn.getPackageName());
         //Log.d(TAG, " - notification content = " + sbn.getNotification().extras.getString(Notification.EXTRA_TEXT));
         //Log.d(TAG, " - notification is ongoing = " + sbn.isOngoing());
         //Log.d(TAG, " - notification id = " + sbn.getId());
-        Log.d(TAG, " - notification category = " + sbn.getNotification().category);
+        //Log.d(TAG, " - notification category = " + sbn.getNotification().category);
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
