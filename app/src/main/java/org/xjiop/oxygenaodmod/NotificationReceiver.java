@@ -24,14 +24,13 @@ public class NotificationReceiver extends BroadcastReceiver {
             return;
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "Channel-1");
-        mBuilder.setSmallIcon(R.drawable.ic_info)
+        mBuilder.setSmallIcon(R.drawable.ic_warning)
                 .setContentTitle(context.getString(R.string.reminder))
                 .setContentText(context.getString(R.string.new_notifications) + ": " + NOTIFICATION_COUNT)
                 .setSound(null)
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
-                .setCategory(Notification.CATEGORY_REMINDER)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setCategory(Notification.CATEGORY_REMINDER);
 
         notificationManager.notify(123, mBuilder.build());
     }

@@ -84,6 +84,7 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
+        // own reminder
         if(sbn.getId() == 123) {
             new Handler().postDelayed(new Runnable() {
                 public void run() {
@@ -94,17 +95,21 @@ public class NotificationService extends NotificationListenerService {
             return;
         }
 
+        // ignore duplicate ongoing (this notifications cannot be dismissed)
         if(sbn.isOngoing())
             return;
 
+        // ignore duplicate
         if((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
             //Log.d(TAG, " - ignore this notification");
             return;
         }
 
+        // category filter
         if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
             return;
 
+        // blacklist filter
         //if(sbn.getNotification().category != null && Helper.blackList.contains(sbn.getNotification().category))
         //    return;
 
@@ -124,20 +129,25 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
+        // own reminder
         if(sbn.getId() == 123)
             return;
 
+        // ignore duplicate ongoing (this notifications cannot be dismissed)
         if(sbn.isOngoing())
             return;
 
+        // ignore duplicate ongoing (this notifications cannot be dismissed)
         if((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
             //Log.d(TAG, " - ignore this notification");
             return;
         }
 
+        // category filter
         if(sbn.getNotification().category != null && Helper.blackList.contains(sbn.getNotification().category))
             return;
 
+        // blacklist filter
         //if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
         //    return;
 
@@ -150,7 +160,7 @@ public class NotificationService extends NotificationListenerService {
 
         if(NOTIFICATION_COUNT == 0)
             return;
-
+        
         boolean isScreenOn = powerManager != null && powerManager.isInteractive();
         if(isScreenOn)
             return;
