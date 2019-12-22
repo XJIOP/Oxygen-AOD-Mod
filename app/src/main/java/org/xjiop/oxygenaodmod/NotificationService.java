@@ -24,7 +24,6 @@ public class NotificationService extends NotificationListenerService {
     private ScreenPowerReceiver screenPowerReceiver;
     private Handler handler;
     private PowerManager powerManager;
-    //private NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
     @Override
     public void onCreate() {
