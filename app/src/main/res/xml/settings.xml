@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="@string/category_main"
+        android:key="category_main"
+        android:selectable="false"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreference
+            android:title="@string/double_tap"
+            android:key="double_tap"
+            android:summary="@string/double_tap_descr"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/category_notification"
+        android:key="category_notification"
+        android:selectable="false"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreference
+            android:title="@string/reminders"
+            android:key="reminders"
+            android:summary="@string/reminders_descr"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:title="@string/reset_when_screen_turn_on"
+            android:key="reset_when_screen_turn_on"
+            android:defaultValue="true"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
+        <EditTextPreference
+            android:title="@string/remind_interval"
+            android:key="remind_interval"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:defaultValue="15"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:title="@string/categories"
+            android:key="categories"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:title="@string/sound_settings"
+            android:key="sound_settings"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/category_application"
+        android:key="category_application"
+        android:selectable="false"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:title="@string/test_reminder"
+            android:key="test_notification"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:title="@string/bug_tracking"
+            android:key="bug_tracking"
+            android:summary="@string/bug_tracking_descr"
+            android:defaultValue="true"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:title="@string/about_app"
+            android:key="about_app"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

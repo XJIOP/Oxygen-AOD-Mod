@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#FF0000</color>
+    <!-- day -->
+    <color name="dayColorPrimary">#FAFAFA</color>
+    <color name="dayColorPrimaryDark">#FAFAFA</color>
+    <!-- night -->
+    <color name="nightColorPrimary">#131313</color>
+    <color name="nightColorPrimaryDark">#000000</color>
+    <color name="nightColorDark">#202020</color>
+</resources>
