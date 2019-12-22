@@ -55,6 +55,7 @@ public class Application extends android.app.Application {
             if (notificationManager.getNotificationChannel(channelId) == null) {
                 NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
                 notificationChannel.setSound(null, null);
+                notificationChannel.enableVibration(false);
                 notificationChannel.setShowBadge(false);
                 notificationManager.createNotificationChannel(notificationChannel);
             }
