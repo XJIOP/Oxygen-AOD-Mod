@@ -75,10 +75,6 @@ public class Application extends android.app.Application {
         REMIND_INTERVAL = Integer.parseInt(settings.getString("remind_interval", "15"));
         ALLOWED_CATEGORY = new ArrayList<>(settings.getStringSet("categories", new HashSet<>(Helper.categoryList)));
 
-        for(String s : ALLOWED_CATEGORY) {
-            System.out.println("TEST | "+s);
-        }
-
         if(!BuildConfig.DEBUG && settings.getBoolean("bug_tracking", true))
             Fabric.with(this, new Crashlytics());
     }
