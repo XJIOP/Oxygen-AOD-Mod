@@ -16,7 +16,6 @@
     <string name="test_reminder_descr">After 1 minute you should receive a test notification. Please turn off the screen to test reminders.</string>
     <string name="test_notification">Test notification</string>
     <string name="min_5_sec">Min. 5 seconds</string>
-
     <string name="new_notifications">New notifications</string>
     <string name="test">Test</string>
     <string name="hello">Hello</string>
@@ -41,4 +40,6 @@
     <string name="event">Event</string>
     <string name="msg">Message</string>
     <string name="reminder">Reminder</string>
+    <string name="social">Social network</string>
+    <string name="sys">System</string>
 </resources>

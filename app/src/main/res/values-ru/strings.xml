@@ -39,4 +39,6 @@
     <string name="event">Событие</string>
     <string name="msg">Сообщение</string>
     <string name="reminder">Напоминание</string>
+    <string name="social">Социальная сеть</string>
+    <string name="sys">Система</string>
 </resources>

@@ -18,7 +18,18 @@ class Helper {
             Notification.CATEGORY_EMAIL,
             Notification.CATEGORY_EVENT,
             Notification.CATEGORY_MESSAGE,
-            Notification.CATEGORY_REMINDER);
+            Notification.CATEGORY_REMINDER,
+            Notification.CATEGORY_SOCIAL,
+            Notification.CATEGORY_SYSTEM);
+
+    static final List<String> blackList = Arrays.asList(
+            Notification.CATEGORY_NAVIGATION,
+            Notification.CATEGORY_PROMO,
+            Notification.CATEGORY_PROGRESS,
+            Notification.CATEGORY_SERVICE,
+            Notification.CATEGORY_TRANSPORT,
+            Notification.CATEGORY_RECOMMENDATION,
+            Notification.CATEGORY_ERROR);
 
     static String categoryName(Context context, String category) {
         switch (category) {
@@ -34,6 +45,10 @@ class Helper {
                 return context.getString(R.string.msg);
             case "reminder":
                 return context.getString(R.string.reminder);
+            case "social":
+                return context.getString(R.string.social);
+            case "sys":
+                return context.getString(R.string.sys);
             default:
                 return null;
         }
