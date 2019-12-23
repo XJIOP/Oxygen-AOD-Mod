@@ -30,6 +30,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setSound(null)
                 .setAutoCancel(true)
                 .setOnlyAlertOnce(true)
+                .setTimeoutAfter(1000)
                 .setCategory(Notification.CATEGORY_REMINDER);
 
         notificationManager.notify(123, mBuilder.build());

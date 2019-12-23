@@ -84,38 +84,8 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
-        // own reminder
-        if(sbn.getId() == 123) {
-            new Handler().postDelayed(new Runnable() {
-                public void run() {
-                    cancelNotification(sbn.getKey());
-                    startReminder();
-                }
-            }, 1000);
-            return;
-        }
-
-        // ignore duplicate ongoing (this notifications cannot be dismissed)
-        if(sbn.isOngoing())
-            return;
-
-        // ignore duplicate
-        if((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
-            //Log.d(TAG, " - ignore this notification");
-            return;
-        }
-
-        // category filter
-        if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
-            return;
-
-        // blacklist filter
-        //if(sbn.getNotification().category != null && Helper.blackList.contains(sbn.getNotification().category))
-        //    return;
-
-        NOTIFICATION_COUNT++;
-
-        startReminder();
+        if(newNotification(sbn))
+            startReminder(false);
     }
 
     @Override
@@ -130,8 +100,10 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
         // own reminder
-        if(sbn.getId() == 123)
+        if(sbn.getId() == 123) {
+            startReminder(false);
             return;
+        }
 
         // ignore duplicate ongoing (this notifications cannot be dismissed)
         if(sbn.isOngoing())
@@ -155,8 +127,11 @@ public class NotificationService extends NotificationListenerService {
             NOTIFICATION_COUNT--;
     }
 
-    public void startReminder() {
+    public void startReminder(boolean recount) {
         //Log.d(TAG, "startReminder | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT);
+
+        if(recount)
+            recount_notifications();
 
         if(NOTIFICATION_COUNT == 0)
             return;
@@ -184,5 +159,42 @@ public class NotificationService extends NotificationListenerService {
 
         if(handler != null)
             handler.removeCallbacksAndMessages(null);
+    }
+
+    private boolean newNotification(StatusBarNotification sbn) {
+
+        // own reminder
+        if(sbn.getId() == 123)
+            return false;
+
+        // ignore duplicate ongoing (this notifications cannot be dismissed)
+        if(sbn.isOngoing())
+            return false;
+
+        // ignore duplicate
+        if((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
+            //Log.d(TAG, " - ignore this notification");
+            return false;
+        }
+
+        // category filter
+        if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
+            return false;
+
+        // blacklist filter
+        //if(sbn.getNotification().category != null && Helper.blackList.contains(sbn.getNotification().category))
+        //    return;
+
+        NOTIFICATION_COUNT++;
+
+        return true;
+    }
+
+    private void recount_notifications() {
+        if(!RESET_WHEN_SCREEN_TURN_ON) {
+            for(StatusBarNotification sbn : getActiveNotifications()) {
+                newNotification(sbn);
+            }
+        }
     }
 }

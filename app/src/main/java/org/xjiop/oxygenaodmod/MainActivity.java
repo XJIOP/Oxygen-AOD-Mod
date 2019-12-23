@@ -24,6 +24,7 @@ import io.fabric.sdk.android.Fabric;
 
 import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
+import static org.xjiop.oxygenaodmod.NotificationService.NOTIFICATION_COUNT;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -54,7 +55,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         switch (key) {
             case "reset_when_screen_turn_on":
+
                 RESET_WHEN_SCREEN_TURN_ON = sharedPreferences.getBoolean("reset_when_screen_turn_on", true);
+
+                 if(RESET_WHEN_SCREEN_TURN_ON)
+                    NOTIFICATION_COUNT = 0;
+
                 break;
 
             case "bug_tracking":
@@ -177,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                                     AlarmManager alarmManager = (AlarmManager) applicationContext.getSystemService(ALARM_SERVICE);
                                     if(alarmManager != null) {
-                                        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (60 * 1000), pendingIntent);
+                                        alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (60 * 1000), pendingIntent);
                                         Helper.showDialogFragment(mContext, MessageDialog.newInstance(mContext.getString(R.string.confirmation), mContext.getString(R.string.test_reminder_descr)));
                                     }
                                 }
@@ -211,13 +217,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             super.onResume();
 
             if(doubleTapPreference != null)
-                ((SwitchPreference) doubleTapPreference).setChecked(isAccessibility());
+                ((SwitchPreference) doubleTapPreference).setChecked(isAccessibilityPermission());
 
             if(remindNotificationPreference != null)
-                ((SwitchPreference) remindNotificationPreference).setChecked(isNotification());
+                ((SwitchPreference) remindNotificationPreference).setChecked(isNotificationPermission());
         }
 
-        private boolean isAccessibility() {
+        private boolean isAccessibilityPermission() {
 
             boolean result = false;
 
@@ -239,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             return result;
         }
 
-        private boolean isNotification() {
+        private boolean isNotificationPermission() {
             ComponentName cn = new ComponentName(mContext, NotificationService.class);
             String flat = Settings.Secure.getString(mContext.getContentResolver(), "enabled_notification_listeners");
             return flat != null && flat.contains(cn.flattenToString());

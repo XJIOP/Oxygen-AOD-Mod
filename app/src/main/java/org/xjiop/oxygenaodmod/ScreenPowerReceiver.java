@@ -29,7 +29,7 @@ public class ScreenPowerReceiver extends BroadcastReceiver {
                     //Log.d(TAG, "ACTION_SCREEN_OFF");
 
                     if(notificationService != null)
-                        notificationService.startReminder();
+                        notificationService.startReminder(true);
 
                     break;
             }
