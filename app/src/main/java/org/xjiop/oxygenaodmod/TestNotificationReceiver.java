@@ -1,6 +1,7 @@
 package org.xjiop.oxygenaodmod;
 
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,12 +21,16 @@ public class TestNotificationReceiver extends BroadcastReceiver {
         if(notificationManager == null)
             return;
 
+        Intent intentClick = new Intent(context, MainActivity.class);
+        PendingIntent pendingClick = PendingIntent.getActivity(context, 1, intentClick, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "Channel-2");
         mBuilder.setSmallIcon(R.drawable.ic_test)
                 .setContentTitle(context.getString(R.string.test))
                 .setContentText(context.getString(R.string.hello) + "!")
                 .setAutoCancel(true)
-                .setOnlyAlertOnce(true);
+                .setOnlyAlertOnce(true)
+                .setContentIntent(pendingClick);
 
         notificationManager.notify(135, mBuilder.build());
     }
