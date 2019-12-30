@@ -22,6 +22,7 @@ import com.crashlytics.android.core.CrashlyticsCore;
 
 import io.fabric.sdk.android.Fabric;
 
+import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.NotificationService.NOTIFICATION_COUNT;
@@ -131,13 +132,34 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     }
                     catch(NumberFormatException ignored) {}
 
-                    if(value < 5) {
-                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(mContext.getString(R.string.error), mContext.getString(R.string.min_5_sec)));
+                    if(value < 10) {
+                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(mContext.getString(R.string.error), mContext.getString(R.string.min_interval_sec)));
                         return false;
                     }
 
                     REMIND_INTERVAL = value;
                     preference.setSummary(newValue.toString() + " " + getString(R.string.sec));
+
+                    return true;
+                }
+            });
+
+            String remind_amount = settings.getString("remind_amount", "0");
+            Preference remindAmountPreference = findPreference("remind_amount");
+            remindAmountPreference.setSummary(remind_amount.equals("0") ? getString(R.string.no_limits) : remind_amount);
+            remindAmountPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+                    int value = 0;
+                    try {
+                        value = Integer.valueOf(newValue.toString());
+                    }
+                    catch(NumberFormatException ignored) {}
+
+                    REMIND_AMOUNT = value;
+                    String text = value == 0 ? getString(R.string.no_limits) : newValue.toString();
+                    preference.setSummary(text);
 
                     return true;
                 }

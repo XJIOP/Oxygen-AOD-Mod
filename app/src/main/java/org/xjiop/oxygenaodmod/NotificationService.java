@@ -11,6 +11,7 @@ import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
 import static org.xjiop.oxygenaodmod.Application.ALLOWED_CATEGORY;
+import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 
@@ -20,6 +21,7 @@ public class NotificationService extends NotificationListenerService {
 
     public static NotificationService notificationService;
     public static int NOTIFICATION_COUNT;
+    public static int REMINDER_COUNT;
 
     private ScreenPowerReceiver screenPowerReceiver;
     private Handler handler;
@@ -85,7 +87,7 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
         if(newNotification(sbn))
-            startReminder(false);
+            startReminder();
     }
 
     @Override
@@ -101,15 +103,15 @@ public class NotificationService extends NotificationListenerService {
 
         // own reminder
         if(sbn.getId() == 123) {
-            startReminder(false);
+            startReminder();
             return;
         }
 
-        // ignore duplicate ongoing (this notifications cannot be dismissed)
+        // ignore ongoing (this notifications cannot be dismissed)
         if(sbn.isOngoing())
             return;
 
-        // ignore duplicate ongoing (this notifications cannot be dismissed)
+        // ignore duplicate
         if((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
             //Log.d(TAG, " - ignore this notification");
             return;
@@ -123,29 +125,34 @@ public class NotificationService extends NotificationListenerService {
         //if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
         //    return;
 
-        if(NOTIFICATION_COUNT > 0)
+        if(NOTIFICATION_COUNT > 0) {
             NOTIFICATION_COUNT--;
+            if(NOTIFICATION_COUNT == 0) {
+                if(handler != null)
+                    handler.removeCallbacksAndMessages(null);
+            }
+        }
     }
 
-    public void startReminder(boolean recount) {
-        //Log.d(TAG, "startReminder | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT);
-
-        if(recount)
-            recount_notifications();
+    public void startReminder() {
+        //Log.d(TAG, "startReminder | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT + " | REMINDER_COUNT: " + REMINDER_COUNT);
 
         if(NOTIFICATION_COUNT == 0)
             return;
-        
+
+        if(isRemindAmount())
+            return;
+
         boolean isScreenOn = powerManager != null && powerManager.isInteractive();
         if(isScreenOn)
             return;
 
         if(handler != null) {
+            REMINDER_COUNT++;
             handler.removeCallbacksAndMessages(null);
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    if(NOTIFICATION_COUNT > 0)
-                        sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
+                    sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
                 }
             }, REMIND_INTERVAL * 1000);
         }
@@ -154,8 +161,8 @@ public class NotificationService extends NotificationListenerService {
     public void stopReminder() {
         //Log.d(TAG, "stopAlert | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT);
 
-        if(RESET_WHEN_SCREEN_TURN_ON)
-            NOTIFICATION_COUNT = 0;
+        NOTIFICATION_COUNT = 0;
+        REMINDER_COUNT = 0;
 
         if(handler != null)
             handler.removeCallbacksAndMessages(null);
@@ -167,7 +174,7 @@ public class NotificationService extends NotificationListenerService {
         if(sbn.getId() == 123)
             return false;
 
-        // ignore duplicate ongoing (this notifications cannot be dismissed)
+        // ignore ongoing (this notifications cannot be dismissed)
         if(sbn.isOngoing())
             return false;
 
@@ -186,15 +193,20 @@ public class NotificationService extends NotificationListenerService {
         //    return;
 
         NOTIFICATION_COUNT++;
+        REMINDER_COUNT = 0;
 
         return true;
     }
 
-    private void recount_notifications() {
+    public void recountNotifications() {
         if(!RESET_WHEN_SCREEN_TURN_ON) {
-            for(StatusBarNotification sbn : getActiveNotifications()) {
+            for (StatusBarNotification sbn : getActiveNotifications()) {
                 newNotification(sbn);
             }
         }
+    }
+
+    private boolean isRemindAmount() {
+        return REMIND_AMOUNT > 0 && REMINDER_COUNT == REMIND_AMOUNT;
     }
 }

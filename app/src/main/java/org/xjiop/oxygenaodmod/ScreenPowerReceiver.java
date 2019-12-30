@@ -3,7 +3,6 @@ package org.xjiop.oxygenaodmod;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import static org.xjiop.oxygenaodmod.NotificationService.notificationService;
 
@@ -28,8 +27,10 @@ public class ScreenPowerReceiver extends BroadcastReceiver {
                 case Intent.ACTION_SCREEN_OFF:
                     //Log.d(TAG, "ACTION_SCREEN_OFF");
 
-                    if(notificationService != null)
-                        notificationService.startReminder(true);
+                    if(notificationService != null) {
+                        notificationService.recountNotifications();
+                        notificationService.startReminder();
+                    }
 
                     break;
             }

@@ -14,7 +14,7 @@
     <string name="test_reminder_confirm">Запустить тестовое уведомление?</string>
     <string name="test_reminder_descr">Через 1 минуту вы должны получить тестовое уведомление. Пожалуйста выключите экран для теста напоминаний.</string>
     <string name="test_notification">Тестовое уведомление</string>
-    <string name="min_5_sec">Мин. 5 секунд</string>
+    <string name="min_interval_sec">Мин. 10 секунд</string>
     <string name="new_notifications">Новые уведомления</string>
     <string name="test">Тест</string>
     <string name="hello">Привет</string>
@@ -41,4 +41,7 @@
     <string name="reminder">Напоминание</string>
     <string name="social">Социальная сеть</string>
     <string name="sys">Система</string>
+    <string name="number_impressions">Количество показов</string>
+    <string name="no_limits">Без ограничений</string>
+    <string name="from">из</string>
 </resources>

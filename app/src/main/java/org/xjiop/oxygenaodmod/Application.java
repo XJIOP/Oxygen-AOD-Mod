@@ -18,6 +18,7 @@ public class Application extends android.app.Application {
 
     public static boolean RESET_WHEN_SCREEN_TURN_ON;
     public static int REMIND_INTERVAL;
+    public static int REMIND_AMOUNT;
     public static List<String> ALLOWED_CATEGORY = new ArrayList<>();
 
     @Override
@@ -73,6 +74,7 @@ public class Application extends android.app.Application {
 
         RESET_WHEN_SCREEN_TURN_ON = settings.getBoolean("reset_when_screen_turn_on", true);
         REMIND_INTERVAL = Integer.parseInt(settings.getString("remind_interval", "15"));
+        REMIND_AMOUNT = Integer.parseInt(settings.getString("remind_amount", "0"));
         ALLOWED_CATEGORY = new ArrayList<>(settings.getStringSet("categories", new HashSet<>(Helper.categoryList)));
 
         if(!BuildConfig.DEBUG && settings.getBoolean("bug_tracking", true))

@@ -47,6 +47,17 @@
             android:dependency="reminders"
             app:iconSpaceReserved="false" />
 
+        <EditTextPreference
+            android:title="@string/number_impressions"
+            android:key="remind_amount"
+            android:maxLength="4"
+            android:singleLine="true"
+            android:inputType="number"
+            android:digits="0123456789"
+            android:defaultValue="0"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
         <Preference
             android:title="@string/categories"
             android:key="categories"

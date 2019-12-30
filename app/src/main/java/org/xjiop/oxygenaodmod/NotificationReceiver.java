@@ -9,7 +9,9 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.NotificationService.NOTIFICATION_COUNT;
+import static org.xjiop.oxygenaodmod.NotificationService.REMINDER_COUNT;
 
 public class NotificationReceiver extends BroadcastReceiver {
 
@@ -23,9 +25,15 @@ public class NotificationReceiver extends BroadcastReceiver {
         if(notificationManager == null)
             return;
 
+        String amount = context.getString(R.string.reminder);
+        if(REMIND_AMOUNT > 0)
+            amount += " (" + REMINDER_COUNT + " " + context.getString(R.string.from) + " " + REMIND_AMOUNT + ")";
+        else
+            amount += " (" + REMINDER_COUNT + ")";
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "Channel-1");
         mBuilder.setSmallIcon(R.drawable.ic_warning)
-                .setContentTitle(context.getString(R.string.reminder))
+                .setContentTitle(amount)
                 .setContentText(context.getString(R.string.new_notifications) + ": " + NOTIFICATION_COUNT)
                 .setSound(null)
                 .setAutoCancel(true)
