@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name" translatable="false">Oxygen AOD Mod</string>
     <string name="app_google_play_link" translatable="false">https://play.google.com/store/apps/details?id=org.xjiop.oxygenaodmod</string>
+    <string name="source_code_link" translatable="false">https://github.com/XJIOP/Oxygen-AOD-Mod</string>
+    <string name="source_code">Source code</string>
     <string name="category_main">MAIN</string>
     <string name="category_notification">NOTIFICATION</string>
     <string name="category_application">APPLICATION</string>
     <string name="key_service_description">Activate double tap on AOD screen.</string>
     <string name="about_app">About app</string>
-    <string name="about_app_text">This app was tested on devices OnePlus 7th models running on Android 10 and should work on the 6th model. The app is not tied to OnePlus brand, it may work on other devices with AMOLED screens.</string>
+    <string name="about_app_text">This app is open source, it was tested only on OnePlus 7th model devices running Android 10. The app is not tied to OxygenOS and OnePlus, it can work on other devices with AMOLED screens.</string>
     <string name="version">Version</string>
     <string name="close">Close</string>
     <string name="ok">OK</string>

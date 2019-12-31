@@ -1,10 +1,11 @@
 <resources>
+    <string name="source_code">Исходной код</string>
     <string name="category_main">ОСНОВНЫЕ</string>
     <string name="category_notification">УВЕДОМЛЕНИЯ</string>
     <string name="category_application">ПРИЛОЖЕНИЕ</string>
     <string name="key_service_description">Активировать двойное нажатие на AOD экран.</string>
     <string name="about_app">О приложении</string>
-    <string name="about_app_text">Это приложение тестировалось на устройствах OnePlus 7й модели под управлением Android 10 и должно работать на 6й модели. Приложение не привязано к бренду OnePlus, возможно оно будет работать на других устройствах с AMOLED экранами.</string>
+    <string name="about_app_text">Это приложение с открытым исходным кодом, тестировалось только на устройствах OnePlus 7й модели под управлением Android 10. Приложение не привязано к OxygenOS и OnePlus, возможно оно будет работать на других устройствах с AMOLED экранами.</string>
     <string name="version">Версия</string>
     <string name="close">Закрыть</string>
     <string name="ok">ОК</string>

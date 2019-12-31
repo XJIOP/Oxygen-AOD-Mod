@@ -124,7 +124,7 @@ class Helper {
         return timeFormat[android.text.format.DateFormat.is24HourFormat(context) ? 2 : 1].format(date);
     }
 
-    static void openIntent(Context context, String link) {
+    static void openLink(Context context, String link) {
 
         if(link == null || link.isEmpty())
             return;

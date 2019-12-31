@@ -28,7 +28,7 @@ public class AppRateDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
                         settings.edit().putInt("app_rate_count", -1).apply();
-                        Helper.openIntent(context, getString(R.string.app_google_play_link));
+                        Helper.openLink(context, getString(R.string.app_google_play_link));
                     }
                 });
 

@@ -32,6 +32,13 @@ public class AboutAppDialog extends DialogFragment {
         TextView version = view.findViewById(R.id.app_version);
         version.setText(ver);
 
+        view.findViewById(R.id.source_code).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Helper.openLink(context, getString(R.string.source_code_link));
+            }
+        });
+
         dialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.close),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {}

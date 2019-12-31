@@ -33,9 +33,20 @@
             android:text="@string/version"/>
 
         <TextView
+            android:id="@+id/source_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            android:textColor="@color/colorAccent"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/source_code" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:textAlignment="center"
             android:text="@string/about_app_text" />
 
