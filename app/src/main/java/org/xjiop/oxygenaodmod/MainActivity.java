@@ -75,9 +75,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                 RESET_WHEN_SCREEN_TURN_ON = sharedPreferences.getBoolean("reset_when_screen_turn_on", true);
 
-                 if(RESET_WHEN_SCREEN_TURN_ON)
-                    NOTIFICATION_COUNT = 0;
-
                 break;
 
             case "bug_tracking":
