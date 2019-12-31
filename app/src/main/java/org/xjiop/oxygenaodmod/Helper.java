@@ -1,6 +1,7 @@
 package org.xjiop.oxygenaodmod;
 
 import android.app.Notification;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -139,10 +140,29 @@ class Helper {
                 context.startActivity(intent);
             }
             catch (Exception e) {
-                Toast.makeText(context, R.string.cant_open_link+": "+link, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.cant_open_link, Toast.LENGTH_SHORT).show();
             }
         }
         else {
+            Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    static void shareLink(Context context, String link, String title) {
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, title);
+        intent.putExtra(Intent.EXTRA_TEXT, link);
+
+        try {
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.share)));
+        }
+        catch (ActivityNotFoundException an) {
+            Toast.makeText(context, R.string.cant_open_link, Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e) {
             Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show();
         }
     }

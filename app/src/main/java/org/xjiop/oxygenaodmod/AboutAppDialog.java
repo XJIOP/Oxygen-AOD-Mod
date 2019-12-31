@@ -15,16 +15,16 @@ import androidx.fragment.app.DialogFragment;
 
 public class AboutAppDialog extends DialogFragment {
 
-    private Context mContext;
-
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        AlertDialog dialog = new AlertDialog.Builder(mContext).create();
+        final Context context = getContext();
+
+        AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle(R.string.about_app);
 
-        LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_about_app, null);
         dialog.setView(view);
 
@@ -37,13 +37,13 @@ public class AboutAppDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int which) {}
                 });
 
+        dialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL, getString(R.string.share),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Helper.shareLink(context, getString(R.string.app_google_play_link), getString(R.string.app_name));
+                    }
+                });
+
         return dialog;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        mContext = context;
     }
 }
