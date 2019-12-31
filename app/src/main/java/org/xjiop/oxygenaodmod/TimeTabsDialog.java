@@ -58,7 +58,7 @@ public class TimeTabsDialog extends DialogFragment {
         final View view = createTimeViews(dialog.getLayoutInflater());
         dialog.setView(view);
 
-        dialog.setButton(AlertDialog.BUTTON_POSITIVE, mContext.getString(R.string.save),
+        dialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.save),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -94,7 +94,7 @@ public class TimeTabsDialog extends DialogFragment {
                     }
                 });
 
-        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, mContext.getString(R.string.cancel),
+        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.cancel),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {}
                 });
@@ -117,12 +117,12 @@ public class TimeTabsDialog extends DialogFragment {
         tabHost.setup();
 
         TabHost.TabSpec tabSpec1 = tabHost.newTabSpec("tab1");
-        tabSpec1.setIndicator(mContext.getString(R.string.start));
+        tabSpec1.setIndicator(getString(R.string.start));
         tabSpec1.setContent(R.id.tab1);
         tabHost.addTab(tabSpec1);
 
         TabHost.TabSpec tabSpec2 = tabHost.newTabSpec("tab2");
-        tabSpec2.setIndicator(mContext.getString(R.string.end));
+        tabSpec2.setIndicator(getString(R.string.end));
         tabSpec2.setContent(R.id.tab2);
         tabHost.addTab(tabSpec2);
 

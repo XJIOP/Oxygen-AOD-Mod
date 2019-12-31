@@ -96,9 +96,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
-        private static int IGNORE_RESULT = 0;
-        private static int SCHEDULE_RESULT = 1;
-        private static int TEST_RESULT = 2;
+        private static final int IGNORE_RESULT = 0;
+        private static final int SCHEDULE_RESULT = 1;
+        private static final int TEST_RESULT = 2;
 
         private Context mContext;
         private Preference doubleTapPreference;

@@ -155,7 +155,6 @@ public class NotificationService extends NotificationListenerService {
                 //Log.d(TAG, " - stopped by schedule");
                 return;
             }
-
         }
 
         boolean isScreenOn = powerManager != null && powerManager.isInteractive();
