@@ -31,8 +31,6 @@ public class CategoriesDialog extends DialogFragment {
 
     private final List<CategoriesDummy.Item> categories = new ArrayList<>();
 
-    private Context mContext;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +44,18 @@ public class CategoriesDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        final Context context = getContext();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.categories);
 
-        LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_categories, null);
 
         CategoriesAdapter adapter = new CategoriesAdapter(categories);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -71,7 +71,7 @@ public class CategoriesDialog extends DialogFragment {
                         selected.add(item.name);
                     }
                 }
-                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
+                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
                 settings.edit().putStringSet("categories", selected).apply();
                 ALLOWED_CATEGORY = new ArrayList<>(selected);
             }
@@ -83,12 +83,5 @@ public class CategoriesDialog extends DialogFragment {
         });
 
         return builder.create();
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        mContext = context;
     }
 }

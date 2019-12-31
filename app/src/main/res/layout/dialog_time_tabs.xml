@@ -29,13 +29,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp">
 
                     <TimePicker
                         android:id="@+id/timePicker1"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:timePickerMode="spinner" />
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -44,13 +44,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="5dp">
 
                     <TimePicker
                         android:id="@+id/timePicker2"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:timePickerMode="spinner" />
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
@@ -64,7 +64,7 @@
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="20dp"
         android:text="@string/any_time" />
 
 </LinearLayout>

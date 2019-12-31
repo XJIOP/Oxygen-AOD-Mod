@@ -25,8 +25,6 @@ public class ConfirmDialog extends DialogFragment {
     private String positive;
     private String negative;
 
-    private Context mContext;
-
     static ConfirmDialog newInstance(String title, String message, String positive, String negative) {
         ConfirmDialog fragment = new ConfirmDialog();
         Bundle args = new Bundle();
@@ -53,7 +51,9 @@ public class ConfirmDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        AlertDialog dialog = new AlertDialog.Builder(mContext).create();
+        final Context context = getContext();
+
+        AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle(title);
         dialog.setMessage(message);
         dialog.setCanceledOnTouchOutside(false);
@@ -86,13 +86,6 @@ public class ConfirmDialog extends DialogFragment {
         });
 
         return dialog;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        mContext = context;
     }
 
     private void callBack(boolean onPositive) {

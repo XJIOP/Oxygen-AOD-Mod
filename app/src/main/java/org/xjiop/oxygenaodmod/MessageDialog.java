@@ -21,9 +21,7 @@ public class MessageDialog extends DialogFragment {
     private String title;
     private String text;
 
-    private Context mContext;
-
-    public static MessageDialog newInstance(String title, String text) {
+    static MessageDialog newInstance(String title, String text) {
         MessageDialog fragment = new MessageDialog();
         Bundle args = new Bundle();
         args.putString(ARG_TITLE, title);
@@ -45,10 +43,12 @@ public class MessageDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        AlertDialog dialog = new AlertDialog.Builder(mContext).create();
+        final Context context = getContext();
+
+        AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle(title);
 
-        LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_message, null);
 
         TextView textView = view.findViewById(R.id.message);
@@ -62,12 +62,5 @@ public class MessageDialog extends DialogFragment {
                 });
 
         return dialog;
-    }
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        mContext = context;
     }
 }
