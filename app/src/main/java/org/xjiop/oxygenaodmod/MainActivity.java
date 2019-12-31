@@ -26,7 +26,6 @@ import io.fabric.sdk.android.Fabric;
 import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
-import static org.xjiop.oxygenaodmod.NotificationService.NOTIFICATION_COUNT;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -150,12 +149,14 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     catch(NumberFormatException ignored) {}
 
                     if(value < 10) {
-                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(mContext.getString(R.string.error), mContext.getString(R.string.min_interval_sec)));
+                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.error), getString(R.string.min_interval_sec)));
                         return false;
                     }
 
                     REMIND_INTERVAL = value;
                     preference.setSummary(newValue.toString() + " " + getString(R.string.sec));
+
+                    Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.warning), getString(R.string.remind_interval_info)));
 
                     return true;
                 }
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             String scheduleSummary;
             if(settings.getBoolean("any_time", true)) {
-                scheduleSummary = mContext.getString(R.string.any_time);
+                scheduleSummary = getString(R.string.any_time);
             }
             else {
                 String time1 = Helper.localTimeFormat(mContext, settings.getString("start_time", "08:00"));
@@ -291,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     AlarmManager alarmManager = (AlarmManager) applicationContext.getSystemService(ALARM_SERVICE);
                     if(alarmManager != null) {
                         alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (60 * 1000), pendingIntent);
-                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(mContext.getString(R.string.confirmation), mContext.getString(R.string.test_reminder_descr)));
+                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.confirmation), getString(R.string.test_reminder_descr)));
                     }
                 }
             }

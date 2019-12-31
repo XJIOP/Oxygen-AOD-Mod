@@ -56,4 +56,6 @@
     <string name="cant_open_link">Can\'t open link</string>
     <string name="unknown_error">Unknown error</string>
     <string name="share">Share</string>
+    <string name="warning">Warning</string>
+    <string name="remind_interval_info">When the screen is off, the device operates in energy-saving mode, so the reminder interval does not guarantee the specified value, the delay can be up to 1 minute.</string>
 </resources>

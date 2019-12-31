@@ -54,4 +54,6 @@
     <string name="cant_open_link">Не удается открыть ссылку</string>
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="share">Поделиться</string>
+    <string name="warning">Внимание</string>
+    <string name="remind_interval_info">При выключенном экране, устройство работает в энергосберегающем режиме, поэтому интервал напоминаний не гарантирует указанное значение, задержка может быть до 1й минуты.</string>
 </resources>
