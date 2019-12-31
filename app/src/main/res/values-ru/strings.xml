@@ -19,9 +19,9 @@
     <string name="test">Тест</string>
     <string name="hello">Привет</string>
     <string name="double_tap">Двойное нажатие</string>
-    <string name="double_tap_descr">Двойным нажатием на AOD экран открывать экран блокировки.</string>
+    <string name="double_tap_descr">Двойным нажатием на AOD экран открывать экран блокировки</string>
     <string name="reminders">Напоминания</string>
-    <string name="reminders_descr">Напоминать об уведомлениях.</string>
+    <string name="reminders_descr">Напоминать об уведомлениях</string>
     <string name="remind_interval">Интервал напоминаний</string>
     <string name="sound_settings">Настройки звука</string>
     <string name="error">Ошибка</string>
@@ -29,7 +29,7 @@
     <string name="sec">сек.</string>
     <string name="reset_when_screen_turn_on">Сбрасывать при включение экрана</string>
     <string name="bug_tracking">Отслеживать ошибки</string>
-    <string name="bug_tracking_descr">Разрешить отслеживать ошибки о сбоях и отправлять разработчику.</string>
+    <string name="bug_tracking_descr">Разрешить отслеживать ошибки о сбоях и отправлять разработчику</string>
     <string name="categories">Категории</string>
     <string name="save">Сохранить</string>
     <string name="cancel">Отмена</string>
@@ -48,4 +48,9 @@
     <string name="start">Начало</string>
     <string name="end">Конец</string>
     <string name="any_time">Любое время</string>
+    <string name="rate_app_text">Если вам понравилось это приложение, пожалуйста, поставьте оценку.\n\nСпасибо за Вашу поддержку!</string>
+    <string name="rate">Хорошо</string>
+    <string name="no_thanks">Нет, спасибо</string>
+    <string name="cant_open_link">Не удается открыть ссылку</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
 </resources>

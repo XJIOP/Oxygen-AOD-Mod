@@ -2,6 +2,9 @@ package org.xjiop.oxygenaodmod;
 
 import android.app.Notification;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -34,6 +37,13 @@ class Helper {
             Notification.CATEGORY_SERVICE,
             Notification.CATEGORY_SYSTEM,
             Notification.CATEGORY_TRANSPORT);
+
+    private static final SimpleDateFormat[] timeFormat = {
+            new SimpleDateFormat("hh:mm a", Locale.US),
+            new SimpleDateFormat("h:mm a", Locale.US),
+            new SimpleDateFormat("HH:mm", Locale.US),
+            new SimpleDateFormat("H:mm", Locale.US)
+    };
 
     static String categoryName(Context context, String category) {
         switch (category) {
@@ -87,13 +97,6 @@ class Helper {
         }
     }
 
-    private static final SimpleDateFormat[] timeFormat = {
-            new SimpleDateFormat("hh:mm a", Locale.US),
-            new SimpleDateFormat("h:mm a", Locale.US),
-            new SimpleDateFormat("HH:mm", Locale.US),
-            new SimpleDateFormat("H:mm", Locale.US)
-    };
-
     static String parseTime(String time) {
 
         Date date = new Date();
@@ -118,5 +121,29 @@ class Helper {
         }
 
         return timeFormat[android.text.format.DateFormat.is24HourFormat(context) ? 2 : 1].format(date);
+    }
+
+    static void openIntent(Context context, String link) {
+
+        if(link == null || link.isEmpty())
+            return;
+
+        Uri uri = Uri.parse(link);
+        if(uri != null) {
+
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(link));
+
+            try {
+                context.startActivity(intent);
+            }
+            catch (Exception e) {
+                Toast.makeText(context, R.string.cant_open_link+": "+link, Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show();
+        }
     }
 }

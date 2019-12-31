@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">Oxygen AOD Mod</string>
+    <string name="app_google_play_link" translatable="false">https://play.google.com/store/apps/details?id=org.xjiop.oxygenaodmod</string>
     <string name="category_main">MAIN</string>
     <string name="category_notification">NOTIFICATION</string>
     <string name="category_application">APPLICATION</string>
@@ -20,9 +21,9 @@
     <string name="test">Test</string>
     <string name="hello">Hello</string>
     <string name="double_tap">Double tap</string>
-    <string name="double_tap_descr">Double tap on the AOD screen to open the lock screen.</string>
+    <string name="double_tap_descr">Double tap on the AOD screen to open the lock screen</string>
     <string name="reminders">Reminders</string>
-    <string name="reminders_descr">Remind about notifications.</string>
+    <string name="reminders_descr">Remind about notifications</string>
     <string name="remind_interval">Remind interval</string>
     <string name="sound_settings">Sound settings</string>
     <string name="error">Error</string>
@@ -30,7 +31,7 @@
     <string name="sec">sec.</string>
     <string name="reset_when_screen_turn_on">Reset when screen turn on</string>
     <string name="bug_tracking">Bug tracking</string>
-    <string name="bug_tracking_descr">Allow tracking crash errors and send to the developer.</string>
+    <string name="bug_tracking_descr">Allow tracking crash errors and send to the developer</string>
     <string name="categories">Categories</string>
     <string name="save">Save</string>
     <string name="cancel">Cancel</string>
@@ -49,4 +50,9 @@
     <string name="start">Start</string>
     <string name="end">End</string>
     <string name="any_time">Any time</string>
+    <string name="rate_app_text">If you like this app, please rate it.\n\nThanks for your support!</string>
+    <string name="rate">Rate</string>
+    <string name="no_thanks">No, thanks</string>
+    <string name="cant_open_link">Can\'t open link</string>
+    <string name="unknown_error">Unknown error</string>
 </resources>
