@@ -46,17 +46,11 @@ public class CategoriesDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        /* TODO: BUILD DIALOG */
-
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle(R.string.categories);
 
-        /* TODO: ADD LAYOUT */
-
         LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_categories, null);
-
-        /* TODO: SET ADAPTER */
 
         CategoriesAdapter adapter = new CategoriesAdapter(categories);
 
@@ -66,8 +60,6 @@ public class CategoriesDialog extends DialogFragment {
         recyclerView.setAdapter(adapter);
 
         builder.setView(view);
-
-        /* TODO: DIALOG BUTTONS */
 
         builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
             @Override

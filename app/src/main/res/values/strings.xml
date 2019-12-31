@@ -45,4 +45,8 @@
     <string name="number_impressions">Number of impressions</string>
     <string name="no_limits">No limits</string>
     <string name="from">from</string>
+    <string name="schedule">Schedule</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="any_time">Any time</string>
 </resources>

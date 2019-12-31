@@ -10,10 +10,15 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
+import java.time.LocalTime;
+
 import static org.xjiop.oxygenaodmod.Application.ALLOWED_CATEGORY;
+import static org.xjiop.oxygenaodmod.Application.ANY_TIME;
+import static org.xjiop.oxygenaodmod.Application.END_TIME;
 import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
+import static org.xjiop.oxygenaodmod.Application.START_TIME;
 
 public class NotificationService extends NotificationListenerService {
 
@@ -142,6 +147,16 @@ public class NotificationService extends NotificationListenerService {
 
         if(isRemindAmount())
             return;
+
+        if(!ANY_TIME) {
+            LocalTime now = LocalTime.now();
+            boolean isSchedule = now.isAfter(START_TIME) &&  now.isBefore(END_TIME);
+            if(!isSchedule) {
+                //Log.d(TAG, " - stopped by schedule");
+                return;
+            }
+
+        }
 
         boolean isScreenOn = powerManager != null && powerManager.isInteractive();
         if(isScreenOn)

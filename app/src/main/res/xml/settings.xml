@@ -59,6 +59,12 @@
             app:iconSpaceReserved="false" />
 
         <Preference
+            android:title="@string/schedule"
+            android:key="schedule"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
+        <Preference
             android:title="@string/categories"
             android:key="categories"
             android:dependency="reminders"

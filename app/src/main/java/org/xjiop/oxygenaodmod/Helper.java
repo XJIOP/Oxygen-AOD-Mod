@@ -7,8 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 class Helper {
 
@@ -19,17 +23,17 @@ class Helper {
             Notification.CATEGORY_EVENT,
             Notification.CATEGORY_MESSAGE,
             Notification.CATEGORY_REMINDER,
-            Notification.CATEGORY_SOCIAL,
-            Notification.CATEGORY_SYSTEM);
+            Notification.CATEGORY_SOCIAL);
 
     static final List<String> blackList = Arrays.asList(
+            Notification.CATEGORY_ERROR,
             Notification.CATEGORY_NAVIGATION,
             Notification.CATEGORY_PROMO,
             Notification.CATEGORY_PROGRESS,
-            Notification.CATEGORY_SERVICE,
-            Notification.CATEGORY_TRANSPORT,
             Notification.CATEGORY_RECOMMENDATION,
-            Notification.CATEGORY_ERROR);
+            Notification.CATEGORY_SERVICE,
+            Notification.CATEGORY_SYSTEM,
+            Notification.CATEGORY_TRANSPORT);
 
     static String categoryName(Context context, String category) {
         switch (category) {
@@ -81,5 +85,38 @@ class Helper {
                 }
             });
         }
+    }
+
+    private static final SimpleDateFormat[] timeFormat = {
+            new SimpleDateFormat("hh:mm a", Locale.US),
+            new SimpleDateFormat("h:mm a", Locale.US),
+            new SimpleDateFormat("HH:mm", Locale.US),
+            new SimpleDateFormat("H:mm", Locale.US)
+    };
+
+    static String parseTime(String time) {
+
+        Date date = new Date();
+        for (SimpleDateFormat f : timeFormat) {
+            try {
+                date = f.parse(time);
+                break;
+            } catch (ParseException ignored) {}
+        }
+
+        return timeFormat[2].format(date);
+    }
+
+    static String localTimeFormat(Context context, String time) {
+
+        Date date = new Date();
+        for (SimpleDateFormat f : timeFormat) {
+            try {
+                date = f.parse(time);
+                break;
+            } catch (ParseException ignored) {}
+        }
+
+        return timeFormat[android.text.format.DateFormat.is24HourFormat(context) ? 2 : 1].format(date);
     }
 }

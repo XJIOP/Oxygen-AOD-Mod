@@ -44,4 +44,8 @@
     <string name="number_impressions">Количество показов</string>
     <string name="no_limits">Без ограничений</string>
     <string name="from">из</string>
+    <string name="schedule">Расписание</string>
+    <string name="start">Начало</string>
+    <string name="end">Конец</string>
+    <string name="any_time">Любое время</string>
 </resources>
