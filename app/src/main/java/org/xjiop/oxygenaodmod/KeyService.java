@@ -42,8 +42,14 @@ public class KeyService extends AccessibilityService {
         boolean result = false;
         boolean isScreenOn = powerManager != null && powerManager.isInteractive();
 
-        if(!isScreenOn && event.getKeyCode() == KeyEvent.KEYCODE_F4)
-            result = doubleClick();
+        if(!isScreenOn && event.getKeyCode() == KeyEvent.KEYCODE_F4) {
+            if(result = doubleClick()) {
+                if(wakeLock != null) {
+                    wakeLock.setReferenceCounted(false);
+                    wakeLock.acquire(1000);
+                }
+            }
+        }
 
         return result || super.onKeyEvent(event);
     }
@@ -58,11 +64,6 @@ public class KeyService extends AccessibilityService {
 
             CLICK_DELAY = -1;
             result = true;
-
-            if(wakeLock != null) {
-                wakeLock.acquire(500L);
-                wakeLock.release();
-            }
         }
         else {
             CLICK_DELAY = thisTime;
