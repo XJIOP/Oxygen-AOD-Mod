@@ -67,6 +67,9 @@ public class NotificationService extends NotificationListenerService {
             screenPowerReceiver = null;
         }
 
+        if(wakeLock != null && wakeLock.isHeld())
+            wakeLock.release();
+
         if(handler != null) {
             handler.removeCallbacksAndMessages(null);
             handler = null;
@@ -193,6 +196,9 @@ public class NotificationService extends NotificationListenerService {
 
         NOTIFICATION_COUNT = 0;
         REMINDER_COUNT = 0;
+
+        if(wakeLock != null && wakeLock.isHeld())
+            wakeLock.release();
 
         if(handler != null)
             handler.removeCallbacksAndMessages(null);
