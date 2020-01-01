@@ -59,5 +59,7 @@
     <string name="unknown_error">Unknown error</string>
     <string name="share">Share</string>
     <string name="warning">Warning</string>
-    <string name="remind_interval_info">When the screen is off, the device operates in energy-saving mode, so the reminder interval does not guarantee the specified value, the delay can be up to 1 minute.</string>
+    <string name="remind_interval_info">When the screen is off, the device operates in energy-saving mode, so the reminder interval does not guarantee the specified value, the delay can be up to 1 minute. Or enable WAKE LOCK.</string>
+    <string name="wake_lock" translatable="false">WAKE LOCK</string>
+    <string name="remind_wake_lock_descr">Keep CPU awake for a stable reminder interval (only when there are notifications). Not recommended.</string>
 </resources>

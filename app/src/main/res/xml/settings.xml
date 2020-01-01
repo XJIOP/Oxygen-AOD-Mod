@@ -76,6 +76,14 @@
             android:dependency="reminders"
             app:iconSpaceReserved="false" />
 
+        <CheckBoxPreference
+            android:title="@string/wake_lock"
+            android:key="remind_wake_lock"
+            android:defaultValue="false"
+            android:summary="@string/remind_wake_lock_descr"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

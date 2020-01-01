@@ -25,6 +25,7 @@ import io.fabric.sdk.android.Fabric;
 
 import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
+import static org.xjiop.oxygenaodmod.Application.REMIND_WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
@@ -89,6 +90,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 catch (Exception e) {
                     e.printStackTrace();
                 }
+
+                break;
+
+            case "remind_wake_lock":
+
+                REMIND_WAKE_LOCK = sharedPreferences.getBoolean("remind_wake_lock", false);
 
                 break;
         }

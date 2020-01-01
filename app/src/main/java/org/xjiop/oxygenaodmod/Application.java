@@ -19,6 +19,7 @@ public class Application extends android.app.Application {
 
     public static boolean RESET_WHEN_SCREEN_TURN_ON;
     public static int REMIND_INTERVAL;
+    public static boolean REMIND_WAKE_LOCK;
     public static int REMIND_AMOUNT;
     public static LocalTime START_TIME;
     public static LocalTime END_TIME;
@@ -87,6 +88,7 @@ public class Application extends android.app.Application {
 
         RESET_WHEN_SCREEN_TURN_ON = settings.getBoolean("reset_when_screen_turn_on", true);
         REMIND_INTERVAL = Integer.parseInt(settings.getString("remind_interval", "15"));
+        REMIND_WAKE_LOCK = settings.getBoolean("remind_wake_lock", false);
         REMIND_AMOUNT = Integer.parseInt(settings.getString("remind_amount", "0"));
         START_TIME = LocalTime.parse(settings.getString("start_time", "08:00"));
         END_TIME = LocalTime.parse(settings.getString("end_time", "23:00"));

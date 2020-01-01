@@ -17,6 +17,7 @@ import static org.xjiop.oxygenaodmod.Application.ANY_TIME;
 import static org.xjiop.oxygenaodmod.Application.END_TIME;
 import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
+import static org.xjiop.oxygenaodmod.Application.REMIND_WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.START_TIME;
 
@@ -31,6 +32,7 @@ public class NotificationService extends NotificationListenerService {
     private ScreenPowerReceiver screenPowerReceiver;
     private Handler handler;
     private PowerManager powerManager;
+    private PowerManager.WakeLock wakeLock;
 
     @Override
     public void onCreate() {
@@ -41,6 +43,9 @@ public class NotificationService extends NotificationListenerService {
 
         handler = new Handler();
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        if(powerManager != null) {
+            wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getPackageName() + ":reminder");
+        }
 
         IntentFilter screenStateFilter = new IntentFilter();
         screenStateFilter.addAction(Intent.ACTION_SCREEN_ON);
@@ -141,6 +146,7 @@ public class NotificationService extends NotificationListenerService {
 
     public void startReminder() {
         //Log.d(TAG, "startReminder | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT + " | REMINDER_COUNT: " + REMINDER_COUNT);
+        //Log.d(TAG, " - wakeLock isHeld: " + wakeLock.isHeld());
 
         if(NOTIFICATION_COUNT == 0)
             return;
@@ -162,7 +168,16 @@ public class NotificationService extends NotificationListenerService {
             return;
 
         if(handler != null) {
+
             REMINDER_COUNT++;
+
+            if(REMIND_WAKE_LOCK) {
+                if(wakeLock != null) {
+                    wakeLock.setReferenceCounted(false);
+                    wakeLock.acquire((REMIND_INTERVAL + 5) * 1000);
+                }
+            }
+
             handler.removeCallbacksAndMessages(null);
             handler.postDelayed(new Runnable() {
                 public void run() {
@@ -174,6 +189,7 @@ public class NotificationService extends NotificationListenerService {
 
     public void stopReminder() {
         //Log.d(TAG, "stopAlert | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT);
+        //Log.d(TAG, " - wakeLock isHeld: " + wakeLock.isHeld());
 
         NOTIFICATION_COUNT = 0;
         REMINDER_COUNT = 0;
