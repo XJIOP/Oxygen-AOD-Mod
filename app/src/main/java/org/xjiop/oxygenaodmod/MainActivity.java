@@ -291,6 +291,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 }
                 else if(requestCode == TEST_RESULT) {
 
+                    if(!data.getBooleanExtra("onPositive", false))
+                        return;
+
                     Context applicationContext = mContext.getApplicationContext();
 
                     Intent intent = new Intent(applicationContext, TestNotificationReceiver.class);
