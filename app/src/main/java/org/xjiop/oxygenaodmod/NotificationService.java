@@ -197,8 +197,10 @@ public class NotificationService extends NotificationListenerService {
         NOTIFICATION_COUNT = 0;
         REMINDER_COUNT = 0;
 
-        if(wakeLock != null && wakeLock.isHeld())
-            wakeLock.release();
+        if(REMIND_WAKE_LOCK) {
+            if (wakeLock != null && wakeLock.isHeld())
+                wakeLock.release();
+        }
 
         if(handler != null)
             handler.removeCallbacksAndMessages(null);
