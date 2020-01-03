@@ -1,4 +1,4 @@
-# Oxygen-AOD-Mod
+# Oxygen AOD Mod
 
 This app adds a few extra features to OnePlus devices on AMOLED screens.
 
