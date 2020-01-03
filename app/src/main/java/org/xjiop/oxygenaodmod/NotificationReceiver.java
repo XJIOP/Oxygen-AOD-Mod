@@ -27,7 +27,7 @@ public class NotificationReceiver extends BroadcastReceiver {
 
         String amount = context.getString(R.string.reminder);
         if(REMIND_AMOUNT > 0)
-            amount += " (" + REMINDER_COUNT + " " + context.getString(R.string.from) + " " + REMIND_AMOUNT + ")";
+            amount += " (" + REMINDER_COUNT + " " + context.getString(R.string.of) + " " + REMIND_AMOUNT + ")";
         else
             amount += " (" + REMINDER_COUNT + ")";
 

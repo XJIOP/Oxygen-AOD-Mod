@@ -44,7 +44,7 @@
     <string name="sys">Система</string>
     <string name="number_impressions">Количество показов</string>
     <string name="no_limits">Без ограничений</string>
-    <string name="from">из</string>
+    <string name="of">из</string>
     <string name="schedule">Расписание</string>
     <string name="start">Начало</string>
     <string name="end">Конец</string>
