@@ -17,6 +17,8 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     private static final String TAG = "DBG | NReceiver";
 
+    public static int REMINDER_NOTIFICATION_ID = 101;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         //Log.d(TAG, "onReceive");
@@ -41,6 +43,6 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setTimeoutAfter(1000)
                 .setCategory(Notification.CATEGORY_REMINDER);
 
-        notificationManager.notify(123, mBuilder.build());
+        notificationManager.notify(REMINDER_NOTIFICATION_ID, mBuilder.build());
     }
 }

@@ -13,6 +13,8 @@ public class TestNotificationReceiver extends BroadcastReceiver {
 
     private static final String TAG = "DBG | TNReceiver";
 
+    public static int TEST_NOTIFICATION_ID = 102;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         //Log.d(TAG, "onReceive");
@@ -32,6 +34,6 @@ public class TestNotificationReceiver extends BroadcastReceiver {
                 .setOnlyAlertOnce(true)
                 .setContentIntent(pendingClick);
 
-        notificationManager.notify(135, mBuilder.build());
+        notificationManager.notify(TEST_NOTIFICATION_ID, mBuilder.build());
     }
 }

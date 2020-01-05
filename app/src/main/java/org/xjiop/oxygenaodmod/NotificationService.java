@@ -20,6 +20,7 @@ import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.REMIND_WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.START_TIME;
+import static org.xjiop.oxygenaodmod.NotificationReceiver.REMINDER_NOTIFICATION_ID;
 
 public class NotificationService extends NotificationListenerService {
 
@@ -115,7 +116,7 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
         // own reminder
-        if(sbn.getId() == 123) {
+        if(sbn.getId() == REMINDER_NOTIFICATION_ID) {
             startReminder();
             return;
         }
@@ -216,7 +217,7 @@ public class NotificationService extends NotificationListenerService {
     private boolean newNotification(StatusBarNotification sbn) {
 
         // own reminder
-        if(sbn.getId() == 123)
+        if(sbn.getId() == REMINDER_NOTIFICATION_ID)
             return false;
 
         // ignore ongoing (this notifications cannot be dismissed)
