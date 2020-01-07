@@ -15,6 +15,13 @@
             android:summary="@string/double_tap_descr"
             app:iconSpaceReserved="false" />
 
+        <CheckBoxPreference
+            android:title="@string/vibration"
+            android:key="vibration"
+            android:defaultValue="false"
+            android:dependency="double_tap"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

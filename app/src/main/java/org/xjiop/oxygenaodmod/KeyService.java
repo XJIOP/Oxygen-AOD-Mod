@@ -3,8 +3,12 @@ package org.xjiop.oxygenaodmod;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.os.PowerManager;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityEvent;
+
+import static org.xjiop.oxygenaodmod.Application.VIBRATION;
 
 public class KeyService extends AccessibilityService {
 
@@ -45,6 +49,14 @@ public class KeyService extends AccessibilityService {
         if(!isScreenOn && event.getKeyCode() == KeyEvent.KEYCODE_F4) {
             if(result = doubleClick()) {
                 if(wakeLock != null) {
+
+                    if(VIBRATION) {
+                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                        if (vibrator != null) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(1, VibrationEffect.DEFAULT_AMPLITUDE));
+                        }
+                    }
+
                     wakeLock.setReferenceCounted(false);
                     wakeLock.acquire(1000);
                 }

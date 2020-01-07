@@ -17,6 +17,7 @@ import io.fabric.sdk.android.Fabric;
 
 public class Application extends android.app.Application {
 
+    public static boolean VIBRATION;
     public static boolean RESET_WHEN_SCREEN_TURN_ON;
     public static int REMIND_INTERVAL;
     public static boolean REMIND_WAKE_LOCK;
@@ -86,6 +87,7 @@ public class Application extends android.app.Application {
 
         /* TODO: OTHERS */
 
+        VIBRATION = settings.getBoolean("vibration", false);
         RESET_WHEN_SCREEN_TURN_ON = settings.getBoolean("reset_when_screen_turn_on", true);
         REMIND_INTERVAL = Integer.parseInt(settings.getString("remind_interval", "15"));
         REMIND_WAKE_LOCK = settings.getBoolean("remind_wake_lock", false);
