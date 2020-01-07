@@ -50,15 +50,15 @@ public class KeyService extends AccessibilityService {
             if(result = doubleClick()) {
                 if(wakeLock != null) {
 
+                    wakeLock.setReferenceCounted(false);
+                    wakeLock.acquire(1000);
+
                     if(VIBRATION) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         if (vibrator != null) {
                             vibrator.vibrate(VibrationEffect.createOneShot(1, VibrationEffect.DEFAULT_AMPLITUDE));
                         }
                     }
-
-                    wakeLock.setReferenceCounted(false);
-                    wakeLock.acquire(1000);
                 }
             }
         }
