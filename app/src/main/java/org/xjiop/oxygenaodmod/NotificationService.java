@@ -100,6 +100,9 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
+        if(sbn == null)
+            return;
+
         if(newNotification(sbn))
             startReminder();
     }
@@ -114,6 +117,9 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification category = " + sbn.getNotification().category);
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
+
+        if(sbn == null)
+            return;
 
         // own reminder
         if(sbn.getId() == REMINDER_NOTIFICATION_ID) {
@@ -246,7 +252,7 @@ public class NotificationService extends NotificationListenerService {
 
     public void recountNotifications() {
         if(!RESET_WHEN_SCREEN_TURN_ON) {
-            for (StatusBarNotification sbn : getActiveNotifications()) {
+            for(StatusBarNotification sbn : getActiveNotifications()) {
                 newNotification(sbn);
             }
         }
