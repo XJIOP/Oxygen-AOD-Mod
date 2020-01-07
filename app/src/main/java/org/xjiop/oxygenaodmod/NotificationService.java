@@ -100,9 +100,6 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
-        if(sbn == null)
-            return;
-
         if(newNotification(sbn))
             startReminder();
     }
@@ -221,6 +218,9 @@ public class NotificationService extends NotificationListenerService {
     }
 
     private boolean newNotification(StatusBarNotification sbn) {
+
+        if(sbn == null)
+            return false;
 
         // own reminder
         if(sbn.getId() == REMINDER_NOTIFICATION_ID)
