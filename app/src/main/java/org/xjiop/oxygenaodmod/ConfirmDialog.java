@@ -90,8 +90,8 @@ public class ConfirmDialog extends DialogFragment {
 
     private void callBack(boolean onPositive) {
         Fragment targetFragment = getTargetFragment();
-        Intent intent = new Intent();
         if(targetFragment != null) {
+            Intent intent = new Intent();
             intent.putExtra("onPositive", onPositive);
             targetFragment.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
         }
