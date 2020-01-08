@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import static org.xjiop.oxygenaodmod.Application.COLOR;
 import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.NotificationService.NOTIFICATION_COUNT;
 import static org.xjiop.oxygenaodmod.NotificationService.REMINDER_COUNT;
@@ -39,9 +40,11 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setContentText(context.getString(R.string.new_notifications) + ": " + NOTIFICATION_COUNT)
                 .setSound(null)
                 .setAutoCancel(true)
-                .setOnlyAlertOnce(true)
                 .setTimeoutAfter(1000)
-                .setCategory(Notification.CATEGORY_REMINDER);
+                .setColorized(COLOR > 0)
+                .setColor(COLOR)
+                .setCategory(Notification.CATEGORY_REMINDER)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
         notificationManager.notify(REMINDER_NOTIFICATION_ID, mBuilder.build());
     }

@@ -14,6 +14,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
@@ -23,6 +24,7 @@ import com.crashlytics.android.core.CrashlyticsCore;
 
 import io.fabric.sdk.android.Fabric;
 
+import static org.xjiop.oxygenaodmod.Application.COLOR;
 import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.REMIND_WAKE_LOCK;
@@ -228,6 +230,19 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 }
             });
 
+            Preference colorPreference = findPreference("color");
+            setListPreferenceSummary(colorPreference, settings.getString("color", null));
+            colorPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+
+                    setListPreferenceSummary(preference, newValue.toString());
+                    COLOR = Helper.myColor(newValue.toString());
+
+                    return true;
+                }
+            });
+
             findPreference("sound_settings").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -341,6 +356,19 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             ComponentName cn = new ComponentName(mContext, NotificationService.class);
             String flat = Settings.Secure.getString(mContext.getContentResolver(), "enabled_notification_listeners");
             return flat != null && flat.contains(cn.flattenToString());
+        }
+
+        private void setListPreferenceSummary(Preference preference, String value) {
+
+            if(value != null) {
+                if(preference instanceof ListPreference) {
+
+                    ListPreference listPreference = (ListPreference) preference;
+                    int index = listPreference.findIndexOfValue(value);
+
+                    preference.setSummary(index >= 0 ? listPreference.getEntries()[index] : null);
+                }
+            }
         }
     }
 }

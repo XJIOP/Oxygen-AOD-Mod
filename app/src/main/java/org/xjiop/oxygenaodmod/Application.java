@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 
 import com.crashlytics.android.Crashlytics;
@@ -25,6 +26,7 @@ public class Application extends android.app.Application {
     public static LocalTime START_TIME;
     public static LocalTime END_TIME;
     public static boolean ANY_TIME;
+    public static int COLOR;
     public static List<String> ALLOWED_CATEGORY = new ArrayList<>();
 
     @Override
@@ -95,6 +97,7 @@ public class Application extends android.app.Application {
         START_TIME = LocalTime.parse(settings.getString("start_time", "08:00"));
         END_TIME = LocalTime.parse(settings.getString("end_time", "23:00"));
         ANY_TIME = settings.getBoolean("any_time", true);
+        COLOR = Helper.myColor(settings.getString("color", null));
         ALLOWED_CATEGORY = new ArrayList<>(settings.getStringSet("categories", new HashSet<>(Helper.categoryList)));
 
         if(!BuildConfig.DEBUG && settings.getBoolean("bug_tracking", true))

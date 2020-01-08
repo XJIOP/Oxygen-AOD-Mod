@@ -77,6 +77,14 @@
             android:dependency="reminders"
             app:iconSpaceReserved="false" />
 
+        <ListPreference
+            android:title="@string/color"
+            android:key="color"
+            android:entries="@array/listColor"
+            android:entryValues="@array/listColorValues"
+            android:defaultValue="1"
+            app:iconSpaceReserved="false" />
+
         <Preference
             android:title="@string/sound_settings"
             android:key="sound_settings"
@@ -86,7 +94,7 @@
         <CheckBoxPreference
             android:title="@string/wake_lock"
             android:key="remind_wake_lock"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:summary="@string/remind_wake_lock_descr"
             android:dependency="reminders"
             app:iconSpaceReserved="false" />

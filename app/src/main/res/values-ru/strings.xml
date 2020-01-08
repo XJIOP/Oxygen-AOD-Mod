@@ -57,6 +57,11 @@
     <string name="share">Поделиться</string>
     <string name="warning">Внимание</string>
     <string name="remind_interval_info">При выключенном экране, устройство работает в энергосберегающем режиме, поэтому интервал напоминаний не гарантирует указанное значение, задержка может быть до 1й минуты. WAKE LOCK может решить эту проблему.</string>
-    <string name="remind_wake_lock_descr">Удерживать CPU для стабильного интервала напоминаний (только когда есть уведомления). Не рекомендуется.</string>
+    <string name="remind_wake_lock_descr">Удерживать CPU для стабильного интервала напоминаний (только когда есть уведомления).</string>
     <string name="vibration">Вибрация</string>
+    <string name="color">Цвет</string>
+    <string name="red">Красный</string>
+    <string name="green">Зеленый</string>
+    <string name="blue">Синий</string>
+    <string name="yellow">Желтый</string>
 </resources>

@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.widget.Toast;
 
@@ -164,6 +165,25 @@ class Helper {
         }
         catch (Exception e) {
             Toast.makeText(context, R.string.unknown_error, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    static int myColor(String color) {
+
+        if(color == null)
+            return Color.RED;
+
+        switch (color) {
+            case "0":
+                return 0;
+            case "2":
+                return Color.GREEN;
+            case "3":
+                return Color.BLUE;
+            case "4":
+                return Color.YELLOW;
+            default:
+                return Color.RED;
         }
     }
 }

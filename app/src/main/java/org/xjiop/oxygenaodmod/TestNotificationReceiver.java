@@ -9,6 +9,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import static org.xjiop.oxygenaodmod.Application.COLOR;
+
 public class TestNotificationReceiver extends BroadcastReceiver {
 
     private static final String TAG = "DBG | TNReceiver";
@@ -31,8 +33,10 @@ public class TestNotificationReceiver extends BroadcastReceiver {
                 .setContentTitle(context.getString(R.string.test))
                 .setContentText(context.getString(R.string.hello) + "!")
                 .setAutoCancel(true)
-                .setOnlyAlertOnce(true)
-                .setContentIntent(pendingClick);
+                .setColorized(COLOR > 0)
+                .setColor(COLOR)
+                .setContentIntent(pendingClick)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
         notificationManager.notify(TEST_NOTIFICATION_ID, mBuilder.build());
     }
