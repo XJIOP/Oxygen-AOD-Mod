@@ -83,6 +83,7 @@
             android:entries="@array/listColor"
             android:entryValues="@array/listColorValues"
             android:defaultValue="1"
+            android:dependency="reminders"
             app:iconSpaceReserved="false" />
 
         <Preference
