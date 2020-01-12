@@ -53,11 +53,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                 int app_count = settings.getInt("app_rate_count", 0);
                 if(app_count != -1) {
+                    app_count += 1;
                     if(app_count % 5 == 0) {
                         app_count = 0;
                         Helper.showDialogFragment(MainActivity.this, new AppRateDialog());
                     }
-                    settings.edit().putInt("app_rate_count", app_count + 1).apply();
+                    settings.edit().putInt("app_rate_count", app_count).apply();
                 }
             }
         });
