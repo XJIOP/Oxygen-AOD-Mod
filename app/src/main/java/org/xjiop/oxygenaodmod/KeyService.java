@@ -29,6 +29,15 @@ public class KeyService extends AccessibilityService {
     }
 
     @Override
+    public void onDestroy() {
+
+        if(wakeLock != null && wakeLock.isHeld())
+            wakeLock.release();
+
+        super.onDestroy();
+    }
+
+    @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         //Log.d(TAG, "onAccessibilityEvent: " + event);
     }
