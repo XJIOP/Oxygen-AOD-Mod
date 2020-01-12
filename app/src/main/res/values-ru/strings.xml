@@ -64,4 +64,5 @@
     <string name="green">Зеленый</string>
     <string name="blue">Синий</string>
     <string name="yellow">Желтый</string>
+    <string name="enter_number">Введите число</string>
 </resources>

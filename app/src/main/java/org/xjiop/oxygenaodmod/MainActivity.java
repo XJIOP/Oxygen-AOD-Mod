@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 }
             });
 
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
+            final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
 
             Preference remindIntervalPreference = findPreference("remind_interval");
             remindIntervalPreference.setSummary(settings.getString("remind_interval", "15") + " " + getString(R.string.sec));
@@ -185,11 +185,16 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
 
-                    int value = 0;
+                    int value = -1;
                     try {
                         value = Integer.valueOf(newValue.toString());
                     }
                     catch(NumberFormatException ignored) {}
+
+                    if(value == -1) {
+                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.error), getString(R.string.enter_number)));
+                        return false;
+                    }
 
                     REMIND_AMOUNT = value;
                     String text = value == 0 ? getString(R.string.no_limits) : newValue.toString();
