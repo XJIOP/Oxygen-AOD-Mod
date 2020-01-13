@@ -45,6 +45,7 @@
     <string name="reminder">Reminder</string>
     <string name="social">Social network</string>
     <string name="sys">System</string>
+    <string name="undefined">Undefined</string>
     <string name="number_impressions">Number of impressions</string>
     <string name="no_limits">No limits</string>
     <string name="of">of</string>

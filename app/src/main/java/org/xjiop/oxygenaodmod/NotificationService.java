@@ -135,12 +135,9 @@ public class NotificationService extends NotificationListenerService {
         }
 
         // category filter
-        if(sbn.getNotification().category != null && Helper.blackList.contains(sbn.getNotification().category))
+        String cat = sbn.getNotification().category == null ? "undefined" : sbn.getNotification().category;
+        if(!ALLOWED_CATEGORY.contains(cat))
             return;
-
-        // blacklist filter
-        //if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
-        //    return;
 
         if(NOTIFICATION_COUNT > 0) {
 
@@ -237,12 +234,9 @@ public class NotificationService extends NotificationListenerService {
         }
 
         // category filter
-        if(sbn.getNotification().category != null && !ALLOWED_CATEGORY.contains(sbn.getNotification().category))
+        String cat = sbn.getNotification().category == null ? "undefined" : sbn.getNotification().category;
+        if(!ALLOWED_CATEGORY.contains(cat))
             return false;
-
-        // blacklist filter
-        //if(sbn.getNotification().category != null && Helper.blackList.contains(sbn.getNotification().category))
-        //    return;
 
         NOTIFICATION_COUNT++;
         REMINDER_COUNT = 0;

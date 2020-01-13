@@ -30,17 +30,8 @@ public class Helper {
             Notification.CATEGORY_EVENT,
             Notification.CATEGORY_MESSAGE,
             Notification.CATEGORY_REMINDER,
-            Notification.CATEGORY_SOCIAL);
-
-    static final List<String> blackList = Arrays.asList(
-            Notification.CATEGORY_ERROR,
-            Notification.CATEGORY_NAVIGATION,
-            Notification.CATEGORY_PROMO,
-            Notification.CATEGORY_PROGRESS,
-            Notification.CATEGORY_RECOMMENDATION,
-            Notification.CATEGORY_SERVICE,
-            Notification.CATEGORY_SYSTEM,
-            Notification.CATEGORY_TRANSPORT);
+            Notification.CATEGORY_SOCIAL,
+            "undefined");
 
     private static final SimpleDateFormat[] timeFormat = {
             new SimpleDateFormat("hh:mm a", Locale.US),
@@ -78,6 +69,8 @@ public class Helper {
                 return context.getString(R.string.social);
             case "sys":
                 return context.getString(R.string.sys);
+            case "undefined":
+                return context.getString(R.string.undefined);
             default:
                 return null;
         }

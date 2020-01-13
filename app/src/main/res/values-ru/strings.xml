@@ -42,6 +42,7 @@
     <string name="reminder">Напоминание</string>
     <string name="social">Социальная сеть</string>
     <string name="sys">Система</string>
+    <string name="undefined">Не определено</string>
     <string name="number_impressions">Количество показов</string>
     <string name="no_limits">Без ограничений</string>
     <string name="of">из</string>

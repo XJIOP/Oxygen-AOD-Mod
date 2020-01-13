@@ -56,8 +56,10 @@ public class Application extends android.app.Application {
 
         SharedPreferences.Editor edit = settings.edit();
 
-        if(settings.getInt("version_code", -1) != BuildConfig.VERSION_CODE)
+        int version = settings.getInt("version_code", -1);
+        if(version != BuildConfig.VERSION_CODE) {
             edit.putInt("version_code", BuildConfig.VERSION_CODE);
+        }
 
         if(!settings.contains("categories"))
             edit.putStringSet("categories", new HashSet<>(Helper.categoryList));
