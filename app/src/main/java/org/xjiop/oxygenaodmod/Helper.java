@@ -16,12 +16,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
-class Helper {
+public class Helper {
 
-    static final List<String> categoryList = Arrays.asList(
+    public static final List<String> categoryList = Arrays.asList(
             Notification.CATEGORY_ALARM,
             Notification.CATEGORY_CALL,
             Notification.CATEGORY_EMAIL,
@@ -47,7 +49,18 @@ class Helper {
             new SimpleDateFormat("H:mm", Locale.US)
     };
 
-    static String categoryName(Context context, String category) {
+    public static Map<String, Integer> iconList() {
+        Map<String, Integer> arr = new HashMap<>();
+        arr.put("alarm", R.drawable.ic_alarm);
+        arr.put("android", R.drawable.ic_android);
+        arr.put("eye", R.drawable.ic_eye);
+        arr.put("info", R.drawable.ic_info);
+        arr.put("star", R.drawable.ic_star);
+        arr.put("warning", R.drawable.ic_warning);
+        return arr;
+    }
+
+    public static String categoryName(Context context, String category) {
         switch (category) {
             case "alarm":
                 return context.getString(R.string.alarm);
@@ -65,6 +78,25 @@ class Helper {
                 return context.getString(R.string.social);
             case "sys":
                 return context.getString(R.string.sys);
+            default:
+                return null;
+        }
+    }
+
+    public static String iconName(Context context, String icon) {
+        switch (icon) {
+            case "alarm":
+                return context.getString(R.string.alarm);
+            case "android":
+                return context.getString(R.string.android);
+            case "eye":
+                return context.getString(R.string.eye);
+            case "info":
+                return context.getString(R.string.info);
+            case "star":
+                return context.getString(R.string.star);
+            case "warning":
+                return context.getString(R.string.warning);
             default:
                 return null;
         }
@@ -184,6 +216,27 @@ class Helper {
                 return Color.YELLOW;
             default:
                 return Color.RED;
+        }
+    }
+
+    static int myIcon(String icon) {
+
+        if(icon == null)
+            return R.drawable.ic_warning;
+
+        switch (icon) {
+            case "alarm":
+                return R.drawable.ic_alarm;
+            case "android":
+                return R.drawable.ic_android;
+            case "eye":
+                return R.drawable.ic_eye;
+            case "info":
+                return R.drawable.ic_info;
+            case "star":
+                return R.drawable.ic_star;
+            default:
+                return R.drawable.ic_warning;
         }
     }
 }

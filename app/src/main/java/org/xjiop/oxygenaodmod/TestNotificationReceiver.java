@@ -10,12 +10,13 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import static org.xjiop.oxygenaodmod.Application.COLOR;
+import static org.xjiop.oxygenaodmod.Application.ICON;
 
 public class TestNotificationReceiver extends BroadcastReceiver {
 
     private static final String TAG = "DBG | TNReceiver";
 
-    public static int TEST_NOTIFICATION_ID = 102;
+    public static final int TEST_NOTIFICATION_ID = 102;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -29,7 +30,7 @@ public class TestNotificationReceiver extends BroadcastReceiver {
         PendingIntent pendingClick = PendingIntent.getActivity(context, 1, intentClick, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "Channel-2");
-        mBuilder.setSmallIcon(R.drawable.ic_test)
+        mBuilder.setSmallIcon(ICON)
                 .setContentTitle(context.getString(R.string.test))
                 .setContentText(context.getString(R.string.hello) + "!")
                 .setAutoCancel(true)

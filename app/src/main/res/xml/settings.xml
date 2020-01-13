@@ -87,6 +87,13 @@
             app:iconSpaceReserved="false" />
 
         <Preference
+            android:title="@string/icon"
+            android:key="icon"
+            android:defaultValue="warning"
+            android:dependency="reminders"
+            app:iconSpaceReserved="false" />
+
+        <Preference
             android:title="@string/sound_settings"
             android:key="sound_settings"
             android:dependency="reminders"

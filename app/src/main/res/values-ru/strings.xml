@@ -55,7 +55,7 @@
     <string name="cant_open_link">Не удается открыть ссылку</string>
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="share">Поделиться</string>
-    <string name="warning">Внимание</string>
+    <string name="attention">Внимание</string>
     <string name="remind_interval_info">При выключенном экране, устройство работает в энергосберегающем режиме, поэтому интервал напоминаний не гарантирует указанное значение, задержка может быть до 1й минуты. WAKE LOCK может решить эту проблему.</string>
     <string name="remind_wake_lock_descr">Удерживать CPU для стабильного интервала напоминаний (только когда есть уведомления).</string>
     <string name="vibration">Вибрация</string>
@@ -65,4 +65,10 @@
     <string name="blue">Синий</string>
     <string name="yellow">Желтый</string>
     <string name="enter_number">Введите число</string>
+    <string name="icon">Иконка</string>
+    <string name="android">Андроид</string>
+    <string name="eye">Глаз</string>
+    <string name="info">Инфо</string>
+    <string name="star">Звезда</string>
+    <string name="warning">Предупреждение</string>
 </resources>

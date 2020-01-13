@@ -1,29 +1,29 @@
-package org.xjiop.oxygenaodmod;
+package org.xjiop.oxygenaodmod.icon;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-class CategoriesDummy {
+class IconDummy {
 
     public static class Item implements Parcelable {
-        final String name;
-        boolean checked;
+        final int id;
+        final String icon;
 
-        Item(String name,
-             boolean checked) {
-            this.name = name;
-            this.checked = checked;
+        Item(int id,
+             String name) {
+            this.id = id;
+            this.icon = name;
         }
 
         protected Item(Parcel in) {
-            name = in.readString();
-            checked = in.readByte() != 0;
+            id = in.readInt();
+            icon = in.readString();
         }
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(name);
-            dest.writeByte((byte) (checked ? 1 : 0));
+            dest.writeInt(id);
+            dest.writeString(icon);
         }
 
         @Override

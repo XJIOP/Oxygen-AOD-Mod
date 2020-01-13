@@ -58,7 +58,7 @@
     <string name="cant_open_link">Can\'t open link</string>
     <string name="unknown_error">Unknown error</string>
     <string name="share">Share</string>
-    <string name="warning">Warning</string>
+    <string name="attention">Attention</string>
     <string name="remind_interval_info">When the screen is off, the device operates in energy-saving mode, so the reminder interval does not guarantee the specified value, the delay can be up to 1 minute. WAKE LOCK can solve this problem.</string>
     <string name="wake_lock" translatable="false">WAKE LOCK</string>
     <string name="remind_wake_lock_descr">Keep CPU awake for a stable reminder interval (only when there are notifications).</string>
@@ -69,4 +69,10 @@
     <string name="blue">Blue</string>
     <string name="yellow">Yellow</string>
     <string name="enter_number">Enter a number</string>
+    <string name="icon">Icon</string>
+    <string name="android">Android</string>
+    <string name="eye">Eye</string>
+    <string name="info">Info</string>
+    <string name="star">Star</string>
+    <string name="warning">Warning</string>
 </resources>

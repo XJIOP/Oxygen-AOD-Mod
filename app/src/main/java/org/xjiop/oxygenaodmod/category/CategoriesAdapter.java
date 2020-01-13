@@ -1,4 +1,5 @@
-package org.xjiop.oxygenaodmod;
+package org.xjiop.oxygenaodmod.category;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.xjiop.oxygenaodmod.Helper;
+import org.xjiop.oxygenaodmod.R;
 
 import java.util.List;
 

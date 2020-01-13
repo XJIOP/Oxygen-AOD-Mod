@@ -10,6 +10,7 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import static org.xjiop.oxygenaodmod.Application.COLOR;
+import static org.xjiop.oxygenaodmod.Application.ICON;
 import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
 import static org.xjiop.oxygenaodmod.NotificationService.NOTIFICATION_COUNT;
 import static org.xjiop.oxygenaodmod.NotificationService.REMINDER_COUNT;
@@ -18,7 +19,7 @@ public class NotificationReceiver extends BroadcastReceiver {
 
     private static final String TAG = "DBG | NReceiver";
 
-    public static int REMINDER_NOTIFICATION_ID = 101;
+    public static final int REMINDER_NOTIFICATION_ID = 101;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -35,7 +36,7 @@ public class NotificationReceiver extends BroadcastReceiver {
             amount += " (" + REMINDER_COUNT + ")";
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "Channel-1");
-        mBuilder.setSmallIcon(R.drawable.ic_warning)
+        mBuilder.setSmallIcon(ICON)
                 .setContentTitle(amount)
                 .setContentText(context.getString(R.string.new_notifications) + ": " + NOTIFICATION_COUNT)
                 .setSound(null)

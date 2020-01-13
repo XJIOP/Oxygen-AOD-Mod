@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -17,10 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreference;
 
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+
+import org.xjiop.oxygenaodmod.category.CategoriesDialog;
+import org.xjiop.oxygenaodmod.icon.IconDialog;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -30,6 +33,7 @@ import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.REMIND_WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.VIBRATION;
+import static org.xjiop.oxygenaodmod.Application.getAppContext;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -42,26 +46,29 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.settings, new SettingsFragment())
-                .commit();
+        if(savedInstanceState == null) {
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                int app_count = settings.getInt("app_rate_count", 0);
-                if(app_count != -1) {
-                    app_count += 1;
-                    if(app_count % 5 == 0) {
-                        app_count = 0;
-                        Helper.showDialogFragment(MainActivity.this, new AppRateDialog());
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.settings, new SettingsFragment())
+                    .commit();
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                    int app_count = settings.getInt("app_rate_count", 0);
+                    if (app_count != -1) {
+                        app_count += 1;
+                        if (app_count % 5 == 0) {
+                            app_count = 0;
+                            Helper.showDialogFragment(MainActivity.this, new AppRateDialog());
+                        }
+                        settings.edit().putInt("app_rate_count", app_count).apply();
                     }
-                    settings.edit().putInt("app_rate_count", app_count).apply();
                 }
-            }
-        });
+            });
+        }
     }
 
     @Override
@@ -115,9 +122,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         private static final int IGNORE_RESULT = 0;
         private static final int SCHEDULE_RESULT = 1;
-        private static final int TEST_RESULT = 2;
+        private static final int ICON_RESULT = 2;
+        private static final int TEST_RESULT = 3;
 
         private Context mContext;
+
         private Preference doubleTapPreference;
         private Preference remindNotificationPreference;
 
@@ -173,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     REMIND_INTERVAL = value;
                     preference.setSummary(newValue.toString() + " " + getString(R.string.sec));
 
-                    Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.warning), getString(R.string.remind_interval_info)));
+                    Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.attention), getString(R.string.remind_interval_info)));
 
                     return true;
                 }
@@ -249,6 +258,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 }
             });
 
+            Preference iconPreference = findPreference("icon");
+            iconPreference.setSummary(Helper.iconName(mContext, settings.getString("icon", "warning")));
+            iconPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+
+                    IconDialog iconDialog = new IconDialog();
+                    iconDialog.setTargetFragment(SettingsFragment.this, ICON_RESULT);
+                    Helper.showDialogFragment(mContext, iconDialog);
+
+                    return false;
+                }
+            });
+
             findPreference("sound_settings").setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
@@ -317,12 +340,18 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         findPreference("schedule").setSummary(summary);
                     }
                 }
+                else if(requestCode == ICON_RESULT) {
+                    String summary = data.getStringExtra("summary");
+                    if(summary != null) {
+                        findPreference("icon").setSummary(summary);
+                    }
+                }
                 else if(requestCode == TEST_RESULT) {
 
                     if(!data.getBooleanExtra("onPositive", false))
                         return;
 
-                    Context applicationContext = mContext.getApplicationContext();
+                    Context applicationContext = getAppContext();
 
                     Intent intent = new Intent(applicationContext, TestNotificationReceiver.class);
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(applicationContext, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);

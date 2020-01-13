@@ -4,8 +4,8 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -27,7 +27,18 @@ public class Application extends android.app.Application {
     public static LocalTime END_TIME;
     public static boolean ANY_TIME;
     public static int COLOR;
+    public static int ICON;
     public static List<String> ALLOWED_CATEGORY = new ArrayList<>();
+
+    private static Application appInstance;
+
+    public Application() {
+        appInstance = this;
+    }
+
+    public static Application getAppContext() {
+        return appInstance;
+    }
 
     @Override
     public void onCreate() {
@@ -87,7 +98,7 @@ public class Application extends android.app.Application {
             }
         }
 
-        /* TODO: OTHERS */
+        /* TODO: PARAMS */
 
         VIBRATION = settings.getBoolean("vibration", false);
         RESET_WHEN_SCREEN_TURN_ON = settings.getBoolean("reset_when_screen_turn_on", true);
@@ -98,7 +109,10 @@ public class Application extends android.app.Application {
         END_TIME = LocalTime.parse(settings.getString("end_time", "23:00"));
         ANY_TIME = settings.getBoolean("any_time", true);
         COLOR = Helper.myColor(settings.getString("color", null));
+        ICON = Helper.myIcon(settings.getString("icon", null));
         ALLOWED_CATEGORY = new ArrayList<>(settings.getStringSet("categories", new HashSet<>(Helper.categoryList)));
+
+        /* TODO: OTHERS */
 
         if(!BuildConfig.DEBUG && settings.getBoolean("bug_tracking", true))
             Fabric.with(this, new Crashlytics());

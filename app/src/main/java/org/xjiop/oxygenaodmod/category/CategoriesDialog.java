@@ -1,4 +1,4 @@
-package org.xjiop.oxygenaodmod;
+package org.xjiop.oxygenaodmod.category;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,16 +7,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.xjiop.oxygenaodmod.Helper;
+import org.xjiop.oxygenaodmod.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
