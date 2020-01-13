@@ -42,8 +42,8 @@ public class Helper {
 
     public static Map<String, Integer> iconList() {
         Map<String, Integer> arr = new HashMap<>();
-        arr.put("alarm", R.drawable.ic_alarm);
         arr.put("android", R.drawable.ic_android);
+        arr.put("bell", R.drawable.ic_bell);
         arr.put("eye", R.drawable.ic_eye);
         arr.put("info", R.drawable.ic_info);
         arr.put("star", R.drawable.ic_star);
@@ -78,10 +78,10 @@ public class Helper {
 
     public static String iconName(Context context, String icon) {
         switch (icon) {
-            case "alarm":
-                return context.getString(R.string.alarm);
             case "android":
                 return context.getString(R.string.android);
+            case "bell":
+                return context.getString(R.string.bell);
             case "eye":
                 return context.getString(R.string.eye);
             case "info":
@@ -218,10 +218,10 @@ public class Helper {
             return R.drawable.ic_warning;
 
         switch (icon) {
-            case "alarm":
-                return R.drawable.ic_alarm;
             case "android":
                 return R.drawable.ic_android;
+            case "bell":
+                return R.drawable.ic_bell;
             case "eye":
                 return R.drawable.ic_eye;
             case "info":
