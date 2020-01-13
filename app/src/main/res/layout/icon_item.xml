@@ -28,7 +28,7 @@
         android:layout_centerVertical="true"
         android:paddingRight="15dp"
         android:layout_toRightOf="@+id/icon"
-        android:layout_toLeftOf="@+id/checkbox"
+        android:layout_toLeftOf="@+id/radio"
         android:text="test" />
 
     <RadioButton
