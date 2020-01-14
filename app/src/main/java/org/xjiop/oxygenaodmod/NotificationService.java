@@ -40,6 +40,9 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, "onCreate");
         super.onCreate();
 
+        NOTIFICATION_COUNT = 0;
+        REMINDER_COUNT = 0;
+
         notificationService = this;
 
         handler = new Handler();
@@ -61,6 +64,8 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, "onDestroy");
 
         NOTIFICATION_COUNT = 0;
+        REMINDER_COUNT = 0;
+
         notificationService = null;
 
         if(screenPowerReceiver != null) {
@@ -245,6 +250,10 @@ public class NotificationService extends NotificationListenerService {
     }
 
     public void recountNotifications() {
+
+        NOTIFICATION_COUNT = 0;
+        REMINDER_COUNT = 0;
+
         if(!RESET_WHEN_SCREEN_TURN_ON) {
             for(StatusBarNotification sbn : getActiveNotifications()) {
                 newNotification(sbn);
