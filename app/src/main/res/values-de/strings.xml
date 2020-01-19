@@ -28,7 +28,7 @@
     <string name="error">Fehler</string>
     <string name="confirmation">Bestätigen</string>
     <string name="sec">sek.</string>
-    <string name="reset_when_screen_turn_on">Zurücksetzen, wenn der Bildschirm eingeschaltet wird</string>
+    <string name="reset_when_screen_turn_on">Zurücksetzen wenn Bildschirm einschaltet</string>
     <string name="bug_tracking">Bug-Tracking</string>
     <string name="bug_tracking_descr">Absturzfehler verfolgen und an den Entwickler senden</string>
     <string name="categories">Kategorien</string>
