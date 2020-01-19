@@ -74,4 +74,7 @@
     <string name="info">Инфо</string>
     <string name="star">Звезда</string>
     <string name="warning">Предупреждение</string>
+    <string name="show_notification_counter">Отображать счетчик уведомлений</string>
+    <string name="not_stable">Не стабильно</string>
+    <string name="you_have_new_notification">У вас новое уведомление</string>
 </resources>

@@ -43,6 +43,14 @@
             android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
+        <CheckBoxPreference
+            android:title="@string/show_notification_counter"
+            android:key="show_notification_counter"
+            android:defaultValue="false"
+            android:summary="@string/not_stable"
+            android:dependency="indicator"
+            app:iconSpaceReserved="false" />
+
         <EditTextPreference
             android:title="@string/interval"
             android:key="interval"

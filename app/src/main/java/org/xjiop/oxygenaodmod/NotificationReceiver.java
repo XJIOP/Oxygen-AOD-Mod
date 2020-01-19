@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat;
 import static org.xjiop.oxygenaodmod.Application.COLOR;
 import static org.xjiop.oxygenaodmod.Application.ICON;
 import static org.xjiop.oxygenaodmod.Application.AMOUNT;
+import static org.xjiop.oxygenaodmod.Application.SHOW_NOTIFICATION_COUNTER;
 import static org.xjiop.oxygenaodmod.NotificationService.NOTIFICATION_COUNT;
 import static org.xjiop.oxygenaodmod.NotificationService.INDICATOR_COUNT;
 
@@ -34,10 +35,16 @@ public class NotificationReceiver extends BroadcastReceiver {
         else
             amount += " (" + INDICATOR_COUNT + ")";
 
+        String text;
+        if(SHOW_NOTIFICATION_COUNTER)
+            text = context.getString(R.string.new_notifications) + ": " + NOTIFICATION_COUNT;
+        else
+            text = context.getString(R.string.you_have_new_notification);
+
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "Channel-1");
         mBuilder.setSmallIcon(ICON)
                 .setContentTitle(amount)
-                .setContentText(context.getString(R.string.new_notifications) + ": " + NOTIFICATION_COUNT)
+                .setContentText(text)
                 .setSound(null)
                 .setAutoCancel(true)
                 .setTimeoutAfter(1000)

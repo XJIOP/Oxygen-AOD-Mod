@@ -28,6 +28,7 @@ public class Application extends android.app.Application {
     public static boolean ANY_TIME;
     public static int COLOR;
     public static int ICON;
+    public static boolean SHOW_NOTIFICATION_COUNTER;
     public static List<String> ALLOWED_CATEGORY = new ArrayList<>();
 
     private static Application appInstance;
@@ -130,6 +131,7 @@ public class Application extends android.app.Application {
         ANY_TIME = settings.getBoolean("any_time", true);
         COLOR = Helper.myColor(settings.getString("color", null));
         ICON = Helper.myIcon(settings.getString("icon", null));
+        SHOW_NOTIFICATION_COUNTER = settings.getBoolean("show_notification_counter", false);
         ALLOWED_CATEGORY = new ArrayList<>(settings.getStringSet("categories", new HashSet<>(Helper.categoryList)));
 
         /* TODO: OTHERS */

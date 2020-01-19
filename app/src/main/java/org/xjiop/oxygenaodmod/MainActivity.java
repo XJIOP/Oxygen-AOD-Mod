@@ -29,6 +29,7 @@ import io.fabric.sdk.android.Fabric;
 import static org.xjiop.oxygenaodmod.Application.COLOR;
 import static org.xjiop.oxygenaodmod.Application.AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.INTERVAL;
+import static org.xjiop.oxygenaodmod.Application.SHOW_NOTIFICATION_COUNTER;
 import static org.xjiop.oxygenaodmod.Application.WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.VIBRATION;
@@ -86,6 +87,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                 break;
 
+            case "show_notification_counter":
+
+                SHOW_NOTIFICATION_COUNTER = sharedPreferences.getBoolean("show_notification_counter", false);
+
+                break;
+
             case "bug_tracking":
 
                 try {
@@ -104,13 +111,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             case "wake_lock":
 
-                WAKE_LOCK = sharedPreferences.getBoolean("wake_lock", false);
+                WAKE_LOCK = sharedPreferences.getBoolean("wake_lock", true);
 
                 break;
 
             case "vibration":
 
-                VIBRATION = sharedPreferences.getBoolean("vibration", false);
+                VIBRATION = sharedPreferences.getBoolean("vibration", true);
 
                 break;
         }

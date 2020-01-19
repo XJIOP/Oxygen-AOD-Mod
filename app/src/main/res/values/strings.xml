@@ -78,4 +78,7 @@
     <string name="info">Info</string>
     <string name="star">Star</string>
     <string name="warning">Warning</string>
+    <string name="show_notification_counter">Show notification counter</string>
+    <string name="not_stable">Not stable</string>
+    <string name="you_have_new_notification">You have a new notification</string>
 </resources>
