@@ -8,8 +8,8 @@ android {
         applicationId "org.xjiop.oxygenaodmod"
         minSdkVersion 26
         targetSdkVersion 29
-        versionCode 12
-        versionName "1.8"
+        versionCode 14
+        versionName "1.9"
     }
     buildTypes {
         release {
@@ -21,6 +21,6 @@ android {
 
 dependencies {
     implementation 'androidx.preference:preference:1.1.0'
-    implementation 'com.google.firebase:firebase-core:17.2.1'
+    implementation 'com.google.firebase:firebase-core:17.2.2'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 }
