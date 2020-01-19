@@ -11,7 +11,7 @@
     <string name="ok">OK</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
-    <string name="notification_indicator_test">Benachrichtigungsindikator Test</string>
+    <string name="notification_indicator_test">Benachrichtigungs Indikator Test</string>
     <string name="test_notification_confirm">Testbenachrichtigung ausführen?</string>
     <string name="test_notification_descr">In 1 Minute sollten Sie eine Testbenachrichtigung erhalten. Bitte schalten Sie den Bildschirm aus, um die Benachrichtigungsanzeige zu testen.</string>
     <string name="test_notification">Testbenachrichtigung</string>
@@ -21,7 +21,7 @@
     <string name="hello">Hallo</string>
     <string name="double_tap">Doppeltippen</string>
     <string name="double_tap_descr">Tippen Sie zweimal auf den AOD-Bildschirm, um den Sperrbildschirm zu öffnen</string>
-    <string name="notification_indicator">Benachrichtigungsanzeige</string>
+    <string name="notification_indicator">Benachrichtigung Indikator</string>
     <string name="notification_indicator_descr">Bei ausgeschaltetem Bildschirm anzeigen</string>
     <string name="interval">Intervall</string>
     <string name="sound_settings">Toneinstellungen</string>
