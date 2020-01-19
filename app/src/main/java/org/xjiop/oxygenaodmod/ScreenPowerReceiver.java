@@ -20,7 +20,7 @@ public class ScreenPowerReceiver extends BroadcastReceiver {
                     //Log.d(TAG, "ACTION_SCREEN_ON");
 
                     if(notificationService != null)
-                        notificationService.stopReminder();
+                        notificationService.stopIndicator();
 
                     break;
 
@@ -29,7 +29,7 @@ public class ScreenPowerReceiver extends BroadcastReceiver {
 
                     if(notificationService != null) {
                         notificationService.recountNotifications();
-                        notificationService.startReminder();
+                        notificationService.startIndicator();
                     }
 
                     break;

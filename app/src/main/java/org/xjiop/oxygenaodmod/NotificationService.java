@@ -15,12 +15,12 @@ import java.time.LocalTime;
 import static org.xjiop.oxygenaodmod.Application.ALLOWED_CATEGORY;
 import static org.xjiop.oxygenaodmod.Application.ANY_TIME;
 import static org.xjiop.oxygenaodmod.Application.END_TIME;
-import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
-import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
-import static org.xjiop.oxygenaodmod.Application.REMIND_WAKE_LOCK;
+import static org.xjiop.oxygenaodmod.Application.AMOUNT;
+import static org.xjiop.oxygenaodmod.Application.INTERVAL;
+import static org.xjiop.oxygenaodmod.Application.WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.START_TIME;
-import static org.xjiop.oxygenaodmod.NotificationReceiver.REMINDER_NOTIFICATION_ID;
+import static org.xjiop.oxygenaodmod.NotificationReceiver.INDICATOR_NOTIFICATION_ID;
 
 public class NotificationService extends NotificationListenerService {
 
@@ -28,7 +28,7 @@ public class NotificationService extends NotificationListenerService {
 
     public static NotificationService notificationService;
     public static int NOTIFICATION_COUNT;
-    public static int REMINDER_COUNT;
+    public static int INDICATOR_COUNT;
 
     private ScreenPowerReceiver screenPowerReceiver;
     private Handler handler;
@@ -41,14 +41,14 @@ public class NotificationService extends NotificationListenerService {
         super.onCreate();
 
         NOTIFICATION_COUNT = 0;
-        REMINDER_COUNT = 0;
+        INDICATOR_COUNT = 0;
 
         notificationService = this;
 
         handler = new Handler();
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if(powerManager != null) {
-            wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getPackageName() + ":reminder");
+            wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getPackageName() + ":indicator");
         }
 
         IntentFilter screenStateFilter = new IntentFilter();
@@ -64,7 +64,7 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, "onDestroy");
 
         NOTIFICATION_COUNT = 0;
-        REMINDER_COUNT = 0;
+        INDICATOR_COUNT = 0;
 
         notificationService = null;
 
@@ -106,7 +106,7 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
         if(newNotification(sbn))
-            startReminder();
+            startIndicator();
     }
 
     @Override
@@ -123,9 +123,9 @@ public class NotificationService extends NotificationListenerService {
         if(sbn == null)
             return;
 
-        // own reminder
-        if(sbn.getId() == REMINDER_NOTIFICATION_ID) {
-            startReminder();
+        // own indicator
+        if(sbn.getId() == INDICATOR_NOTIFICATION_ID) {
+            startIndicator();
             return;
         }
 
@@ -148,7 +148,7 @@ public class NotificationService extends NotificationListenerService {
 
             NOTIFICATION_COUNT--;
 
-            if(REMIND_WAKE_LOCK) {
+            if(WAKE_LOCK) {
                 if (wakeLock != null && wakeLock.isHeld())
                     wakeLock.release();
             }
@@ -160,14 +160,14 @@ public class NotificationService extends NotificationListenerService {
         }
     }
 
-    public void startReminder() {
-        //Log.d(TAG, "startReminder | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT + " | REMINDER_COUNT: " + REMINDER_COUNT);
+    public void startIndicator() {
+        //Log.d(TAG, "startIndicator | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT + " | INDICATOR_COUNT: " + INDICATOR_COUNT);
         //Log.d(TAG, " - wakeLock isHeld: " + wakeLock.isHeld());
 
         if(NOTIFICATION_COUNT == 0)
             return;
 
-        if(isRemindAmount())
+        if(isAmount())
             return;
 
         if(!ANY_TIME) {
@@ -185,12 +185,12 @@ public class NotificationService extends NotificationListenerService {
 
         if(handler != null) {
 
-            REMINDER_COUNT++;
+            INDICATOR_COUNT++;
 
-            if(REMIND_WAKE_LOCK) {
+            if(WAKE_LOCK) {
                 if(wakeLock != null) {
                     wakeLock.setReferenceCounted(false);
-                    wakeLock.acquire((REMIND_INTERVAL + 5) * 1000);
+                    wakeLock.acquire((INTERVAL + 5) * 1000);
                 }
             }
 
@@ -199,18 +199,18 @@ public class NotificationService extends NotificationListenerService {
                 public void run() {
                     sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
                 }
-            }, REMIND_INTERVAL * 1000);
+            }, INTERVAL * 1000);
         }
     }
 
-    public void stopReminder() {
+    public void stopIndicator() {
         //Log.d(TAG, "stopAlert | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT);
         //Log.d(TAG, " - wakeLock isHeld: " + wakeLock.isHeld());
 
         NOTIFICATION_COUNT = 0;
-        REMINDER_COUNT = 0;
+        INDICATOR_COUNT = 0;
 
-        if(REMIND_WAKE_LOCK) {
+        if(WAKE_LOCK) {
             if (wakeLock != null && wakeLock.isHeld())
                 wakeLock.release();
         }
@@ -224,8 +224,8 @@ public class NotificationService extends NotificationListenerService {
         if(sbn == null)
             return false;
 
-        // own reminder
-        if(sbn.getId() == REMINDER_NOTIFICATION_ID)
+        // own indicator
+        if(sbn.getId() == INDICATOR_NOTIFICATION_ID)
             return false;
 
         // ignore ongoing (this notifications cannot be dismissed)
@@ -244,7 +244,7 @@ public class NotificationService extends NotificationListenerService {
             return false;
 
         NOTIFICATION_COUNT++;
-        REMINDER_COUNT = 0;
+        INDICATOR_COUNT = 0;
 
         return true;
     }
@@ -252,7 +252,7 @@ public class NotificationService extends NotificationListenerService {
     public void recountNotifications() {
 
         NOTIFICATION_COUNT = 0;
-        REMINDER_COUNT = 0;
+        INDICATOR_COUNT = 0;
 
         if(!RESET_WHEN_SCREEN_TURN_ON) {
             for(StatusBarNotification sbn : getActiveNotifications()) {
@@ -261,7 +261,7 @@ public class NotificationService extends NotificationListenerService {
         }
     }
 
-    private boolean isRemindAmount() {
-        return REMIND_AMOUNT > 0 && REMINDER_COUNT == REMIND_AMOUNT;
+    private boolean isAmount() {
+        return AMOUNT > 0 && INDICATOR_COUNT == AMOUNT;
     }
 }

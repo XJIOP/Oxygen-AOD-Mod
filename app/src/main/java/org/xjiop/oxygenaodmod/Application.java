@@ -20,9 +20,9 @@ public class Application extends android.app.Application {
 
     public static boolean VIBRATION;
     public static boolean RESET_WHEN_SCREEN_TURN_ON;
-    public static int REMIND_INTERVAL;
-    public static boolean REMIND_WAKE_LOCK;
-    public static int REMIND_AMOUNT;
+    public static int INTERVAL;
+    public static boolean WAKE_LOCK;
+    public static int AMOUNT;
     public static LocalTime START_TIME;
     public static LocalTime END_TIME;
     public static boolean ANY_TIME;
@@ -49,6 +49,8 @@ public class Application extends android.app.Application {
 
     private void defaultSettings() {
 
+        boolean updateCH = false;
+
         /* TODO: SET DEFAULT SETTINGS */
 
         PreferenceManager.setDefaultValues(this, R.xml.settings, false);
@@ -58,6 +60,22 @@ public class Application extends android.app.Application {
 
         int version = settings.getInt("version_code", -1);
         if(version != BuildConfig.VERSION_CODE) {
+
+            if(version != -1) {
+
+                if(version < 14) {
+
+                    updateCH = true;
+
+                    try {
+                        Integer.parseInt(settings.getString("amount", "0"));
+                    }
+                    catch(NumberFormatException e) {
+                        edit.putString("amount", "0");
+                    }
+                }
+            }
+
             edit.putInt("version_code", BuildConfig.VERSION_CODE);
         }
 
@@ -81,9 +99,9 @@ public class Application extends android.app.Application {
         if(notificationManager != null) {
 
             String channelId = "Channel-1";
-            String channelName = getString(R.string.reminders);
+            String channelName = getString(R.string.notification_indicator);
 
-            if (notificationManager.getNotificationChannel(channelId) == null) {
+            if (notificationManager.getNotificationChannel(channelId) == null || updateCH) {
                 NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
                 notificationChannel.setSound(null, null);
                 notificationChannel.enableVibration(false);
@@ -94,7 +112,7 @@ public class Application extends android.app.Application {
             channelId = "Channel-2";
             channelName = getString(R.string.test_notification);
 
-            if (notificationManager.getNotificationChannel(channelId) == null) {
+            if (notificationManager.getNotificationChannel(channelId) == null || updateCH) {
                 NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
                 notificationManager.createNotificationChannel(notificationChannel);
             }
@@ -104,9 +122,9 @@ public class Application extends android.app.Application {
 
         VIBRATION = settings.getBoolean("vibration", false);
         RESET_WHEN_SCREEN_TURN_ON = settings.getBoolean("reset_when_screen_turn_on", true);
-        REMIND_INTERVAL = Integer.parseInt(settings.getString("remind_interval", "15"));
-        REMIND_WAKE_LOCK = settings.getBoolean("remind_wake_lock", false);
-        REMIND_AMOUNT = Integer.parseInt(settings.getString("remind_amount", "0"));
+        INTERVAL = Integer.parseInt(settings.getString("interval", "15"));
+        WAKE_LOCK = settings.getBoolean("wake_lock", false);
+        AMOUNT = Integer.parseInt(settings.getString("amount", "0"));
         START_TIME = LocalTime.parse(settings.getString("start_time", "08:00"));
         END_TIME = LocalTime.parse(settings.getString("end_time", "23:00"));
         ANY_TIME = settings.getBoolean("any_time", true);

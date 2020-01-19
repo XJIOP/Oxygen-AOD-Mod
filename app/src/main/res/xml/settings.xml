@@ -18,7 +18,7 @@
         <CheckBoxPreference
             android:title="@string/vibration"
             android:key="vibration"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:dependency="double_tap"
             app:iconSpaceReserved="false" />
 
@@ -31,50 +31,50 @@
         app:iconSpaceReserved="false">
 
         <SwitchPreference
-            android:title="@string/reminders"
-            android:key="reminders"
-            android:summary="@string/reminders_descr"
+            android:title="@string/notification_indicator"
+            android:key="indicator"
+            android:summary="@string/notification_indicator_descr"
             app:iconSpaceReserved="false" />
 
         <CheckBoxPreference
             android:title="@string/reset_when_screen_turn_on"
             android:key="reset_when_screen_turn_on"
             android:defaultValue="true"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <EditTextPreference
-            android:title="@string/remind_interval"
-            android:key="remind_interval"
+            android:title="@string/interval"
+            android:key="interval"
             android:maxLength="4"
             android:singleLine="true"
             android:inputType="number"
             android:digits="0123456789"
             android:defaultValue="15"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <EditTextPreference
             android:title="@string/number_impressions"
-            android:key="remind_amount"
+            android:key="amount"
             android:maxLength="4"
             android:singleLine="true"
             android:inputType="number"
             android:digits="0123456789"
             android:defaultValue="0"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <Preference
             android:title="@string/schedule"
             android:key="schedule"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <Preference
             android:title="@string/categories"
             android:key="categories"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <ListPreference
@@ -83,28 +83,28 @@
             android:entries="@array/listColor"
             android:entryValues="@array/listColorValues"
             android:defaultValue="1"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <Preference
             android:title="@string/icon"
             android:key="icon"
             android:defaultValue="warning"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <Preference
             android:title="@string/sound_settings"
             android:key="sound_settings"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <CheckBoxPreference
             android:title="@string/wake_lock"
-            android:key="remind_wake_lock"
+            android:key="wake_lock"
             android:defaultValue="true"
-            android:summary="@string/remind_wake_lock_descr"
-            android:dependency="reminders"
+            android:summary="@string/wake_lock_descr"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
@@ -116,9 +116,9 @@
         app:iconSpaceReserved="false">
 
         <Preference
-            android:title="@string/test_reminder"
+            android:title="@string/notification_indicator_test"
             android:key="test_notification"
-            android:dependency="reminders"
+            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <CheckBoxPreference

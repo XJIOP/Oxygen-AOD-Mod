@@ -14,9 +14,9 @@
     <string name="ok">OK</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="test_reminder">Test reminder</string>
-    <string name="test_reminder_confirm">Run test notification?</string>
-    <string name="test_reminder_descr">In 1 minute you should receive a test notification. Please turn off the screen to test reminders.</string>
+    <string name="notification_indicator_test">Notification indicator test</string>
+    <string name="test_notification_confirm">Run test notification?</string>
+    <string name="test_notification_descr">In 1 minute you should receive a test notification. Please turn off the screen to test notification indicator.</string>
     <string name="test_notification">Test notification</string>
     <string name="min_interval_sec">Min. 10 seconds</string>
     <string name="new_notifications">New notifications</string>
@@ -24,9 +24,9 @@
     <string name="hello">Hello</string>
     <string name="double_tap">Double tap</string>
     <string name="double_tap_descr">Double tap on the AOD screen to open the lock screen</string>
-    <string name="reminders">Reminders</string>
-    <string name="reminders_descr">Remind about notifications</string>
-    <string name="remind_interval">Remind interval</string>
+    <string name="notification_indicator">Notification indicator</string>
+    <string name="notification_indicator_descr">Show on screen off</string>
+    <string name="interval">Interval</string>
     <string name="sound_settings">Sound settings</string>
     <string name="error">Error</string>
     <string name="confirmation">Confirm</string>
@@ -43,6 +43,7 @@
     <string name="event">Event</string>
     <string name="msg">Message</string>
     <string name="reminder">Reminder</string>
+    <string name="indicator">Indicator</string>
     <string name="social">Social network</string>
     <string name="sys">System</string>
     <string name="undefined">Undefined</string>
@@ -60,9 +61,9 @@
     <string name="unknown_error">Unknown error</string>
     <string name="share">Share</string>
     <string name="attention">Attention</string>
-    <string name="remind_interval_info">When the screen is off, the device operates in energy-saving mode, so the reminder interval does not guarantee the specified value, the delay can be up to 1 minute. WAKE LOCK can solve this problem.</string>
+    <string name="interval_info">When the screen is off, the device operates in energy-saving mode, so the interval does not guarantee the specified value, the delay can be up to 1 minute. WAKE LOCK can solve this problem.</string>
     <string name="wake_lock" translatable="false">WAKE LOCK</string>
-    <string name="remind_wake_lock_descr">Keep CPU awake for a stable reminder interval (only when there are notifications).</string>
+    <string name="wake_lock_descr">Keep CPU awake for a stable interval (only when there are notifications).</string>
     <string name="vibration">Vibration</string>
     <string name="color">Color</string>
     <string name="red">Red</string>

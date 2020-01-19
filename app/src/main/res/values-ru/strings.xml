@@ -11,9 +11,9 @@
     <string name="ok">ОК</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
-    <string name="test_reminder">Тест напоминаний</string>
-    <string name="test_reminder_confirm">Запустить тестовое уведомление?</string>
-    <string name="test_reminder_descr">Через 1 минуту вы должны получить тестовое уведомление. Пожалуйста выключите экран для теста напоминаний.</string>
+    <string name="notification_indicator_test">Тест индикатора уведомлений</string>
+    <string name="test_notification_confirm">Запустить тестовое уведомление?</string>
+    <string name="test_notification_descr">Через 1 минуту вы должны получить тестовое уведомление. Пожалуйста выключите экран для теста индикатора уведомлений.</string>
     <string name="test_notification">Тестовое уведомление</string>
     <string name="min_interval_sec">Мин. 10 секунд</string>
     <string name="new_notifications">Новые уведомления</string>
@@ -21,9 +21,9 @@
     <string name="hello">Привет</string>
     <string name="double_tap">Двойное нажатие</string>
     <string name="double_tap_descr">Двойным нажатием на AOD экран открывать экран блокировки</string>
-    <string name="reminders">Напоминания</string>
-    <string name="reminders_descr">Напоминать об уведомлениях</string>
-    <string name="remind_interval">Интервал напоминаний</string>
+    <string name="notification_indicator">Индикатор уведомлений</string>
+    <string name="notification_indicator_descr">Показывать на выключенном экране</string>
+    <string name="interval">Интервал</string>
     <string name="sound_settings">Настройки звука</string>
     <string name="error">Ошибка</string>
     <string name="confirmation">Подтверждение</string>
@@ -40,6 +40,7 @@
     <string name="event">Событие</string>
     <string name="msg">Сообщение</string>
     <string name="reminder">Напоминание</string>
+    <string name="indicator">Индикатор</string>
     <string name="social">Социальная сеть</string>
     <string name="sys">Система</string>
     <string name="undefined">Не определено</string>
@@ -57,8 +58,8 @@
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="share">Поделиться</string>
     <string name="attention">Внимание</string>
-    <string name="remind_interval_info">При выключенном экране, устройство работает в энергосберегающем режиме, поэтому интервал напоминаний не гарантирует указанное значение, задержка может быть до 1й минуты. WAKE LOCK может решить эту проблему.</string>
-    <string name="remind_wake_lock_descr">Удерживать CPU для стабильного интервала напоминаний (только когда есть уведомления).</string>
+    <string name="interval_info">При выключенном экране, устройство работает в энергосберегающем режиме, поэтому интервал не гарантирует указанное значение, задержка может быть до 1й минуты. WAKE LOCK может решить эту проблему.</string>
+    <string name="wake_lock_descr">Удерживать CPU для стабильного интервала (только когда есть уведомления).</string>
     <string name="vibration">Вибрация</string>
     <string name="color">Цвет</string>
     <string name="red">Красный</string>

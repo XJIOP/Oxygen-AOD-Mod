@@ -5,21 +5,20 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
 import static org.xjiop.oxygenaodmod.Application.COLOR;
 import static org.xjiop.oxygenaodmod.Application.ICON;
-import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
+import static org.xjiop.oxygenaodmod.Application.AMOUNT;
 import static org.xjiop.oxygenaodmod.NotificationService.NOTIFICATION_COUNT;
-import static org.xjiop.oxygenaodmod.NotificationService.REMINDER_COUNT;
+import static org.xjiop.oxygenaodmod.NotificationService.INDICATOR_COUNT;
 
 public class NotificationReceiver extends BroadcastReceiver {
 
     private static final String TAG = "DBG | NReceiver";
 
-    public static final int REMINDER_NOTIFICATION_ID = 101;
+    public static final int INDICATOR_NOTIFICATION_ID = 101;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -29,11 +28,11 @@ public class NotificationReceiver extends BroadcastReceiver {
         if(notificationManager == null)
             return;
 
-        String amount = context.getString(R.string.reminder);
-        if(REMIND_AMOUNT > 0)
-            amount += " (" + REMINDER_COUNT + " " + context.getString(R.string.of) + " " + REMIND_AMOUNT + ")";
+        String amount = context.getString(R.string.indicator);
+        if(AMOUNT > 0)
+            amount += " (" + INDICATOR_COUNT + " " + context.getString(R.string.of) + " " + AMOUNT + ")";
         else
-            amount += " (" + REMINDER_COUNT + ")";
+            amount += " (" + INDICATOR_COUNT + ")";
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "Channel-1");
         mBuilder.setSmallIcon(ICON)
@@ -47,6 +46,6 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setCategory(Notification.CATEGORY_REMINDER)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
-        notificationManager.notify(REMINDER_NOTIFICATION_ID, mBuilder.build());
+        notificationManager.notify(INDICATOR_NOTIFICATION_ID, mBuilder.build());
     }
 }

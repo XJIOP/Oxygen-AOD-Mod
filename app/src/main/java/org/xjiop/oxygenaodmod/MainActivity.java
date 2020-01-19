@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,12 +27,11 @@ import org.xjiop.oxygenaodmod.icon.IconDialog;
 import io.fabric.sdk.android.Fabric;
 
 import static org.xjiop.oxygenaodmod.Application.COLOR;
-import static org.xjiop.oxygenaodmod.Application.REMIND_AMOUNT;
-import static org.xjiop.oxygenaodmod.Application.REMIND_INTERVAL;
-import static org.xjiop.oxygenaodmod.Application.REMIND_WAKE_LOCK;
+import static org.xjiop.oxygenaodmod.Application.AMOUNT;
+import static org.xjiop.oxygenaodmod.Application.INTERVAL;
+import static org.xjiop.oxygenaodmod.Application.WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.VIBRATION;
-import static org.xjiop.oxygenaodmod.Application.getAppContext;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -104,9 +102,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                 break;
 
-            case "remind_wake_lock":
+            case "wake_lock":
 
-                REMIND_WAKE_LOCK = sharedPreferences.getBoolean("remind_wake_lock", false);
+                WAKE_LOCK = sharedPreferences.getBoolean("wake_lock", false);
 
                 break;
 
@@ -128,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         private Context mContext;
 
         private Preference doubleTapPreference;
-        private Preference remindNotificationPreference;
+        private Preference indicatorPreference;
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -136,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             setPreferencesFromResource(R.xml.settings, rootKey);
 
             doubleTapPreference = findPreference("double_tap");
-            remindNotificationPreference = findPreference("reminders");
+            indicatorPreference = findPreference("indicator");
 
             doubleTapPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
@@ -149,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 }
             });
 
-            remindNotificationPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            indicatorPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
 
@@ -162,9 +160,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
 
-            Preference remindIntervalPreference = findPreference("remind_interval");
-            remindIntervalPreference.setSummary(settings.getString("remind_interval", "15") + " " + getString(R.string.sec));
-            remindIntervalPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            Preference intervalPreference = findPreference("interval");
+            intervalPreference.setSummary(settings.getString("interval", "15") + " " + getString(R.string.sec));
+            intervalPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
 
@@ -179,19 +177,19 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         return false;
                     }
 
-                    REMIND_INTERVAL = value;
+                    INTERVAL = value;
                     preference.setSummary(newValue.toString() + " " + getString(R.string.sec));
 
-                    Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.attention), getString(R.string.remind_interval_info)));
+                    Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.attention), getString(R.string.interval_info)));
 
                     return true;
                 }
             });
 
-            String remind_amount = settings.getString("remind_amount", "0");
-            Preference remindAmountPreference = findPreference("remind_amount");
-            remindAmountPreference.setSummary(remind_amount.equals("0") ? getString(R.string.no_limits) : remind_amount);
-            remindAmountPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            String amount = settings.getString("amount", "0");
+            Preference amountPreference = findPreference("amount");
+            amountPreference.setSummary(amount.equals("0") ? getString(R.string.no_limits) : amount);
+            amountPreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
 
@@ -206,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         return false;
                     }
 
-                    REMIND_AMOUNT = value;
+                    AMOUNT = value;
                     String text = value == 0 ? getString(R.string.no_limits) : newValue.toString();
                     preference.setSummary(text);
 
@@ -289,8 +287,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 public boolean onPreferenceClick(Preference preference) {
 
                     ConfirmDialog confirmDialog = ConfirmDialog.newInstance(
-                            getString(R.string.test_reminder),
-                            getString(R.string.test_reminder_confirm),
+                            getString(R.string.notification_indicator_test),
+                            getString(R.string.test_notification_confirm),
                             getString(R.string.yes),
                             getString(R.string.no));
                     confirmDialog.setTargetFragment(SettingsFragment.this, TEST_RESULT);
@@ -323,8 +321,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             if(doubleTapPreference != null)
                 ((SwitchPreference) doubleTapPreference).setChecked(isAccessibilityPermission());
 
-            if(remindNotificationPreference != null)
-                ((SwitchPreference) remindNotificationPreference).setChecked(isNotificationPermission());
+            if(indicatorPreference != null)
+                ((SwitchPreference) indicatorPreference).setChecked(isNotificationPermission());
         }
 
         @Override
@@ -351,7 +349,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     if(!data.getBooleanExtra("onPositive", false))
                         return;
 
-                    Context applicationContext = getAppContext();
+                    Context applicationContext = Application.getAppContext();
 
                     Intent intent = new Intent(applicationContext, TestNotificationReceiver.class);
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(applicationContext, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -359,7 +357,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     AlarmManager alarmManager = (AlarmManager) applicationContext.getSystemService(ALARM_SERVICE);
                     if(alarmManager != null) {
                         alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (60 * 1000), pendingIntent);
-                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.confirmation), getString(R.string.test_reminder_descr)));
+                        Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.confirmation), getString(R.string.test_notification_descr)));
                     }
                 }
             }
