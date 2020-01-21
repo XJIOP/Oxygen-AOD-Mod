@@ -20,7 +20,7 @@
     <string name="test">Test</string>
     <string name="hello">Hallo</string>
     <string name="double_tap">Doppeltippen</string>
-    <string name="double_tap_descr">Tippen Sie zweimal auf den AOD-Bildschirm, um den Sperrbildschirm zu öffnen</string>
+    <string name="double_tap_descr">Doppeltippen auf den AOD-Bildschirm, um den Sperrbildschirm zu öffnen</string>
     <string name="notification_indicator">Benachrichtigung Indikator</string>
     <string name="notification_indicator_descr">Bei ausgeschaltetem Bildschirm anzeigen</string>
     <string name="interval">Intervall</string>
@@ -59,7 +59,7 @@
     <string name="share">Teilen</string>
     <string name="attention">Beachtung</string>
     <string name="interval_info">Wenn der Bildschirm ausgeschaltet ist, arbeitet das Gerät im Energiesparmodus, sodass das Intervall den angegebenen Wert nicht garantiert. Die Verzögerung kann bis zu 1 Minute betragen. WAKE LOCK kann dieses Problem lösen.</string>
-    <string name="wake_lock_descr">Halten Sie die CPU für ein stabiles Intervall wach (nur bei Benachrichtigungen).</string>
+    <string name="wake_lock_descr">Halten die CPU für ein stabiles Intervall (nur bei Benachrichtigungen).</string>
     <string name="vibration">Vibration</string>
     <string name="color">Farbe</string>
     <string name="red">Rot</string>
