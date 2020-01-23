@@ -123,7 +123,7 @@ public class NotificationService extends NotificationListenerService {
         if(sbn == null)
             return;
 
-        // own indicator
+        // prepare next indicator
         if(sbn.getId() == INDICATOR_NOTIFICATION_ID) {
             startIndicator();
             return;
@@ -197,7 +197,8 @@ public class NotificationService extends NotificationListenerService {
             handler.removeCallbacksAndMessages(null);
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
+                    if(NOTIFICATION_COUNT > 0)
+                        sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
                 }
             }, INTERVAL * 1000);
         }
@@ -224,7 +225,7 @@ public class NotificationService extends NotificationListenerService {
         if(sbn == null)
             return false;
 
-        // own indicator
+        // ignore indicator
         if(sbn.getId() == INDICATOR_NOTIFICATION_ID)
             return false;
 
