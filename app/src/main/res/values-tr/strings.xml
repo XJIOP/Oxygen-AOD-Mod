@@ -6,7 +6,7 @@
     <string name="category_application">Uygulamalar</string>
     <string name="key_service_description">AOD ekranında çift tıklamayı etkinleştir</string>
     <string name="about_app">Uygulama hakkında</string>
-    <string name="about_app_text">Bu uygulama açık kaynak kodlu bir uygulamadır .Sadece Oneplus 7 ve 7T ailesinde Android 10 sürümünde denenmiştir . Bu uygulamanın Oneplus ve Oxygenos ile bir bağlantısı bulunmamaktadır yani başka amoled ekranlı telefonlarda da çalışabilir.</string>
+    <string name="about_app_text">Bu uygulama açık kaynak kodlu bir uygulamadır. Sadece Oneplus 7 ve 7T ailesinde Android 10 sürümünde denenmiştir. Bu uygulamanın Oneplus ve Oxygenos ile bir bağlantısı bulunmamaktadır yani başka amoled ekranlı telefonlarda da çalışabilir.</string>
     <string name="version">Sürüm</string>
     <string name="close">Kapat</string>
     <string name="ok">Tamam</string>
@@ -24,15 +24,15 @@
     <string name="double_tap_descr">AOD ekranında çift tık ile kilit ekranını açma</string>
     <string name="notification_indicator">Bildirim göstergesi</string>
     <string name="notification_indicator_descr">Ekran kapalıyken gösterir</string>
-    <string name="interval">Aralık</string>
+    <string name="interval">Zaman Aralığı</string>
     <string name="sound_settings">Ses Ayarları</string>
     <string name="error">Hata</string>
-    <string name="confirmation">Onayla</string>
+    <string name="confirmation">Bildirim testi başlıyor…</string>
     <string name="sec">sn.</string>
     <string name="reset_when_screen_turn_on">Ekran açıldığında sıfırla</string>
     <string name="bug_tracking">Hata takibi</string>
     <string name="bug_tracking_descr">Hata raporlarının toplanması ve geliştiriciye gönderilmesine izin ver</string>
-    <string name="categories">Kategoriler</string>
+    <string name="categories">Bildirim Kategorileri</string>
     <string name="save">Kaydet</string>
     <string name="cancel">Kapat</string>
     <string name="alarm">Alarm</string>
@@ -47,7 +47,7 @@
     <string name="undefined">Tanımlanmamış olanlar</string>
     <string name="number_impressions">Gösterim sayısı</string>
     <string name="no_limits">Limit yok</string>
-    <string name="of">of</string> <!-- Notification counter: 1 of 100 -->
+    <string name="of">of</string>
     <string name="schedule">Zamanlama</string>
     <string name="start">Başlangıç</string>
     <string name="end">Bitiş</string>
@@ -59,7 +59,7 @@
     <string name="unknown_error">Bilinmeyen hata</string>
     <string name="share">Paylaş</string>
     <string name="attention">Dikkat!</string>
-    <string name="interval_info">Ekran kapalı olduğunda cihaz enerji tasarruf modunda çalışır bu yüzünden zaman aralığı istediğiniz değerde çalışmayabilir , gecikmeler 1 dakikiya kadar çıkabilir bu yüzden WAKE LOCK özelliğini açarsanız bu sorun çözülür.</string>
+    <string name="interval_info">Ekran kapalı olduğunda cihaz enerji tasarruf modunda çalışır bu yüzünden zaman aralığı istediğiniz değerde çalışmayabilir, gecikmeler 1 dakikiya kadar çıkabilir bu yüzden WAKE LOCK özelliğini açarsanız bu sorun çözülür.</string>
     <string name="wake_lock_descr">Bildirim zaman aralığı için CPU yu açık tut. (sadece bildirim olduğunda).</string>
     <string name="vibration">Titreşim</string>
     <string name="color">Renk</string>
@@ -76,6 +76,6 @@
     <string name="star">Yıldız</string>
     <string name="warning">Uyarı</string>
     <string name="show_notification_counter">Bildirim sayacını göster</string>
-    <string name="not_stable">Stabil değil</string>
+    <string name="not_stable">Not: Stabil değildir</string>
     <string name="you_have_new_notification">Yeni bir bildiriminiz var</string>
 </resources>
