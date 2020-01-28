@@ -4,6 +4,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 
 import androidx.preference.PreferenceManager;
 
@@ -11,6 +12,7 @@ import com.crashlytics.android.Crashlytics;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -91,6 +93,21 @@ public class Application extends android.app.Application {
 
         if(!settings.contains("any_time"))
             edit.putBoolean("any_time", true);
+
+        if(!settings.contains("language"))  {
+
+            // get system language
+            String lang = Resources.getSystem().getConfiguration().getLocales().get(0).toString();
+            String[] fixLang = lang.split("_");
+            lang = fixLang[0];
+
+            // set existing language
+            String[] langList = getResources().getStringArray(R.array.listLangValues);
+            if (!Arrays.asList(langList).contains(lang))
+                lang = "en";
+
+            edit.putString("language", lang);
+        }
 
         edit.apply();
 

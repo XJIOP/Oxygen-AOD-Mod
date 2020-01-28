@@ -78,4 +78,5 @@
     <string name="show_notification_counter">Bildirim sayacını göster</string>
     <string name="not_stable">Not: Stabil değildir</string>
     <string name="you_have_new_notification">Yeni bir bildiriminiz var</string>
+    <string name="Language">Dil</string>
 </resources>

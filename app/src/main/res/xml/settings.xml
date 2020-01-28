@@ -123,6 +123,13 @@
         android:selectable="false"
         app:iconSpaceReserved="false">
 
+        <ListPreference
+            android:title="@string/Language"
+            android:key="language"
+            android:entries="@array/listLang"
+            android:entryValues="@array/listLangValues"
+            app:iconSpaceReserved="false" />
+
         <Preference
             android:title="@string/notification_indicator_test"
             android:key="test_notification"

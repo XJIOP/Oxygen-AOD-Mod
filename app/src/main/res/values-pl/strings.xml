@@ -77,4 +77,5 @@
     <string name="show_notification_counter">Pokaż licznik powiadomień</string>
     <string name="not_stable">Nie stabilny</string>
     <string name="you_have_new_notification">Masz nowe powiadomienie</string>
+    <string name="Language">Język</string>
 </resources>

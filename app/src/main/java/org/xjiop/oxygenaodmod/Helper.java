@@ -4,8 +4,13 @@ import android.app.Notification;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.LocaleList;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -231,5 +236,25 @@ public class Helper {
             default:
                 return R.drawable.ic_warning;
         }
+    }
+
+    static Context setLanguage(Context context) {
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+        String language = settings.getString("language", "en");
+
+        Locale newLocale = new Locale(language);
+        Locale.setDefault(newLocale);
+
+        Resources res = context.getResources();
+        Configuration configuration = res.getConfiguration();
+
+        configuration.setLocale(newLocale);
+        LocaleList localeList = new LocaleList(newLocale);
+        LocaleList.setDefault(localeList);
+        configuration.setLocales(localeList);
+        context = context.createConfigurationContext(configuration);
+
+        return context;
     }
 }

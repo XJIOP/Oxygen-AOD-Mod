@@ -81,4 +81,11 @@
     <string name="show_notification_counter">Show notification counter</string>
     <string name="not_stable">Not stable</string>
     <string name="you_have_new_notification">You have a new notification</string>
+    <string name="Language">Language</string>
+    <string name="english" translatable="false">English</string>
+    <string name="spanish" translatable="false">Espanol</string>
+    <string name="german" translatable="false">Deutsch</string>
+    <string name="russian" translatable="false">Русский</string>
+    <string name="turkish" translatable="false">Türk</string>
+    <string name="polish" translatable="false">Polski</string>
 </resources>

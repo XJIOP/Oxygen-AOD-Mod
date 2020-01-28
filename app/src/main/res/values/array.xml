@@ -16,4 +16,21 @@
         <item>4</item>
      </string-array>
 
+    <string-array name="listLang">
+        <item>@string/english</item>
+        <item>@string/spanish</item>
+        <item>@string/german</item>
+        <item>@string/russian</item>
+        <item>@string/turkish</item>
+        <item>@string/polish</item>
+    </string-array>
+    <string-array name="listLangValues" translatable="false">
+        <item>en</item>
+        <item>es</item>
+        <item>de</item>
+        <item>ru</item>
+        <item>tr</item>
+        <item>pl</item>
+    </string-array>
+
 </resources>

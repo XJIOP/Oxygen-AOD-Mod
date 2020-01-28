@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private static final String TAG = "DBG | MainActivity";
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LanguageContextWrapper.wrap(newBase));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -81,6 +86,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         //Log.d(TAG, "onSharedPreferenceChanged | key: " + key);
 
         switch (key) {
+            case "language":
+
+                recreate();
+
+                break;
+
             case "reset_when_screen_turn_on":
 
                 RESET_WHEN_SCREEN_TURN_ON = sharedPreferences.getBoolean("reset_when_screen_turn_on", true);
@@ -140,6 +151,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             //Log.d(TAG, "onCreatePreferences | rootKey: " + rootKey);
             setPreferencesFromResource(R.xml.settings, rootKey);
 
+            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
+
+            setListPreferenceSummary(findPreference("language"), settings.getString("language", "en"));
+
             doubleTapPreference = findPreference("double_tap");
             indicatorPreference = findPreference("indicator");
 
@@ -164,8 +179,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     return false;
                 }
             });
-
-            final SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(mContext);
 
             Preference intervalPreference = findPreference("interval");
             intervalPreference.setSummary(settings.getString("interval", "15") + " " + getString(R.string.sec));
