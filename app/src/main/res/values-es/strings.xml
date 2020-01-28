@@ -52,7 +52,7 @@
     <string name="start">Inicio</string>
     <string name="end">Fin</string>
     <string name="any_time">Cualquier momento</string>
-    <string name="rate_app_text">Si te gusta esta app, por favor calificala.\n\n ¡Gracias por su apoyo!</string>
+    <string name="rate_app_text">Si te gusta esta app, por favor calificala.\n\n¡Gracias por su apoyo!</string>
     <string name="rate">Calificar</string>
     <string name="no_thanks">No, Gracias</string>
     <string name="cant_open_link">No se puede abrir el enlace</string>

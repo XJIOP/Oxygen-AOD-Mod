@@ -115,6 +115,12 @@
             android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
+        <Preference
+            android:title="@string/notification_indicator_test"
+            android:key="test_notification"
+            android:dependency="indicator"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -128,12 +134,6 @@
             android:key="language"
             android:entries="@array/listLang"
             android:entryValues="@array/listLangValues"
-            app:iconSpaceReserved="false" />
-
-        <Preference
-            android:title="@string/notification_indicator_test"
-            android:key="test_notification"
-            android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
         <CheckBoxPreference
