@@ -86,6 +86,6 @@
     <string name="spanish" translatable="false">Espanol</string>
     <string name="german" translatable="false">Deutsch</string>
     <string name="russian" translatable="false">Русский</string>
-    <string name="turkish" translatable="false">Türk</string>
+    <string name="turkish" translatable="false">Türkçe</string>
     <string name="polish" translatable="false">Polski</string>
 </resources>
