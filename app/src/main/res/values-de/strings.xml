@@ -59,7 +59,7 @@
     <string name="share">Teilen</string>
     <string name="attention">Beachtung</string>
     <string name="interval_info">Wenn der Bildschirm ausgeschaltet ist, arbeitet das Gerät im Energiesparmodus, sodass das Intervall den angegebenen Wert nicht garantiert. Die Verzögerung kann bis zu 1 Minute betragen. WAKE LOCK kann dieses Problem lösen.</string>
-    <string name="wake_lock_descr">Halten die CPU für ein stabiles Intervall (nur bei Benachrichtigungen).</string>
+    <string name="wake_lock_descr">Hält die CPU für ein stabiles Intervall (nur bei Benachrichtigungen).</string>
     <string name="vibration">Vibration</string>
     <string name="color">Farbe</string>
     <string name="red">Rot</string>
