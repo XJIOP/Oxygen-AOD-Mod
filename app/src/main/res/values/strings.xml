@@ -88,4 +88,5 @@
     <string name="russian" translatable="false">Русский</string>
     <string name="turkish" translatable="false">Türkçe</string>
     <string name="polish" translatable="false">Polski</string>
+    <string name="vietnamese" translatable="false">Vietnamese</string>
 </resources>

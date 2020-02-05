@@ -23,6 +23,7 @@
         <item>@string/russian</item>
         <item>@string/turkish</item>
         <item>@string/polish</item>
+        <item>@string/vietnamese</item>
     </string-array>
     <string-array name="listLangValues" translatable="false">
         <item>en</item>
@@ -31,6 +32,7 @@
         <item>ru</item>
         <item>tr</item>
         <item>pl</item>
+        <item>vi</item>
     </string-array>
 
 </resources>
