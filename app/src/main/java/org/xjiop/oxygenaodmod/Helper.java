@@ -2,6 +2,7 @@ package org.xjiop.oxygenaodmod;
 
 import android.app.Notification;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.LocaleList;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -256,5 +258,33 @@ public class Helper {
         context = context.createConfigurationContext(configuration);
 
         return context;
+    }
+
+    static boolean isAccessibilityPermission() {
+
+        boolean result = false;
+
+        int enabled = 0;
+        try {
+            enabled = Settings.Secure.getInt(Application.getAppContext().getContentResolver(), android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+        }
+        catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if (enabled == 1) {
+            String services = Settings.Secure.getString(Application.getAppContext().getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+            if (services != null) {
+                result = services.toLowerCase().contains(Application.getAppContext().getPackageName().toLowerCase());
+            }
+        }
+
+        return result;
+    }
+
+    static boolean isNotificationPermission() {
+        ComponentName cn = new ComponentName(Application.getAppContext(), NotificationService.class);
+        String flat = Settings.Secure.getString(Application.getAppContext().getContentResolver(), "enabled_notification_listeners");
+        return flat != null && flat.contains(cn.flattenToString());
     }
 }

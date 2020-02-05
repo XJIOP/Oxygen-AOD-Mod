@@ -3,7 +3,6 @@ package org.xjiop.oxygenaodmod;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -339,10 +338,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             super.onResume();
 
             if(doubleTapPreference != null)
-                ((SwitchPreference) doubleTapPreference).setChecked(isAccessibilityPermission());
+                ((SwitchPreference) doubleTapPreference).setChecked(Helper.isAccessibilityPermission());
 
             if(indicatorPreference != null)
-                ((SwitchPreference) indicatorPreference).setChecked(isNotificationPermission());
+                ((SwitchPreference) indicatorPreference).setChecked(Helper.isNotificationPermission());
         }
 
         @Override
@@ -381,34 +380,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     }
                 }
             }
-        }
-
-        private boolean isAccessibilityPermission() {
-
-            boolean result = false;
-
-            int enabled = 0;
-            try {
-                enabled = Settings.Secure.getInt(mContext.getContentResolver(), android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
-            }
-            catch (Settings.SettingNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            if (enabled == 1) {
-                String services = Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
-                if (services != null) {
-                    result = services.toLowerCase().contains(mContext.getPackageName().toLowerCase());
-                }
-            }
-
-            return result;
-        }
-
-        private boolean isNotificationPermission() {
-            ComponentName cn = new ComponentName(mContext, NotificationService.class);
-            String flat = Settings.Secure.getString(mContext.getContentResolver(), "enabled_notification_listeners");
-            return flat != null && flat.contains(cn.flattenToString());
         }
 
         private void setListPreferenceSummary(Preference preference, String value) {

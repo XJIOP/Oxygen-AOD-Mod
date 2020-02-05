@@ -3,7 +3,6 @@ package org.xjiop.oxygenaodmod;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.service.notification.NotificationListenerService;
@@ -13,13 +12,14 @@ import android.util.Log;
 import java.time.LocalTime;
 
 import static org.xjiop.oxygenaodmod.Application.ALLOWED_CATEGORY;
+import static org.xjiop.oxygenaodmod.Application.AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.ANY_TIME;
 import static org.xjiop.oxygenaodmod.Application.END_TIME;
-import static org.xjiop.oxygenaodmod.Application.AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.INTERVAL;
-import static org.xjiop.oxygenaodmod.Application.WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.START_TIME;
+import static org.xjiop.oxygenaodmod.Application.WAKE_LOCK;
+import static org.xjiop.oxygenaodmod.Application.isScreenON;
 import static org.xjiop.oxygenaodmod.NotificationReceiver.INDICATOR_NOTIFICATION_ID;
 
 public class NotificationService extends NotificationListenerService {
@@ -30,9 +30,7 @@ public class NotificationService extends NotificationListenerService {
     public static int NOTIFICATION_COUNT;
     public static int INDICATOR_COUNT;
 
-    private ScreenPowerReceiver screenPowerReceiver;
     private Handler handler;
-    private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
     @Override
@@ -46,17 +44,13 @@ public class NotificationService extends NotificationListenerService {
         notificationService = this;
 
         handler = new Handler();
-        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+
+        Application.getAppContext().registerScreenPowerReceiver();
+
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if(powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getPackageName() + ":indicator");
         }
-
-        IntentFilter screenStateFilter = new IntentFilter();
-        screenStateFilter.addAction(Intent.ACTION_SCREEN_ON);
-        screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
-
-        screenPowerReceiver = new ScreenPowerReceiver();
-        registerReceiver(screenPowerReceiver, screenStateFilter);
     }
 
     @Override
@@ -68,11 +62,6 @@ public class NotificationService extends NotificationListenerService {
 
         notificationService = null;
 
-        if(screenPowerReceiver != null) {
-            unregisterReceiver(screenPowerReceiver);
-            screenPowerReceiver = null;
-        }
-
         if(wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
 
@@ -80,6 +69,9 @@ public class NotificationService extends NotificationListenerService {
             handler.removeCallbacksAndMessages(null);
             handler = null;
         }
+
+        if(!Helper.isAccessibilityPermission())
+            Application.getAppContext().unregisterScreenPowerReceiver();
 
         super.onDestroy();
     }
@@ -179,8 +171,7 @@ public class NotificationService extends NotificationListenerService {
             }
         }
 
-        boolean isScreenOn = powerManager != null && powerManager.isInteractive();
-        if(isScreenOn)
+        if(isScreenON)
             return;
 
         if(handler != null) {

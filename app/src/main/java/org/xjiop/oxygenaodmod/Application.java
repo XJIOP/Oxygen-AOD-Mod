@@ -3,6 +3,8 @@ package org.xjiop.oxygenaodmod;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
@@ -32,6 +34,9 @@ public class Application extends android.app.Application {
     public static int ICON;
     public static boolean SHOW_NOTIFICATION_COUNTER;
     public static List<String> ALLOWED_CATEGORY = new ArrayList<>();
+
+    public static boolean isScreenON;
+    private static ScreenPowerReceiver screenPowerReceiver;
 
     private static Application appInstance;
 
@@ -155,5 +160,22 @@ public class Application extends android.app.Application {
 
         if(!BuildConfig.DEBUG && settings.getBoolean("bug_tracking", true))
             Fabric.with(this, new Crashlytics());
+    }
+
+    public void registerScreenPowerReceiver() {
+        if(screenPowerReceiver == null) {
+            IntentFilter screenStateFilter = new IntentFilter();
+            screenStateFilter.addAction(Intent.ACTION_SCREEN_ON);
+            screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
+            screenPowerReceiver = new ScreenPowerReceiver();
+            registerReceiver(screenPowerReceiver, screenStateFilter);
+        }
+    }
+
+    public void unregisterScreenPowerReceiver() {
+        if(screenPowerReceiver != null) {
+            unregisterReceiver(screenPowerReceiver);
+            screenPowerReceiver = null;
+        }
     }
 }

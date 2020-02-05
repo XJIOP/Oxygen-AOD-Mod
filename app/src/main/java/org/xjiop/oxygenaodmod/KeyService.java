@@ -5,24 +5,28 @@ import android.content.Context;
 import android.os.PowerManager;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityEvent;
 
 import static org.xjiop.oxygenaodmod.Application.VIBRATION;
+import static org.xjiop.oxygenaodmod.Application.isScreenON;
 
 public class KeyService extends AccessibilityService {
 
     private final String TAG = "DBG | KeyService";
 
     private long CLICK_DELAY;
-    private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
     @Override
     public void onCreate() {
+        //Log.d(TAG, "onCreate");
         super.onCreate();
 
-        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        Application.getAppContext().registerScreenPowerReceiver();
+
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if(powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, getPackageName() + ":double_tap");
         }
@@ -33,6 +37,9 @@ public class KeyService extends AccessibilityService {
 
         if(wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
+
+        if(!Helper.isNotificationPermission())
+            Application.getAppContext().unregisterScreenPowerReceiver();
 
         super.onDestroy();
     }
@@ -50,12 +57,10 @@ public class KeyService extends AccessibilityService {
     @Override
     protected boolean onKeyEvent(KeyEvent event) {
         //Log.d(TAG, "onKeyEvent: " + event);
-        //Log.d(TAG, "isScreenOn: " + powerManager.isInteractive());
 
         boolean result = false;
-        boolean isScreenOn = powerManager != null && powerManager.isInteractive();
 
-        if(!isScreenOn && event.getKeyCode() == KeyEvent.KEYCODE_F4) {
+        if(!isScreenON && event.getKeyCode() == KeyEvent.KEYCODE_F4) {
             if(result = doubleClick()) {
                 if(wakeLock != null) {
 
