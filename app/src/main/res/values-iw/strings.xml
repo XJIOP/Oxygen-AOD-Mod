@@ -47,7 +47,7 @@
     <string name="undefined">לא מוגדר</string>
     <string name="number_impressions">מספר התראות מקסימלי</string>
     <string name="no_limits">ללא הגבלה</string>
-    <string name="of">מ</string> <!-- Notification counter: 1 of 100 -->
+    <string name="of">מ</string>
     <string name="schedule">לוח זמנים</string>
     <string name="start">התחלה</string>
     <string name="end">סיום</string>

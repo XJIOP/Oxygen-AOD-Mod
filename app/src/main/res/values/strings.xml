@@ -87,6 +87,7 @@
     <string name="Language">Language</string>
     <string name="english" translatable="false">English</string>
     <string name="spanish" translatable="false">Espanol</string>
+    <string name="french" translatable="false">Français</string>
     <string name="german" translatable="false">Deutsch</string>
     <string name="russian" translatable="false">Русский</string>
     <string name="turkish" translatable="false">Türkçe</string>
