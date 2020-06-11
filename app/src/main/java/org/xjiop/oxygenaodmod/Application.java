@@ -10,15 +10,13 @@ import android.content.res.Resources;
 
 import androidx.preference.PreferenceManager;
 
-import com.crashlytics.android.Crashlytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-
-import io.fabric.sdk.android.Fabric;
 
 public class Application extends android.app.Application {
 
@@ -159,7 +157,7 @@ public class Application extends android.app.Application {
         /* TODO: OTHERS */
 
         if(!BuildConfig.DEBUG && settings.getBoolean("bug_tracking", true))
-            Fabric.with(this, new Crashlytics());
+            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false);
     }
 
     public void registerScreenPowerReceiver() {

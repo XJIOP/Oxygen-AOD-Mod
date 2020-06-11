@@ -17,13 +17,10 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreference;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import org.xjiop.oxygenaodmod.category.CategoriesDialog;
 import org.xjiop.oxygenaodmod.icon.IconDialog;
-
-import io.fabric.sdk.android.Fabric;
 
 import static org.xjiop.oxygenaodmod.Application.COLOR;
 import static org.xjiop.oxygenaodmod.Application.AMOUNT;
@@ -93,41 +90,40 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             case "reset_when_screen_turn_on":
 
-                RESET_WHEN_SCREEN_TURN_ON = sharedPreferences.getBoolean("reset_when_screen_turn_on", true);
+                RESET_WHEN_SCREEN_TURN_ON = sharedPreferences.getBoolean(key, true);
 
                 break;
 
             case "show_notification_counter":
 
-                SHOW_NOTIFICATION_COUNTER = sharedPreferences.getBoolean("show_notification_counter", false);
+                SHOW_NOTIFICATION_COUNTER = sharedPreferences.getBoolean(key, false);
 
                 break;
 
             case "bug_tracking":
 
-                try {
-                    Fabric.with(this, new Crashlytics.Builder()
-                            .core(new CrashlyticsCore
-                                    .Builder()
-                                    .disabled(sharedPreferences.getBoolean("bug_tracking", true))
-                                    .build())
-                            .build());
-                }
-                catch (Exception e) {
-                    e.printStackTrace();
+                if(!BuildConfig.DEBUG) {
+                    try {
+                        FirebaseCrashlytics
+                                .getInstance()
+                                .setCrashlyticsCollectionEnabled(sharedPreferences.getBoolean(key, true));
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 break;
 
             case "wake_lock":
 
-                WAKE_LOCK = sharedPreferences.getBoolean("wake_lock", true);
+                WAKE_LOCK = sharedPreferences.getBoolean(key, true);
 
                 break;
 
             case "vibration":
 
-                VIBRATION = sharedPreferences.getBoolean("vibration", true);
+                VIBRATION = sharedPreferences.getBoolean(key, true);
 
                 break;
         }
