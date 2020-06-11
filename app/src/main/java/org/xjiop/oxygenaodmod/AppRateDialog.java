@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,17 +25,34 @@ public class AppRateDialog extends DialogFragment {
         dialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.rate),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-                        settings.edit().putInt("app_rate_count", -1).apply();
+                        disableAppRate(context);
                         Helper.openLink(context, getString(R.string.app_google_play_link));
+                        dismiss();
                     }
                 });
 
-        dialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.no_thanks),
+        dialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEGATIVE, getString(R.string.remind_later),
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {}
+                    public void onClick(DialogInterface dialog, int which) {
+                        dismiss();
+                    }
+                });
+
+        dialog.setButton(AlertDialog.BUTTON_NEUTRAL, getString(R.string.no_thanks),
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        disableAppRate(context);
+                        dismiss();
+                    }
                 });
 
         return dialog;
+    }
+
+    private void disableAppRate(Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit()
+                .putInt("app_rate_count", -1)
+                .apply();
     }
 }

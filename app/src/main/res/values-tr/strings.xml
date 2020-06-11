@@ -80,5 +80,6 @@
     <string name="you_have_new_notification">Yeni bir bildiriminiz var</string>
     <string name="turn_on_screen">Ekranı aç</string>
     <string name="instead_notifications">Bildirimler yerine</string>
+    <string name="remind_later">Daha sonra hatırlat</string>
     <string name="Language">Dil</string>
 </resources>

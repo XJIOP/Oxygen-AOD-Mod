@@ -80,5 +80,6 @@
     <string name="you_have_new_notification">Tiene una notificación nueva</string>
     <string name="turn_on_screen">Enciende la pantalla</string>
     <string name="instead_notifications">En lugar de notificaciones</string>
+    <string name="remind_later">Recordar más tarde</string>
     <string name="Language">Idioma</string>
 </resources>

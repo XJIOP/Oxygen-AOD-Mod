@@ -80,5 +80,6 @@
     <string name="you_have_new_notification">Bạn có thông báo mới</string>
     <string name="turn_on_screen">Bật màn hình</string>
     <string name="instead_notifications">Thay vì thông báo</string>
+    <string name="remind_later">Nhắc lại sau</string>
     <string name="Language">Ngôn ngũ</string>
 </resources>

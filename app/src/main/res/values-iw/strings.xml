@@ -80,5 +80,6 @@
     <string name="you_have_new_notification">יש לך התראה חדשה</string>
     <string name="turn_on_screen">הפעל את המסך</string>
     <string name="instead_notifications">במקום התראות</string>
+    <string name="remind_later">להזכיר אחר כך</string>
     <string name="Language">שפה</string>
 </resources>

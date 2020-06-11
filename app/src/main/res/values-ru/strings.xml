@@ -79,5 +79,6 @@
     <string name="you_have_new_notification">У вас новое уведомление</string>
     <string name="turn_on_screen">Включать экран</string>
     <string name="instead_notifications">Вместо уведомлений</string>
+    <string name="remind_later">Напомнить позже</string>
     <string name="Language">Язык</string>
 </resources>
