@@ -91,12 +91,16 @@ public class TimeTabsDialog extends DialogFragment {
                             intent.putExtra("summary", summary);
                             targetFragment.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
                         }
+
+                        dismiss();
                     }
                 });
 
         dialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.cancel),
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {}
+                    public void onClick(DialogInterface dialog, int which) {
+                        dismiss();
+                    }
                 });
 
         return dialog;

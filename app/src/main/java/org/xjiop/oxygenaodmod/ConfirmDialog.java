@@ -63,6 +63,7 @@ public class ConfirmDialog extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         callBack(true);
+                        dismiss();
                     }
                 });
 
@@ -71,6 +72,7 @@ public class ConfirmDialog extends DialogFragment {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         callBack(false);
+                        dismiss();
                     }
                 });
 

@@ -58,7 +58,9 @@ public class MessageDialog extends DialogFragment {
 
         dialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.ok),
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {}
+                    public void onClick(DialogInterface dialog, int which) {
+                        dismiss();
+                    }
                 });
 
         return dialog;

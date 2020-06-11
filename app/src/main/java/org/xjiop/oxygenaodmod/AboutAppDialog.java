@@ -41,13 +41,16 @@ public class AboutAppDialog extends DialogFragment {
 
         dialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.close),
                 new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {}
+                    public void onClick(DialogInterface dialog, int which) {
+                        dismiss();
+                    }
                 });
 
         dialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL, getString(R.string.share),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Helper.shareLink(context, getString(R.string.app_google_play_link), getString(R.string.app_name));
+                        dismiss();
                     }
                 });
 

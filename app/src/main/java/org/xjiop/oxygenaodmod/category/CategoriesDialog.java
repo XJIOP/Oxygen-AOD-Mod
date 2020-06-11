@@ -76,12 +76,16 @@ public class CategoriesDialog extends DialogFragment {
                 SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
                 settings.edit().putStringSet("categories", selected).apply();
                 ALLOWED_CATEGORY = new ArrayList<>(selected);
+
+                dismiss();
             }
         });
 
         builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialogInterface, int i) {}
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dismiss();
+            }
         });
 
         return builder.create();
