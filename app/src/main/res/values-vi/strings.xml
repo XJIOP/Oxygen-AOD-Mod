@@ -78,5 +78,7 @@
     <string name="show_notification_counter">Hiện đếm thông báo</string>
     <string name="not_stable">Chưa ổn định</string>
     <string name="you_have_new_notification">Bạn có thông báo mới</string>
+    <string name="turn_on_screen">Bật màn hình</string>
+    <string name="instead_notifications">Thay vì thông báo</string>
     <string name="Language">Ngôn ngũ</string>
 </resources>

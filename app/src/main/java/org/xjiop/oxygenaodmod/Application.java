@@ -31,6 +31,7 @@ public class Application extends android.app.Application {
     public static int COLOR;
     public static int ICON;
     public static boolean SHOW_NOTIFICATION_COUNTER;
+    public static boolean TURN_ON_SCREEN;
     public static List<String> ALLOWED_CATEGORY = new ArrayList<>();
 
     public static boolean isScreenON;
@@ -152,6 +153,7 @@ public class Application extends android.app.Application {
         COLOR = Helper.myColor(settings.getString("color", null));
         ICON = Helper.myIcon(settings.getString("icon", null));
         SHOW_NOTIFICATION_COUNTER = settings.getBoolean("show_notification_counter", false);
+        TURN_ON_SCREEN = settings.getBoolean("turn_on_screen", false);
         ALLOWED_CATEGORY = new ArrayList<>(settings.getStringSet("categories", new HashSet<>(Helper.categoryList)));
 
         /* TODO: OTHERS */

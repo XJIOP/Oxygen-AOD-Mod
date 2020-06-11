@@ -18,6 +18,7 @@ import static org.xjiop.oxygenaodmod.Application.END_TIME;
 import static org.xjiop.oxygenaodmod.Application.INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.START_TIME;
+import static org.xjiop.oxygenaodmod.Application.TURN_ON_SCREEN;
 import static org.xjiop.oxygenaodmod.Application.WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.isScreenON;
 import static org.xjiop.oxygenaodmod.NotificationReceiver.INDICATOR_NOTIFICATION_ID;
@@ -33,6 +34,7 @@ public class NotificationService extends NotificationListenerService {
     private Handler handler;
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
+    private PowerManager.WakeLock wakeLockTos;
 
     @Override
     public void onCreate() {
@@ -51,6 +53,7 @@ public class NotificationService extends NotificationListenerService {
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if(powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getPackageName() + ":indicator");
+            wakeLockTos = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, getPackageName() + ":turn_on_screen");
         }
     }
 
@@ -65,6 +68,9 @@ public class NotificationService extends NotificationListenerService {
 
         if(wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
+
+        if(wakeLockTos != null && wakeLockTos.isHeld())
+            wakeLockTos.release();
 
         if(handler != null) {
             handler.removeCallbacksAndMessages(null);
@@ -189,8 +195,16 @@ public class NotificationService extends NotificationListenerService {
             handler.removeCallbacksAndMessages(null);
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    if(NOTIFICATION_COUNT > 0)
-                        sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
+                    if(TURN_ON_SCREEN) {
+                        if(wakeLockTos != null) {
+                            wakeLockTos.setReferenceCounted(false);
+                            wakeLockTos.acquire(1000);
+                        }
+                    }
+                    else {
+                        if (NOTIFICATION_COUNT > 0)
+                            sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
+                    }
                 }
             }, INTERVAL * 1000);
         }

@@ -44,6 +44,14 @@
             app:iconSpaceReserved="false" />
 
         <CheckBoxPreference
+            android:title="@string/turn_on_screen"
+            android:key="turn_on_screen"
+            android:defaultValue="false"
+            android:summary="@string/instead_notifications"
+            android:dependency="indicator"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
             android:title="@string/show_notification_counter"
             android:key="show_notification_counter"
             android:defaultValue="false"

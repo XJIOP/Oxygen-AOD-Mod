@@ -77,5 +77,7 @@
     <string name="show_notification_counter">Benachrichtigungszähler anzeigen</string>
     <string name="not_stable">Nicht stabil</string>
     <string name="you_have_new_notification">Sie haben eine neue Benachrichtigung</string>
+    <string name="turn_on_screen">Bildschirm einschalten</string>
+    <string name="instead_notifications">Anstelle von Benachrichtigungen</string>
     <string name="Language">Sprache</string>
 </resources>

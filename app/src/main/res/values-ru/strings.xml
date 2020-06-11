@@ -77,5 +77,7 @@
     <string name="show_notification_counter">Отображать счетчик уведомлений</string>
     <string name="not_stable">Не стабильно</string>
     <string name="you_have_new_notification">У вас новое уведомление</string>
+    <string name="turn_on_screen">Включать экран</string>
+    <string name="instead_notifications">Вместо уведомлений</string>
     <string name="Language">Язык</string>
 </resources>

@@ -26,6 +26,7 @@ import static org.xjiop.oxygenaodmod.Application.COLOR;
 import static org.xjiop.oxygenaodmod.Application.AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.SHOW_NOTIFICATION_COUNTER;
+import static org.xjiop.oxygenaodmod.Application.TURN_ON_SCREEN;
 import static org.xjiop.oxygenaodmod.Application.WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
 import static org.xjiop.oxygenaodmod.Application.VIBRATION;
@@ -33,6 +34,8 @@ import static org.xjiop.oxygenaodmod.Application.VIBRATION;
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = "DBG | MainActivity";
+
+    private SettingsFragment settingsFragment;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -47,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
         if(savedInstanceState == null) {
-
+            settingsFragment = new SettingsFragment();
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.settings, new SettingsFragment())
+                    .replace(R.id.settings, settingsFragment)
                     .commit();
 
             runOnUiThread(new Runnable() {
@@ -91,6 +94,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             case "reset_when_screen_turn_on":
 
                 RESET_WHEN_SCREEN_TURN_ON = sharedPreferences.getBoolean(key, true);
+
+                break;
+
+            case "turn_on_screen":
+
+                TURN_ON_SCREEN = sharedPreferences.getBoolean(key, true);
+
+                if(settingsFragment != null)
+                    settingsFragment.turnOnScreenOnly();
 
                 break;
 
@@ -336,8 +348,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             if(doubleTapPreference != null)
                 ((SwitchPreference) doubleTapPreference).setChecked(Helper.isAccessibilityPermission());
 
-            if(indicatorPreference != null)
-                ((SwitchPreference) indicatorPreference).setChecked(Helper.isNotificationPermission());
+            if(indicatorPreference != null) {
+                boolean is = Helper.isNotificationPermission();
+                ((SwitchPreference) indicatorPreference).setChecked(is);
+                if(is) {
+                    turnOnScreenOnly();
+                }
+            }
         }
 
         @Override
@@ -375,6 +392,15 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                         Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.confirmation), getString(R.string.test_notification_descr)));
                     }
                 }
+            }
+        }
+
+        public void turnOnScreenOnly() {
+            if(isResumed()) {
+                findPreference("show_notification_counter").setEnabled(!TURN_ON_SCREEN);
+                findPreference("color").setEnabled(!TURN_ON_SCREEN);
+                findPreference("icon").setEnabled(!TURN_ON_SCREEN);
+                findPreference("sound_settings").setEnabled(!TURN_ON_SCREEN);
             }
         }
 

@@ -81,6 +81,8 @@
     <string name="show_notification_counter">Show notification counter</string>
     <string name="not_stable">Not stable</string>
     <string name="you_have_new_notification">You have a new notification</string>
+    <string name="turn_on_screen">Turn on screen</string>
+    <string name="instead_notifications">Instead of notifications</string>
     <string name="Language">Language</string>
     <string name="english" translatable="false">English</string>
     <string name="spanish" translatable="false">Espanol</string>
