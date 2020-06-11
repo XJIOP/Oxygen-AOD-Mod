@@ -17,6 +17,7 @@ public class KeyService extends AccessibilityService {
     private final String TAG = "DBG | KeyService";
 
     private long CLICK_DELAY;
+    private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
     @Override
@@ -26,7 +27,7 @@ public class KeyService extends AccessibilityService {
 
         Application.getAppContext().registerScreenPowerReceiver();
 
-        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if(powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, getPackageName() + ":double_tap");
         }
@@ -60,7 +61,7 @@ public class KeyService extends AccessibilityService {
 
         boolean result = false;
 
-        if(!isScreenON && event.getKeyCode() == KeyEvent.KEYCODE_F4) {
+        if(event.getKeyCode() == KeyEvent.KEYCODE_F4 && isScreenOff()) {
             if(result = doubleClick()) {
                 if(wakeLock != null) {
 
@@ -96,5 +97,9 @@ public class KeyService extends AccessibilityService {
         }
 
         return result;
+    }
+
+    private boolean isScreenOff() {
+        return !isScreenON || (powerManager != null && !powerManager.isInteractive());
     }
 }

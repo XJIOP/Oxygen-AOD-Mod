@@ -31,6 +31,7 @@ public class NotificationService extends NotificationListenerService {
     public static int INDICATOR_COUNT;
 
     private Handler handler;
+    private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
     @Override
@@ -47,7 +48,7 @@ public class NotificationService extends NotificationListenerService {
 
         Application.getAppContext().registerScreenPowerReceiver();
 
-        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if(powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getPackageName() + ":indicator");
         }
@@ -171,7 +172,7 @@ public class NotificationService extends NotificationListenerService {
             }
         }
 
-        if(isScreenON)
+        if(!isScreenOff())
             return;
 
         if(handler != null) {
@@ -255,5 +256,9 @@ public class NotificationService extends NotificationListenerService {
 
     private boolean isAmount() {
         return AMOUNT > 0 && INDICATOR_COUNT == AMOUNT;
+    }
+
+    private boolean isScreenOff() {
+        return !isScreenON || (powerManager != null && !powerManager.isInteractive());
     }
 }
