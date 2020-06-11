@@ -195,15 +195,16 @@ public class NotificationService extends NotificationListenerService {
             handler.removeCallbacksAndMessages(null);
             handler.postDelayed(new Runnable() {
                 public void run() {
-                    if(TURN_ON_SCREEN) {
-                        if(wakeLockTos != null) {
-                            wakeLockTos.setReferenceCounted(false);
-                            wakeLockTos.acquire(1000);
+                    if (NOTIFICATION_COUNT > 0) {
+                        if(TURN_ON_SCREEN) {
+                            if(wakeLockTos != null) {
+                                wakeLockTos.setReferenceCounted(false);
+                                wakeLockTos.acquire(1000);
+                            }
                         }
-                    }
-                    else {
-                        if (NOTIFICATION_COUNT > 0)
+                        else {
                             sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
+                        }
                     }
                 }
             }, INTERVAL * 1000);

@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 TURN_ON_SCREEN = sharedPreferences.getBoolean(key, true);
 
                 if(settingsFragment != null)
-                    settingsFragment.turnOnScreenOnly();
+                    settingsFragment.turnOnScreen();
 
                 break;
 
@@ -352,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 boolean is = Helper.isNotificationPermission();
                 ((SwitchPreference) indicatorPreference).setChecked(is);
                 if(is) {
-                    turnOnScreenOnly();
+                    turnOnScreen();
                 }
             }
         }
@@ -395,7 +395,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             }
         }
 
-        public void turnOnScreenOnly() {
+        public void turnOnScreen() {
             if(isResumed()) {
                 findPreference("show_notification_counter").setEnabled(!TURN_ON_SCREEN);
                 findPreference("color").setEnabled(!TURN_ON_SCREEN);
