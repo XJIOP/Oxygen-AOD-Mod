@@ -158,8 +158,8 @@ public class Application extends android.app.Application {
 
         /* TODO: OTHERS */
 
-        if(!BuildConfig.DEBUG && settings.getBoolean("bug_tracking", true))
-            FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(false);
+        boolean enable = !BuildConfig.DEBUG && settings.getBoolean("bug_tracking", true);
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(enable);
     }
 
     public void registerScreenPowerReceiver() {
