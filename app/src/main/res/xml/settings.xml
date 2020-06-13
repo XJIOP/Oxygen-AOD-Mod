@@ -59,6 +59,28 @@
             android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
+        <ListPreference
+            android:title="@string/color"
+            android:key="color"
+            android:entries="@array/listColor"
+            android:entryValues="@array/listColorValues"
+            android:defaultValue="1"
+            android:dependency="indicator"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:title="@string/icon"
+            android:key="icon"
+            android:defaultValue="warning"
+            android:dependency="indicator"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:title="@string/sound_settings"
+            android:key="sound_settings"
+            android:dependency="indicator"
+            app:iconSpaceReserved="false" />
+
         <EditTextPreference
             android:title="@string/interval"
             android:key="interval"
@@ -90,28 +112,6 @@
         <Preference
             android:title="@string/categories"
             android:key="categories"
-            android:dependency="indicator"
-            app:iconSpaceReserved="false" />
-
-        <ListPreference
-            android:title="@string/color"
-            android:key="color"
-            android:entries="@array/listColor"
-            android:entryValues="@array/listColorValues"
-            android:defaultValue="1"
-            android:dependency="indicator"
-            app:iconSpaceReserved="false" />
-
-        <Preference
-            android:title="@string/icon"
-            android:key="icon"
-            android:defaultValue="warning"
-            android:dependency="indicator"
-            app:iconSpaceReserved="false" />
-
-        <Preference
-            android:title="@string/sound_settings"
-            android:key="sound_settings"
             android:dependency="indicator"
             app:iconSpaceReserved="false" />
 
