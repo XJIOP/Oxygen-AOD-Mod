@@ -22,6 +22,8 @@
     <string name="hello">¡Hola!</string>
     <string name="double_tap">Doble toque</string>
     <string name="double_tap_descr">Doble toque en la pantalla AOD para abrir la pantalla de bloqueo</string>
+    <string name="single_tap">Solo toque</string>
+    <string name="single_tap_descr">Solo requiere un solo toque en la pantalla AOD para abrir la pantalla de bloqueo</string>
     <string name="notification_indicator">Indicador de notificaciones</string>
     <string name="notification_indicator_descr">Mostrar con la pantalla apagada</string>
     <string name="interval">Intervalo</string>

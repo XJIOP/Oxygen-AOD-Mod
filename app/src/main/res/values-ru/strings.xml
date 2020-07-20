@@ -21,6 +21,8 @@
     <string name="hello">Привет</string>
     <string name="double_tap">Двойное нажатие</string>
     <string name="double_tap_descr">Двойным нажатием на AOD экран открывать экран блокировки</string>
+    <string name="single_tap">Одно нажатие</string>
+    <string name="single_tap_descr">Требуется только одно нажатие на AOD экран, чтобы открыть экран блокировки</string>
     <string name="notification_indicator">Индикатор уведомлений</string>
     <string name="notification_indicator_descr">Показывать на выключенном экране</string>
     <string name="interval">Интервал</string>

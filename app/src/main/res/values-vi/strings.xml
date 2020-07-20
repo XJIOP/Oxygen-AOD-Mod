@@ -22,6 +22,8 @@
     <string name="hello">Xin chào</string>
     <string name="double_tap">Nhấn đúp</string>
     <string name="double_tap_descr">Nhấn đúp vào màn hình AOD để bật khóa màn hình</string>
+    <string name="single_tap">Một lần nhấn</string>
+    <string name="single_tap_descr">Chỉ cần một lần chạm trên màn hình AOD để mở màn hình khóa</string>
     <string name="notification_indicator">Thông báo</string>
     <string name="notification_indicator_descr">Hiển thị khi màn hình đã tắt</string>
     <string name="interval">Trong khoảng</string>

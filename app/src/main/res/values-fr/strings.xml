@@ -22,6 +22,8 @@
     <string name="hello">Salut !</string>
     <string name="double_tap">Double tap</string>
     <string name="double_tap_descr">Tapez deux fois sur l\'écran en mode ambiant pour afficher l\'écran de verrouillage.</string>
+    <string name="single_tap">Un seul clic</string>
+    <string name="single_tap_descr">Ne nécessite qu\'un seul appui sur l\'écran AOD pour ouvrir l\'écran de verrouillage</string>
     <string name="notification_indicator">Indicateur de notification</string>
     <string name="notification_indicator_descr">Apparaît lorsque l\'écran est éteint</string>
     <string name="interval">Intervalle</string>

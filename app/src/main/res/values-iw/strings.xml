@@ -22,6 +22,8 @@
     <string name="hello">שלום</string>
     <string name="double_tap">נקישה כפולה</string>
     <string name="double_tap_descr">בעת שמסך ה-AOD דולק, בצע נקישה כפולה בכדי להעיר את המסך ולעבור למסך הנעילה.</string>
+    <string name="single_tap">לחיצה יחידה</string>
+    <string name="single_tap_descr">נדרש רק להקשה בודדת על מסך AOD כדי לפתוח את מסך הנעילה</string>
     <string name="notification_indicator">אינדיקציית ההתראה</string>
     <string name="notification_indicator_descr">הצג כאשר המסך כבוי</string>
     <string name="interval">משך זמן</string>

@@ -22,6 +22,8 @@
     <string name="hello">Selam</string>
     <string name="double_tap">Çift tık</string>
     <string name="double_tap_descr">AOD ekranında çift tık ile kilit ekranını açma</string>
+    <string name="single_tap">Tek dokunuş</string>
+    <string name="single_tap_descr">Kilit ekranını açmak için AOD ekranına yalnızca bir kez dokunmanız gerekir</string>
     <string name="notification_indicator">Bildirim göstergesi</string>
     <string name="notification_indicator_descr">Ekran kapalıyken gösterir</string>
     <string name="interval">Zaman Aralığı</string>

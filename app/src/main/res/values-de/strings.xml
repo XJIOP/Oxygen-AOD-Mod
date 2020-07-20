@@ -21,6 +21,8 @@
     <string name="hello">Hallo</string>
     <string name="double_tap">Doppeltippen</string>
     <string name="double_tap_descr">Doppeltippen auf den AOD-Bildschirm, um den Sperrbildschirm zu öffnen</string>
+    <string name="single_tap">Einmaliges Tippen</string>
+    <string name="single_tap_descr">Sie müssen nur einmal auf den AOD-Bildschirm tippen, um den Sperrbildschirm zu öffnen</string>
     <string name="notification_indicator">Benachrichtigung Indikator</string>
     <string name="notification_indicator_descr">Bei ausgeschaltetem Bildschirm anzeigen</string>
     <string name="interval">Intervall</string>

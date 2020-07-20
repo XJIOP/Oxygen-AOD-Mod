@@ -21,6 +21,8 @@
     <string name="hello">Witam</string>
     <string name="double_tap">Podwójne dotknięcie</string>
     <string name="double_tap_descr">Dotknij dwukrotnie na ekranie AOD, aby otworzyc ekran blokady</string>
+    <string name="single_tap">Pojedyncze dotknięcie</string>
+    <string name="single_tap_descr">Wystarczy tylko jedno dotknięcie ekranu AOD, aby otworzyć ekran blokady</string>
     <string name="notification_indicator">Wskaźnik powiadomienia</string>
     <string name="notification_indicator_descr">Pokaż gdy ekran wyłączony</string>
     <string name="interval">Częstotliwość powiadomień</string>
