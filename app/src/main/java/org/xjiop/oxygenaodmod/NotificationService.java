@@ -3,6 +3,9 @@ package org.xjiop.oxygenaodmod;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.service.notification.NotificationListenerService;
@@ -197,6 +200,14 @@ public class NotificationService extends NotificationListenerService {
                 public void run() {
                     if (NOTIFICATION_COUNT > 0) {
                         if(TURN_ON_SCREEN) {
+
+                            try {
+                                Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                Ringtone ringtone = RingtoneManager.getRingtone(NotificationService.this, uri);
+                                ringtone.play();
+                            }
+                            catch (Exception ignored) {}
+
                             if(wakeLockTos != null) {
                                 wakeLockTos.setReferenceCounted(false);
                                 wakeLockTos.acquire(1000);
