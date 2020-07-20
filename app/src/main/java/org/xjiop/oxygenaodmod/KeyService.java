@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.accessibility.AccessibilityEvent;
 
+import static org.xjiop.oxygenaodmod.Application.SINGLE_TAP;
 import static org.xjiop.oxygenaodmod.Application.VIBRATION;
 import static org.xjiop.oxygenaodmod.Application.isScreenON;
 
@@ -62,7 +63,7 @@ public class KeyService extends AccessibilityService {
         boolean result = false;
 
         if(event.getKeyCode() == KeyEvent.KEYCODE_F4 && isScreenOff()) {
-            if(result = doubleClick()) {
+            if(result = (SINGLE_TAP || doubleClick())) {
                 if(wakeLock != null) {
 
                     wakeLock.setReferenceCounted(false);

@@ -24,6 +24,8 @@
     <string name="hello">Hello</string>
     <string name="double_tap">Double tap</string>
     <string name="double_tap_descr">Double tap on the AOD screen to open the lock screen</string>
+    <string name="single_tap">Single tap</string>
+    <string name="single_tap_descr">Only require a single tap on the AOD screen to open the lock screen</string>
     <string name="notification_indicator">Notification indicator</string>
     <string name="notification_indicator_descr">Show on screen off</string>
     <string name="interval">Interval</string>

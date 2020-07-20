@@ -26,6 +26,7 @@ import static org.xjiop.oxygenaodmod.Application.COLOR;
 import static org.xjiop.oxygenaodmod.Application.AMOUNT;
 import static org.xjiop.oxygenaodmod.Application.INTERVAL;
 import static org.xjiop.oxygenaodmod.Application.SHOW_NOTIFICATION_COUNTER;
+import static org.xjiop.oxygenaodmod.Application.SINGLE_TAP;
 import static org.xjiop.oxygenaodmod.Application.TURN_ON_SCREEN;
 import static org.xjiop.oxygenaodmod.Application.WAKE_LOCK;
 import static org.xjiop.oxygenaodmod.Application.RESET_WHEN_SCREEN_TURN_ON;
@@ -130,6 +131,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             case "wake_lock":
 
                 WAKE_LOCK = sharedPreferences.getBoolean(key, true);
+
+                break;
+
+            case "single_tap":
+
+                SINGLE_TAP = sharedPreferences.getBoolean(key, false);
 
                 break;
 

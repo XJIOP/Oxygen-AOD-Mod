@@ -20,6 +20,7 @@ import java.util.List;
 
 public class Application extends android.app.Application {
 
+    public static boolean SINGLE_TAP;
     public static boolean VIBRATION;
     public static boolean RESET_WHEN_SCREEN_TURN_ON;
     public static int INTERVAL;
@@ -142,6 +143,7 @@ public class Application extends android.app.Application {
 
         /* TODO: PARAMS */
 
+        SINGLE_TAP = settings.getBoolean("single_tap", false);
         VIBRATION = settings.getBoolean("vibration", false);
         RESET_WHEN_SCREEN_TURN_ON = settings.getBoolean("reset_when_screen_turn_on", true);
         INTERVAL = Integer.parseInt(settings.getString("interval", "15"));
