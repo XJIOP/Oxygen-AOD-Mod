@@ -399,7 +399,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 findPreference("show_notification_counter").setEnabled(!TURN_ON_SCREEN);
                 findPreference("color").setEnabled(!TURN_ON_SCREEN);
                 findPreference("icon").setEnabled(!TURN_ON_SCREEN);
-                findPreference("sound_settings").setEnabled(!TURN_ON_SCREEN);
             }
         }
 
