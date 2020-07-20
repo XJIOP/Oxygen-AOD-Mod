@@ -115,16 +115,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
             case "bug_tracking":
 
-                if(!BuildConfig.DEBUG) {
-                    try {
-                        FirebaseCrashlytics
-                                .getInstance()
-                                .setCrashlyticsCollectionEnabled(sharedPreferences.getBoolean(key, true));
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+                boolean enable = !BuildConfig.DEBUG && sharedPreferences.getBoolean(key, true);
+                FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(enable);
 
                 break;
 
