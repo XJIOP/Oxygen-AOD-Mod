@@ -30,7 +30,7 @@
     <string name="error">Ошибка</string>
     <string name="confirmation">Подтверждение</string>
     <string name="sec">сек.</string>
-    <string name="reset_when_screen_turn_on">Сбрасывать при включение экрана</string>
+    <string name="reset_when_screen_turn_on">Сбрасывать при включении экрана</string>
     <string name="bug_tracking">Отслеживать ошибки</string>
     <string name="bug_tracking_descr">Разрешить отслеживать ошибки о сбоях и отправлять разработчику</string>
     <string name="categories">Категории</string>
