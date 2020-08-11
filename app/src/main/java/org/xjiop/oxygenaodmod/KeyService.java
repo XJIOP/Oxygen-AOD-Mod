@@ -101,6 +101,6 @@ public class KeyService extends AccessibilityService {
     }
 
     private boolean isScreenOff() {
-        return !isScreenON || (powerManager != null && !powerManager.isInteractive());
+        return !isScreenON && powerManager != null && !powerManager.isInteractive();
     }
 }
