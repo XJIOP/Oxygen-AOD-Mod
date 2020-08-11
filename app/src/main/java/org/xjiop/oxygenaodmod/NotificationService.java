@@ -285,6 +285,6 @@ public class NotificationService extends NotificationListenerService {
     }
 
     private boolean isScreenOff() {
-        return !isScreenON || (powerManager != null && !powerManager.isInteractive());
+        return !isScreenON && powerManager != null && !powerManager.isInteractive();
     }
 }
