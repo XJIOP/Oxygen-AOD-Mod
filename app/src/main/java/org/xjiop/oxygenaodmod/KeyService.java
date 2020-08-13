@@ -68,8 +68,14 @@ public class KeyService extends AccessibilityService {
         if(event.getKeyCode() == KeyEvent.KEYCODE_F4 && isScreenOff()) {
             if(result = (SINGLE_TAP || doubleClick())) {
                 if(wakeLock != null && !wakeLock.isHeld()) {
-                    wakeLock.acquire();
-                    wakeLock.release();
+
+                    try {
+                        wakeLock.acquire();
+                    }
+                    finally {
+                        wakeLock.release();
+                    }
+
                     if(VIBRATION) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         if (vibrator != null) {

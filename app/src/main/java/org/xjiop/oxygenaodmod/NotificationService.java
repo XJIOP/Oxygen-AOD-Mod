@@ -206,8 +206,12 @@ public class NotificationService extends NotificationListenerService {
                             catch (Exception ignored) {}
 
                             if(wakeLockTos != null && !wakeLockTos.isHeld()) {
-                                wakeLockTos.acquire();
-                                wakeLockTos.release();
+                                try {
+                                    wakeLockTos.acquire();
+                                }
+                                finally {
+                                    wakeLockTos.release();
+                                }
                             }
                         }
                         else {
