@@ -17,7 +17,9 @@ public class KeyService extends AccessibilityService {
 
     private final String TAG = "DBG | KeyService";
 
+    private int CLICK_THRESHOLD = 250;
     private long CLICK_DELAY;
+
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
 
@@ -31,6 +33,7 @@ public class KeyService extends AccessibilityService {
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if(powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, getPackageName() + ":double_tap");
+            wakeLock.setReferenceCounted(false);
         }
     }
 
@@ -64,11 +67,9 @@ public class KeyService extends AccessibilityService {
 
         if(event.getKeyCode() == KeyEvent.KEYCODE_F4 && isScreenOff()) {
             if(result = (SINGLE_TAP || doubleClick())) {
-                if(wakeLock != null) {
-
-                    wakeLock.setReferenceCounted(false);
-                    wakeLock.acquire(1000);
-
+                if(wakeLock != null && !wakeLock.isHeld()) {
+                    wakeLock.acquire();
+                    wakeLock.release();
                     if(VIBRATION) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         if (vibrator != null) {
@@ -87,7 +88,7 @@ public class KeyService extends AccessibilityService {
         boolean result = false;
 
         long thisTime = System.currentTimeMillis();
-        if ((thisTime - CLICK_DELAY) < 250) {
+        if ((thisTime - CLICK_DELAY) < CLICK_THRESHOLD) {
             //Log.d(TAG, "doubleClick");
 
             CLICK_DELAY = -1;

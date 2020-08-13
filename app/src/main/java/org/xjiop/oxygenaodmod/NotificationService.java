@@ -56,7 +56,10 @@ public class NotificationService extends NotificationListenerService {
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         if(powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getPackageName() + ":indicator");
+            wakeLock.setReferenceCounted(false);
+
             wakeLockTos = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, getPackageName() + ":turn_on_screen");
+            wakeLockTos.setReferenceCounted(false);
         }
     }
 
@@ -150,10 +153,8 @@ public class NotificationService extends NotificationListenerService {
 
             NOTIFICATION_COUNT--;
 
-            if(WAKE_LOCK) {
-                if (wakeLock != null && wakeLock.isHeld())
-                    wakeLock.release();
-            }
+            if(WAKE_LOCK && wakeLock != null && wakeLock.isHeld())
+                wakeLock.release();
 
             if(NOTIFICATION_COUNT == 0) {
                 if(handler != null)
@@ -188,12 +189,8 @@ public class NotificationService extends NotificationListenerService {
 
             INDICATOR_COUNT++;
 
-            if(WAKE_LOCK) {
-                if(wakeLock != null) {
-                    wakeLock.setReferenceCounted(false);
-                    wakeLock.acquire((INTERVAL + 5) * 1000);
-                }
-            }
+            if(WAKE_LOCK && wakeLock != null && !wakeLock.isHeld())
+                wakeLock.acquire((INTERVAL + 5) * 1000);
 
             handler.removeCallbacksAndMessages(null);
             handler.postDelayed(new Runnable() {
@@ -208,9 +205,9 @@ public class NotificationService extends NotificationListenerService {
                             }
                             catch (Exception ignored) {}
 
-                            if(wakeLockTos != null) {
-                                wakeLockTos.setReferenceCounted(false);
-                                wakeLockTos.acquire(1000);
+                            if(wakeLockTos != null && !wakeLockTos.isHeld()) {
+                                wakeLockTos.acquire();
+                                wakeLockTos.release();
                             }
                         }
                         else {
@@ -229,10 +226,8 @@ public class NotificationService extends NotificationListenerService {
         NOTIFICATION_COUNT = 0;
         INDICATOR_COUNT = 0;
 
-        if(WAKE_LOCK) {
-            if (wakeLock != null && wakeLock.isHeld())
-                wakeLock.release();
-        }
+        if(WAKE_LOCK && wakeLock != null && wakeLock.isHeld())
+            wakeLock.release();
 
         if(handler != null)
             handler.removeCallbacksAndMessages(null);
