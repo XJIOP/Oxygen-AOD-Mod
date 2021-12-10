@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
@@ -27,7 +26,7 @@ public class TestNotificationReceiver extends BroadcastReceiver {
             return;
 
         Intent intentClick = new Intent(context, MainActivity.class);
-        PendingIntent pendingClick = PendingIntent.getActivity(context, 1, intentClick, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingClick = PendingIntent.getActivity(context, 1, intentClick, Helper.pendingIntentFlag());
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, "Channel-2");
         mBuilder.setSmallIcon(ICON)

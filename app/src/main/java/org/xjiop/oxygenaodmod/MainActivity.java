@@ -383,7 +383,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     Context applicationContext = Application.getAppContext();
 
                     Intent intent = new Intent(applicationContext, TestNotificationReceiver.class);
-                    PendingIntent pendingIntent = PendingIntent.getBroadcast(applicationContext, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(applicationContext, 1, intent, Helper.pendingIntentFlag());
 
                     AlarmManager alarmManager = (AlarmManager) applicationContext.getSystemService(ALARM_SERVICE);
                     if (alarmManager != null) {

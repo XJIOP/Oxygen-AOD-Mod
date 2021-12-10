@@ -1,6 +1,7 @@
 package org.xjiop.oxygenaodmod;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.LocaleList;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -286,5 +288,9 @@ public class Helper {
         ComponentName cn = new ComponentName(Application.getAppContext(), NotificationService.class);
         String flat = Settings.Secure.getString(Application.getAppContext().getContentResolver(), "enabled_notification_listeners");
         return flat != null && flat.contains(cn.flattenToString());
+    }
+
+    static int pendingIntentFlag() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
     }
 }
