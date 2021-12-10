@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
     android:paddingTop="10dp"
@@ -13,30 +15,27 @@
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:src="@drawable/ic_warning"
-        android:tint="?attr/iconColor"
-        android:layout_marginRight="15dp" />
+        android:tint="?attr/iconColor" />
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:maxLines="1"
         android:ellipsize="end"
         android:textSize="16sp"
-        android:layout_centerVertical="true"
-        android:paddingRight="15dp"
-        android:layout_toRightOf="@+id/icon"
-        android:layout_toLeftOf="@+id/radio"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
         android:text="test" />
 
     <RadioButton
         android:id="@+id/radio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/unfocused"
         android:clickable="false"
-        android:focusable="false"
-        android:layout_alignParentRight="true" />
+        android:focusable="false" />
 
-</RelativeLayout>
+</LinearLayout>
