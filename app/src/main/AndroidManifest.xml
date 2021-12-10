@@ -18,7 +18,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +30,8 @@
 
         <service
             android:name=".KeyService"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:exported="false">
 
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -43,7 +45,8 @@
 
         <service
             android:name=".NotificationService"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="false">
 
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
@@ -54,7 +57,8 @@
         <receiver android:name=".NotificationReceiver" />
         <receiver android:name=".TestNotificationReceiver" />
 
-        <receiver android:name=".ScreenPowerReceiver">
+        <receiver android:name=".ScreenPowerReceiver"
+            android:exported="false">
 
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_SCREEN_ON" />
