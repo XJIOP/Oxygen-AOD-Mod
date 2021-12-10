@@ -6,7 +6,7 @@
     <string name="category_application">APPLICATION</string>
     <string name="key_service_description">Active le double tap sur les écrans AOD (Mode ambiant).</string>
     <string name="about_app">A propos</string>
-    <string name="about_app_text">Cette application est open source et a été uniquement testée sur des appareils OnePlus 7 sous Android 10. L\'application n\'est pas liée à OxygenOS ou OnePlus et peut fonctionner sur d\'autres appareils avec des écrans AMOLED.</string>
+    <string name="about_app_text">Cette application est open source et a été uniquement testée sur des appareils OnePlus 7. L\'application n\'est pas liée à OxygenOS ou OnePlus et peut fonctionner sur d\'autres appareils avec des écrans AMOLED.</string>
     <string name="version">Version</string>
     <string name="close">Fermer</string>
     <string name="ok">OK</string>
@@ -61,7 +61,7 @@
     <string name="unknown_error">Erreur inconnue</string>
     <string name="share">Partager</string>
     <string name="attention">Attention</string>
-    <string name="interval_info">Lorsque l\'écran est éteint, l\'appareil fonctionne en économie d\'énergie donc l\'intervalle ne garantit pas la valeur spécifiée : le délai peut dépasser 1 min. Le WAKE LOCK peut résoudre ce problème.</string>
+    <string name="interval_info">Lorsque l\'écran est éteint, l\'appareil fonctionne en économie d\'énergie donc l\'intervalle ne garantit pas la valeur spécifiée. Le WAKE LOCK peut résoudre ce problème.</string>
     <string name="wake_lock_descr">Maintiens le CPU allumé pendant un intervalle stable (uniquement quand il y a des notifications).</string>
     <string name="vibration">Vibration</string>
     <string name="color">Couleur</string>

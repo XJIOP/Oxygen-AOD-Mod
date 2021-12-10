@@ -6,7 +6,7 @@
     <string name="category_application">Uygulamalar</string>
     <string name="key_service_description">AOD ekranında çift tıklamayı etkinleştir</string>
     <string name="about_app">Uygulama hakkında</string>
-    <string name="about_app_text">Bu uygulama açık kaynak kodlu bir uygulamadır. Sadece Oneplus 7 ve 7T ailesinde Android 10 sürümünde denenmiştir. Bu uygulamanın Oneplus ve Oxygenos ile bir bağlantısı bulunmamaktadır yani başka amoled ekranlı telefonlarda da çalışabilir.</string>
+    <string name="about_app_text">Bu uygulama açık kaynak kodlu bir uygulamadır. Sadece Oneplus 7 ailesinde test edilmiştir. Bu uygulamanın Oneplus ve Oxygenos ile bir bağlantısı bulunmamaktadır yani başka amoled ekranlı telefonlarda da çalışabilir.</string>
     <string name="version">Sürüm</string>
     <string name="close">Kapat</string>
     <string name="ok">Tamam</string>
@@ -61,7 +61,7 @@
     <string name="unknown_error">Bilinmeyen hata</string>
     <string name="share">Paylaş</string>
     <string name="attention">Dikkat!</string>
-    <string name="interval_info">Ekran kapalı olduğunda cihaz enerji tasarruf modunda çalışır bu yüzünden zaman aralığı istediğiniz değerde çalışmayabilir, gecikmeler 1 dakikiya kadar çıkabilir bu yüzden WAKE LOCK özelliğini açarsanız bu sorun çözülür.</string>
+    <string name="interval_info">Ekran kapalı olduğunda cihaz enerji tasarruf modunda çalışır bu yüzünden zaman aralığı istediğiniz değerde çalışmayabilir. WAKE LOCK özelliğini açarsanız bu sorun çözülür.</string>
     <string name="wake_lock_descr">Bildirim zaman aralığı için CPU yu açık tut. (sadece bildirim olduğunda).</string>
     <string name="vibration">Titreşim</string>
     <string name="color">Renk</string>

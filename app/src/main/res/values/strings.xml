@@ -8,7 +8,7 @@
     <string name="category_application">APPLICATION</string>
     <string name="key_service_description">Activate double tap on AOD screen.</string>
     <string name="about_app">About app</string>
-    <string name="about_app_text">This app is open source, it was tested only on OnePlus 7th model devices running Android 10. The app is not tied to OxygenOS and OnePlus, it can work on other devices with AMOLED screens.</string>
+    <string name="about_app_text">This app is open source, it was tested only on OnePlus 7th model devices. The app is not tied to OxygenOS and OnePlus, it can work on other devices with AMOLED screens.</string>
     <string name="version">Version</string>
     <string name="close">Close</string>
     <string name="ok">OK</string>
@@ -63,7 +63,7 @@
     <string name="unknown_error">Unknown error</string>
     <string name="share">Share</string>
     <string name="attention">Attention</string>
-    <string name="interval_info">When the screen is off, the device operates in energy-saving mode, so the interval does not guarantee the specified value, the delay can be up to 1 minute. WAKE LOCK can solve this problem.</string>
+    <string name="interval_info">When the screen is off, the device operates in energy-saving mode, so the interval does not guarantee the specified value. Enabling WAKE LOCK can solve this problem.</string>
     <string name="wake_lock" translatable="false">WAKE LOCK</string>
     <string name="wake_lock_descr">Keep CPU awake for a stable interval (only when there are notifications).</string>
     <string name="vibration">Vibration</string>

@@ -5,7 +5,7 @@
     <string name="category_application">ANWENDUNG</string>
     <string name="key_service_description">Doppeltippen auf den AOD-Bildschirm aktivieren.</string>
     <string name="about_app">Über die Application</string>
-    <string name="about_app_text">Diese App ist Open Source und wurde nur auf Geräten des OnePlus 7-Modells mit Android 10 getestet. Die App ist nicht an OxygenOS und OnePlus gebunden, sondern kann auf anderen Geräten mit AMOLED-Bildschirmen verwendet werden.</string>
+    <string name="about_app_text">Diese App ist Open Source und wurde nur auf Geräten des OnePlus 7-Modells getestet. Die App ist nicht an OxygenOS und OnePlus gebunden, sondern kann auf anderen Geräten mit AMOLED-Bildschirmen verwendet werden.</string>
     <string name="version">Version</string>
     <string name="close">Schließen</string>
     <string name="ok">OK</string>
@@ -60,7 +60,7 @@
     <string name="unknown_error">Unbekannter Fehler</string>
     <string name="share">Teilen</string>
     <string name="attention">Beachtung</string>
-    <string name="interval_info">Wenn der Bildschirm ausgeschaltet ist, arbeitet das Gerät im Energiesparmodus, sodass das Intervall den angegebenen Wert nicht garantiert. Die Verzögerung kann bis zu 1 Minute betragen. WAKE LOCK kann dieses Problem lösen.</string>
+    <string name="interval_info">Wenn der Bildschirm ausgeschaltet ist, arbeitet das Gerät im Energiesparmodus, sodass das Intervall den angegebenen Wert nicht garantiert. Aktivieren WAKE LOCK kann dieses Problem lösen.</string>
     <string name="wake_lock_descr">Hält die CPU für ein stabiles Intervall (nur bei Benachrichtigungen).</string>
     <string name="vibration">Vibration</string>
     <string name="color">Farbe</string>

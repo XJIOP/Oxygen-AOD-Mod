@@ -6,7 +6,7 @@
     <string name="category_application">ỨNG DỤNG</string>
     <string name="key_service_description">Kích hoạt nhấn đúp vào màn hình AOD.</string>
     <string name="about_app">Về ứng dụng này</string>
-    <string name="about_app_text">Ứng dụng này là mã nguồn mở, được kiểm chứng trên các thiết bị OnePlus thế hệ thứ 7 chạy Android 10. Ứng dụng không liên quan tới OxygenOS và OnePlus, nó có thể làm việc trên các thiết bị xử dụng màn hình AMOLED.</string>
+    <string name="about_app_text">Ứng dụng này là mã nguồn mở, được kiểm chứng trên các thiết bị OnePlus thế hệ thứ 7. Ứng dụng không liên quan tới OxygenOS và OnePlus, nó có thể làm việc trên các thiết bị xử dụng màn hình AMOLED.</string>
     <string name="version">Phiên bản</string>
     <string name="close">Đóng</string>
     <string name="ok">OK</string>
@@ -61,7 +61,7 @@
     <string name="unknown_error">Lỗi không xác định</string>
     <string name="share">Chia sẻ</string>
     <string name="attention">Chú ý</string>
-    <string name="interval_info">Khi màn hình tắt, thiết bị hoạt động ở chế độ tiết kiệm năng lượng, do đó khoảng thời gian đã đặt không đảm bảo giá trị đã chỉ định, độ trễ có thể lên tới 1 phút. WAKE LOCK có thể giải quyết vấn đề này.</string>
+    <string name="interval_info">Khi màn hình tắt, thiết bị hoạt động ở chế độ tiết kiệm năng lượng, do đó khoảng thời gian đã đặt không đảm bảo giá trị đã chỉ định, độ trễ có thể lên tới 1 phút. Bật WAKE LOCK có thể giải quyết vấn đề này.</string>
     <string name="wake_lock_descr">Giữ CPU bật trong khoảng thời gian đã cài đặt(chỉ khi có thông báo).</string>
     <string name="vibration">Rung</string>
     <string name="color">Màu</string>

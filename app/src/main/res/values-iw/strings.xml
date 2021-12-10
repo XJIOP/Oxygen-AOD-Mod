@@ -6,7 +6,7 @@
     <string name="category_application">אפליקציה</string>
     <string name="key_service_description">נקישה כפולה להפעלת מסך התראות</string>
     <string name="about_app">אודות</string>
-    <string name="about_app_text">אפליקציה זאת דוגלת בקוד פתוח ונבדקה רק על מכשיר OnePlus 7 המריץ אנדרואיד 10. האפליקציה לא משוייכת לחברת OnePlus או למערכת ההפעלה OxygenOS, ויכולה לעבוד גם על מכשירים בעלי מסך AMOLED נוספים.</string>
+    <string name="about_app_text">אפליקציה זאת דוגלת בקוד פתוח ונבדקה רק על מכשיר OnePlus 7. האפליקציה לא משוייכת לחברת OnePlus או למערכת ההפעלה OxygenOS, ויכולה לעבוד גם על מכשירים בעלי מסך AMOLED נוספים.</string>
     <string name="version">גרסא</string>
     <string name="close">סגירה</string>
     <string name="ok">אוקיי</string>
@@ -60,8 +60,8 @@
     <string name="cant_open_link">לא יכול לפתוח את הקישור</string>
     <string name="unknown_error">שגיאה לא ידועה</string>
     <string name="share">שתף</string>
-    <string name="attention">תשומת לב</string>
-    <string name="interval_info">כאשר המסך כבוי, המכשיר פועל במצב של חיסכון בסוללה, כך שמחזורי המעבד לא יציבים. מצב זה יכול לגרום לדיליי להיות עד כדקה. WAKE LOCK יכול לפתור את הבעיה.</string>
+    <string name="attention">תשומת לב</string>הפעלת WAKE LOCK יכולה לפתור בעיה זו.
+    <string name="interval_info">כאשר המסך כבוי, המכשיר פועל במצב של חיסכון בסוללה, כך שמחזורי המעבד לא יציבים. מצב זה יכול לגרום לדיליי להיות עד כדקה. הפעלת WAKE LOCK יכול לפתור את הבעיה.</string>
     <string name="wake_lock_descr">השאר את המעבד ער לפרקי זמן יציבים (רק כאשר יש התראות)</string>
     <string name="vibration">רטט</string>
     <string name="color">צבע</string>

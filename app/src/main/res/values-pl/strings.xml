@@ -5,7 +5,7 @@
     <string name="category_application">Aplikacja</string>
     <string name="key_service_description">Włącz podwójne dotknięcie na ekranie AOD.</string>
     <string name="about_app">Informacje o aplikacji</string>
-    <string name="about_app_text">Ta aplikacja jest open source, testowana tylko na modelach OnePlus 7/7T pracujących na Android 10. Aplikacja nie jest powiązana z oprogramowaniem OxygenOS i OnepPlus, ale może działać na innych urządzenia z ekranami Amoled.</string>
+    <string name="about_app_text">Ta aplikacja jest open source, testowana tylko na modelach OnePlus 7th. Aplikacja nie jest powiązana z oprogramowaniem OxygenOS i OnepPlus, ale może działać na innych urządzenia z ekranami Amoled.</string>
     <string name="version">Wersja</string>
     <string name="close">Zamknij</string>
     <string name="ok">OK</string>
@@ -60,7 +60,7 @@
     <string name="unknown_error">Nieznany błąd</string>
     <string name="share">Udostępnij</string>
     <string name="attention">Uwaga</string>
-    <string name="interval_info">Gdy ekran jet wyłączony, urządzenie działa w trybie oszczędzania energii, więc częstotliwość powiadomień może być inna, a opóźnienie może wynosić do 1 minuty. WAKE LOCK może rozwiązać ten problem.</string>
+    <string name="interval_info">Gdy ekran jet wyłączony, urządzenie działa w trybie oszczędzania energii, więc częstotliwość powiadomień może być inna, a opóźnienie może wynosić do 1 minuty. Włączenie WAKE LOCK może rozwiązać ten problem.</string>
     <string name="wake_lock_descr">Utrzymuj procesor w stanie czuwania przez stabilny interwał (tylko gdy są powiadomienia).</string>
     <string name="vibration">Wibracje</string>
     <string name="color">Kolor</string>

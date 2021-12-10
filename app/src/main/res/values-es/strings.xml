@@ -6,7 +6,7 @@
     <string name="category_application">APLICACION</string>
     <string name="key_service_description">Activar doble toque en pantalla AOD</string>
     <string name="about_app">Acerca de la app</string>
-    <string name="about_app_text">Esta aplicación es de codigo abierto, fue testeada en el séptimo modelo de OnePlus corriendo Android 10. La aplicación no esta afiliada con OxygenOS ni OnePlus, puede funcionar en otros dispositivos con pantallas AMOLED.</string>
+    <string name="about_app_text">Esta aplicación es de codigo abierto, fue testeada en el séptimo modelo de OnePlus. La aplicación no esta afiliada con OxygenOS ni OnePlus, puede funcionar en otros dispositivos con pantallas AMOLED.</string>
     <string name="version">Version</string>
     <string name="close">Cerrar</string>
     <string name="ok">OK</string>
@@ -61,7 +61,7 @@
     <string name="unknown_error">Error desconocido</string>
     <string name="share">Compartir</string>
     <string name="attention">Atención</string>
-    <string name="interval_info">Cuando la pantalla esta apagada, el dispositivo opera en modo ahorro de energía, asique el intervalo no garantiza el valor especificado, la demora puede llegar a ser hasta de1 minuto. WAKE LOCK puede resolver este problema.</string>
+    <string name="interval_info">Cuando la pantalla esta apagada, el dispositivo opera en modo ahorro de energía, asique el intervalo no garantiza el valor especificado. Habilitar WAKE LOCK puede resolver este problema.</string>
     <string name="wake_lock_descr">Mantiene el CPU despierto durante un intervalo estable (solo cuando hay notificaciones).</string>
     <string name="vibration">Vibracion</string>
     <string name="color">Color</string>

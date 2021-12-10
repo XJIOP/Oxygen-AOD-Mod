@@ -5,7 +5,7 @@
     <string name="category_application">ПРИЛОЖЕНИЕ</string>
     <string name="key_service_description">Активировать двойное нажатие на AOD экране.</string>
     <string name="about_app">О приложении</string>
-    <string name="about_app_text">Это приложение с открытым исходным кодом, тестировалось только на устройствах OnePlus 7й модели под управлением Android 10. Приложение не привязано к OxygenOS и OnePlus, возможно оно будет работать на других устройствах с AMOLED экранами.</string>
+    <string name="about_app_text">Это приложение с открытым исходным кодом, тестировалось только на устройствах OnePlus 7й модели. Приложение не привязано к OxygenOS и OnePlus, возможно оно будет работать на других устройствах с AMOLED экранами.</string>
     <string name="version">Версия</string>
     <string name="close">Закрыть</string>
     <string name="ok">ОК</string>
@@ -60,7 +60,7 @@
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="share">Поделиться</string>
     <string name="attention">Внимание</string>
-    <string name="interval_info">При выключенном экране, устройство работает в энергосберегающем режиме, поэтому интервал не гарантирует указанное значение, задержка может быть до 1й минуты. WAKE LOCK может решить эту проблему.</string>
+    <string name="interval_info">При выключенном экране, устройство работает в энергосберегающем режиме, поэтому интервал не гарантирует указанное значение. Включение WAKE LOCK может решить эту проблему.</string>
     <string name="wake_lock_descr">Удерживать CPU для стабильного интервала (только когда есть уведомления).</string>
     <string name="vibration">Вибрация</string>
     <string name="color">Цвет</string>
