@@ -100,7 +100,7 @@ public class NotificationService extends NotificationListenerService {
     }
 
     @Override
-    public void onNotificationPosted(final StatusBarNotification sbn) {
+    public void onNotificationPosted(StatusBarNotification sbn) {
         //Log.d(TAG, "onNotificationPosted =  " + sbn);
         //Log.d(TAG, " - notification package = " + sbn.getPackageName());
         //Log.d(TAG, " - notification content = " + sbn.getNotification().extras.getString(Notification.EXTRA_TEXT));
@@ -207,7 +207,7 @@ public class NotificationService extends NotificationListenerService {
 
                             if (wakeLockTos != null && !wakeLockTos.isHeld()) {
                                 try {
-                                    wakeLockTos.acquire();
+                                    wakeLockTos.acquire(1);
                                 }
                                 finally {
                                     wakeLockTos.release();

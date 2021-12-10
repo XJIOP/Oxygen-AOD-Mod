@@ -70,7 +70,7 @@ public class KeyService extends AccessibilityService {
                 if (wakeLock != null && !wakeLock.isHeld()) {
 
                     try {
-                        wakeLock.acquire();
+                        wakeLock.acquire(1);
                     }
                     finally {
                         wakeLock.release();
