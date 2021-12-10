@@ -48,8 +48,7 @@ public class MessageDialog extends DialogFragment {
         AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle(title);
 
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_message, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_message, null);
 
         TextView textView = view.findViewById(R.id.message);
         textView.setText(text);

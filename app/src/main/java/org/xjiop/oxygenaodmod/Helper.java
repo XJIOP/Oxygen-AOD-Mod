@@ -105,14 +105,14 @@ public class Helper {
     static void showDialogFragment(Context context, final DialogFragment dialog) {
 
         AppCompatActivity activity = (AppCompatActivity) context;
-        if(activity == null || activity.isFinishing())
+        if (activity == null || activity.isFinishing())
             return;
 
         final FragmentManager fragmentManager = activity.getSupportFragmentManager();
-        if(fragmentManager.isStateSaved() || fragmentManager.isDestroyed())
+        if (fragmentManager.isStateSaved() || fragmentManager.isDestroyed())
             return;
 
-        if(dialog.isAdded())
+        if (dialog.isAdded())
             return;
 
         final String tag = dialog.getClass().getName();
@@ -159,11 +159,11 @@ public class Helper {
 
     static void openLink(Context context, String link) {
 
-        if(link == null || link.isEmpty())
+        if (link == null || link.isEmpty())
             return;
 
         Uri uri = Uri.parse(link);
-        if(uri != null) {
+        if (uri != null) {
 
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
@@ -202,7 +202,7 @@ public class Helper {
 
     static int myColor(String color) {
 
-        if(color == null)
+        if (color == null)
             return Color.RED;
 
         switch (color) {
@@ -221,7 +221,7 @@ public class Helper {
 
     static int myIcon(String icon) {
 
-        if(icon == null)
+        if (icon == null)
             return R.drawable.ic_warning;
 
         switch (icon) {

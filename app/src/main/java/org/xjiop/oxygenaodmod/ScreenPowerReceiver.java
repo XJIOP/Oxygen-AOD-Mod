@@ -16,14 +16,14 @@ public class ScreenPowerReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         String action = intent.getAction();
-        if(action != null) {
+        if (action != null) {
             switch (action) {
                 case Intent.ACTION_SCREEN_ON:
                     //Log.d(TAG, "ACTION_SCREEN_ON");
 
                     isScreenON = true;
 
-                    if(notificationService != null)
+                    if (notificationService != null)
                         notificationService.stopIndicator();
 
                     break;
@@ -33,7 +33,7 @@ public class ScreenPowerReceiver extends BroadcastReceiver {
 
                     isScreenON = false;
 
-                    if(notificationService != null) {
+                    if (notificationService != null) {
                         notificationService.recountNotifications();
                         notificationService.startIndicator();
                     }

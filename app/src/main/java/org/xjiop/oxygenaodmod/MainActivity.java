@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             settingsFragment = new SettingsFragment();
             getSupportFragmentManager()
                     .beginTransaction()
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
                 TURN_ON_SCREEN = sharedPreferences.getBoolean(key, true);
 
-                if(settingsFragment != null)
+                if (settingsFragment != null)
                     settingsFragment.turnOnScreen();
 
                 break;
@@ -196,9 +196,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     try {
                         value = Integer.valueOf(newValue.toString());
                     }
-                    catch(NumberFormatException ignored) {}
+                    catch (NumberFormatException ignored) {}
 
-                    if(value < 10) {
+                    if (value < 10) {
                         Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.error), getString(R.string.min_interval_sec)));
                         return false;
                     }
@@ -223,9 +223,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     try {
                         value = Integer.valueOf(newValue.toString());
                     }
-                    catch(NumberFormatException ignored) {}
+                    catch (NumberFormatException ignored) {}
 
-                    if(value == -1) {
+                    if (value == -1) {
                         Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.error), getString(R.string.enter_number)));
                         return false;
                     }
@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             });
 
             String scheduleSummary;
-            if(settings.getBoolean("any_time", true)) {
+            if (settings.getBoolean("any_time", true)) {
                 scheduleSummary = getString(R.string.any_time);
             }
             else {
@@ -344,13 +344,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         public void onResume() {
             super.onResume();
 
-            if(doubleTapPreference != null)
+            if (doubleTapPreference != null)
                 ((SwitchPreference) doubleTapPreference).setChecked(Helper.isAccessibilityPermission());
 
-            if(indicatorPreference != null) {
+            if (indicatorPreference != null) {
                 boolean is = Helper.isNotificationPermission();
                 ((SwitchPreference) indicatorPreference).setChecked(is);
-                if(is) {
+                if (is) {
                     turnOnScreen();
                 }
             }
@@ -358,26 +358,26 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         @Override
         public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            //Log.d(TAG, "onActivityResult | requestCode: " + requestCode + " | resultCode: " + resultCode + " | data: "+data);
+            //Log.d(TAG, "onActivityResult | requestCode: " + requestCode + " | resultCode: " + resultCode + " | data: " + data);
             super.onActivityResult(requestCode, resultCode, data);
 
-            if(resultCode == Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
 
-                if(requestCode == SCHEDULE_RESULT) {
+                if (requestCode == SCHEDULE_RESULT) {
                     String summary = data.getStringExtra("summary");
-                    if(summary != null) {
+                    if (summary != null) {
                         findPreference("schedule").setSummary(summary);
                     }
                 }
-                else if(requestCode == ICON_RESULT) {
+                else if (requestCode == ICON_RESULT) {
                     String summary = data.getStringExtra("summary");
-                    if(summary != null) {
+                    if (summary != null) {
                         findPreference("icon").setSummary(summary);
                     }
                 }
-                else if(requestCode == TEST_RESULT) {
+                else if (requestCode == TEST_RESULT) {
 
-                    if(!data.getBooleanExtra("onPositive", false))
+                    if (!data.getBooleanExtra("onPositive", false))
                         return;
 
                     Context applicationContext = Application.getAppContext();
@@ -386,7 +386,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     PendingIntent pendingIntent = PendingIntent.getBroadcast(applicationContext, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                     AlarmManager alarmManager = (AlarmManager) applicationContext.getSystemService(ALARM_SERVICE);
-                    if(alarmManager != null) {
+                    if (alarmManager != null) {
                         alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (60 * 1000), pendingIntent);
                         Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.confirmation), getString(R.string.test_notification_descr)));
                     }
@@ -395,7 +395,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         }
 
         public void turnOnScreen() {
-            if(isResumed()) {
+            if (isResumed()) {
                 findPreference("show_notification_counter").setEnabled(!TURN_ON_SCREEN);
                 findPreference("color").setEnabled(!TURN_ON_SCREEN);
                 findPreference("icon").setEnabled(!TURN_ON_SCREEN);
@@ -404,8 +404,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         private void setListPreferenceSummary(Preference preference, String value) {
 
-            if(value != null) {
-                if(preference instanceof ListPreference) {
+            if (value != null) {
+                if (preference instanceof ListPreference) {
 
                     ListPreference listPreference = (ListPreference) preference;
                     int index = listPreference.findIndexOfValue(value);

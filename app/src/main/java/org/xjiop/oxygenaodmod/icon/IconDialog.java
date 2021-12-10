@@ -54,15 +54,14 @@ public class IconDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.icon);
 
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_icon, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_icon, null);
 
         adapter = new IconAdapter(icons, new IconAdapterInterface() {
             @Override
             public void onClick() {
 
                 Fragment targetFragment = getTargetFragment();
-                if(targetFragment != null) {
+                if (targetFragment != null) {
 
                     String icon = icons.get(adapter.mSelectedItem).icon;
 
@@ -79,8 +78,8 @@ public class IconDialog extends DialogFragment {
             }
         });
 
-        for(int i=0; i < icons.size(); i++) {
-            if(icons.get(i).id == ICON) {
+        for (int i=0; i < icons.size(); i++) {
+            if (icons.get(i).id == ICON) {
                 adapter.setCurrentIcon(i);
                 break;
             }

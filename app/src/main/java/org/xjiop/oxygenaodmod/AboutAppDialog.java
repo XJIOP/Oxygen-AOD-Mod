@@ -24,11 +24,10 @@ public class AboutAppDialog extends DialogFragment {
         AlertDialog dialog = new AlertDialog.Builder(context).create();
         dialog.setTitle(R.string.about_app);
 
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_about_app, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_about_app, null);
         dialog.setView(view);
 
-        String ver = getString(R.string.version)+" "+ BuildConfig.VERSION_NAME;
+        String ver = getString(R.string.version) + " " + BuildConfig.VERSION_NAME;
         TextView version = view.findViewById(R.id.app_version);
         version.setText(ver);
 

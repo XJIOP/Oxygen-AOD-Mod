@@ -37,7 +37,7 @@ public class CategoriesDialog extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        for(String s : Helper.categoryList) {
+        for (String s : Helper.categoryList) {
             categories.add(new CategoriesDummy.Item(s, ALLOWED_CATEGORY.contains(s)));
         }
     }
@@ -51,8 +51,7 @@ public class CategoriesDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.categories);
 
-        LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_categories, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_categories, null);
 
         CategoriesAdapter adapter = new CategoriesAdapter(categories);
 
@@ -68,8 +67,8 @@ public class CategoriesDialog extends DialogFragment {
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 Set<String> selected = new HashSet<>();
-                for(CategoriesDummy.Item item : categories) {
-                    if(item.checked) {
+                for (CategoriesDummy.Item item : categories) {
+                    if (item.checked) {
                         selected.add(item.name);
                     }
                 }

@@ -23,7 +23,7 @@ public class TestNotificationReceiver extends BroadcastReceiver {
         //Log.d(TAG, "onReceive");
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager == null)
+        if (notificationManager == null)
             return;
 
         Intent intentClick = new Intent(context, MainActivity.class);

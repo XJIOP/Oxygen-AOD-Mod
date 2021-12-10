@@ -76,7 +76,7 @@ public class TimeTabsDialog extends DialogFragment {
                         ANY_TIME = anyTime;
 
                         String summary;
-                        if(anyTime) {
+                        if (anyTime) {
                             summary = getString(R.string.any_time);
                         }
                         else {
@@ -86,7 +86,7 @@ public class TimeTabsDialog extends DialogFragment {
                         }
 
                         Fragment targetFragment = getTargetFragment();
-                        if(targetFragment != null) {
+                        if (targetFragment != null) {
                             Intent intent = new Intent();
                             intent.putExtra("summary", summary);
                             targetFragment.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
@@ -133,7 +133,7 @@ public class TimeTabsDialog extends DialogFragment {
         timePicker1 = view.findViewById(R.id.timePicker1);
         timePicker2 = view.findViewById(R.id.timePicker2);
 
-        if(DateFormat.is24HourFormat(mContext)) {
+        if (DateFormat.is24HourFormat(mContext)) {
             timePicker1.setIs24HourView(true);
             timePicker2.setIs24HourView(true);
         }

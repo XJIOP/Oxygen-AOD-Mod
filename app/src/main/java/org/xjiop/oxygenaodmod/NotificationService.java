@@ -54,7 +54,7 @@ public class NotificationService extends NotificationListenerService {
         Application.getAppContext().registerScreenPowerReceiver();
 
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        if(powerManager != null) {
+        if (powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, getPackageName() + ":indicator");
             wakeLock.setReferenceCounted(false);
 
@@ -72,18 +72,18 @@ public class NotificationService extends NotificationListenerService {
 
         notificationService = null;
 
-        if(wakeLock != null && wakeLock.isHeld())
+        if (wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
 
-        if(wakeLockTos != null && wakeLockTos.isHeld())
+        if (wakeLockTos != null && wakeLockTos.isHeld())
             wakeLockTos.release();
 
-        if(handler != null) {
+        if (handler != null) {
             handler.removeCallbacksAndMessages(null);
             handler = null;
         }
 
-        if(!Helper.isAccessibilityPermission())
+        if (!Helper.isAccessibilityPermission())
             Application.getAppContext().unregisterScreenPowerReceiver();
 
         super.onDestroy();
@@ -110,7 +110,7 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
-        if(newNotification(sbn))
+        if (newNotification(sbn))
             startIndicator();
     }
 
@@ -125,39 +125,39 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, " - notification flags = " + sbn.getNotification().flags);
         //Log.d(TAG, " - notification key = " + sbn.getKey());
 
-        if(sbn == null)
+        if (sbn == null)
             return;
 
         // prepare next indicator
-        if(sbn.getId() == INDICATOR_NOTIFICATION_ID) {
+        if (sbn.getId() == INDICATOR_NOTIFICATION_ID) {
             startIndicator();
             return;
         }
 
         // ignore ongoing (this notifications cannot be dismissed)
-        if(sbn.isOngoing())
+        if (sbn.isOngoing())
             return;
 
         // ignore duplicate
-        if((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
+        if ((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
             //Log.d(TAG, " - ignore this notification");
             return;
         }
 
         // category filter
         String cat = sbn.getNotification().category == null ? "undefined" : sbn.getNotification().category;
-        if(!ALLOWED_CATEGORY.contains(cat))
+        if (!ALLOWED_CATEGORY.contains(cat))
             return;
 
-        if(NOTIFICATION_COUNT > 0) {
+        if (NOTIFICATION_COUNT > 0) {
 
             NOTIFICATION_COUNT--;
 
-            if(WAKE_LOCK && wakeLock != null && wakeLock.isHeld())
+            if (WAKE_LOCK && wakeLock != null && wakeLock.isHeld())
                 wakeLock.release();
 
-            if(NOTIFICATION_COUNT == 0) {
-                if(handler != null)
+            if (NOTIFICATION_COUNT == 0) {
+                if (handler != null)
                     handler.removeCallbacksAndMessages(null);
             }
         }
@@ -167,36 +167,36 @@ public class NotificationService extends NotificationListenerService {
         //Log.d(TAG, "startIndicator | NOTIFICATION_COUNT: " + NOTIFICATION_COUNT + " | INDICATOR_COUNT: " + INDICATOR_COUNT);
         //Log.d(TAG, " - wakeLock isHeld: " + wakeLock.isHeld());
 
-        if(NOTIFICATION_COUNT == 0)
+        if (NOTIFICATION_COUNT == 0)
             return;
 
-        if(isAmount())
+        if (isAmount())
             return;
 
-        if(!ANY_TIME) {
+        if (!ANY_TIME) {
             LocalTime now = LocalTime.now();
             boolean isSchedule = now.isAfter(START_TIME) &&  now.isBefore(END_TIME);
-            if(!isSchedule) {
+            if (!isSchedule) {
                 //Log.d(TAG, " - stopped by schedule");
                 return;
             }
         }
 
-        if(!isScreenOff())
+        if (!isScreenOff())
             return;
 
-        if(handler != null) {
+        if (handler != null) {
 
             INDICATOR_COUNT++;
 
-            if(WAKE_LOCK && wakeLock != null && !wakeLock.isHeld())
-                wakeLock.acquire((INTERVAL + 5) * 1000);
+            if (WAKE_LOCK && wakeLock != null && !wakeLock.isHeld())
+                wakeLock.acquire((INTERVAL + 5) * 1000L);
 
             handler.removeCallbacksAndMessages(null);
             handler.postDelayed(new Runnable() {
                 public void run() {
                     if (NOTIFICATION_COUNT > 0) {
-                        if(TURN_ON_SCREEN) {
+                        if (TURN_ON_SCREEN) {
 
                             try {
                                 Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -205,7 +205,7 @@ public class NotificationService extends NotificationListenerService {
                             }
                             catch (Exception ignored) {}
 
-                            if(wakeLockTos != null && !wakeLockTos.isHeld()) {
+                            if (wakeLockTos != null && !wakeLockTos.isHeld()) {
                                 try {
                                     wakeLockTos.acquire();
                                 }
@@ -219,7 +219,7 @@ public class NotificationService extends NotificationListenerService {
                         }
                     }
                 }
-            }, INTERVAL * 1000);
+            }, INTERVAL * 1000L);
         }
     }
 
@@ -230,35 +230,35 @@ public class NotificationService extends NotificationListenerService {
         NOTIFICATION_COUNT = 0;
         INDICATOR_COUNT = 0;
 
-        if(WAKE_LOCK && wakeLock != null && wakeLock.isHeld())
+        if (WAKE_LOCK && wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
 
-        if(handler != null)
+        if (handler != null)
             handler.removeCallbacksAndMessages(null);
     }
 
     private boolean newNotification(StatusBarNotification sbn) {
 
-        if(sbn == null)
+        if (sbn == null)
             return false;
 
         // ignore indicator
-        if(sbn.getId() == INDICATOR_NOTIFICATION_ID)
+        if (sbn.getId() == INDICATOR_NOTIFICATION_ID)
             return false;
 
         // ignore ongoing (this notifications cannot be dismissed)
-        if(sbn.isOngoing())
+        if (sbn.isOngoing())
             return false;
 
         // ignore duplicate
-        if((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
+        if ((sbn.getNotification().flags & Notification.FLAG_GROUP_SUMMARY) != 0) {
             //Log.d(TAG, " - ignore this notification");
             return false;
         }
 
         // category filter
         String cat = sbn.getNotification().category == null ? "undefined" : sbn.getNotification().category;
-        if(!ALLOWED_CATEGORY.contains(cat))
+        if (!ALLOWED_CATEGORY.contains(cat))
             return false;
 
         NOTIFICATION_COUNT++;
@@ -272,8 +272,8 @@ public class NotificationService extends NotificationListenerService {
         NOTIFICATION_COUNT = 0;
         INDICATOR_COUNT = 0;
 
-        if(!RESET_WHEN_SCREEN_TURN_ON) {
-            for(StatusBarNotification sbn : getActiveNotifications()) {
+        if (!RESET_WHEN_SCREEN_TURN_ON) {
+            for (StatusBarNotification sbn : getActiveNotifications()) {
                 newNotification(sbn);
             }
         }

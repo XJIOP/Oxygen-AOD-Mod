@@ -67,18 +67,18 @@ public class Application extends android.app.Application {
         SharedPreferences.Editor edit = settings.edit();
 
         int version = settings.getInt("version_code", -1);
-        if(version != BuildConfig.VERSION_CODE) {
+        if (version != BuildConfig.VERSION_CODE) {
 
-            if(version != -1) {
+            if (version != -1) {
 
-                if(version < 14) {
+                if (version < 14) {
 
                     updateCH = true;
 
                     try {
                         Integer.parseInt(settings.getString("amount", "0"));
                     }
-                    catch(NumberFormatException e) {
+                    catch (NumberFormatException e) {
                         edit.putString("amount", "0");
                     }
                 }
@@ -87,19 +87,19 @@ public class Application extends android.app.Application {
             edit.putInt("version_code", BuildConfig.VERSION_CODE);
         }
 
-        if(!settings.contains("categories"))
+        if (!settings.contains("categories"))
             edit.putStringSet("categories", new HashSet<>(Helper.categoryList));
 
-        if(!settings.contains("start_time"))
+        if (!settings.contains("start_time"))
             edit.putString("start_time", "08:00");
 
-        if(!settings.contains("end_time"))
+        if (!settings.contains("end_time"))
             edit.putString("end_time", "23:00");
 
-        if(!settings.contains("any_time"))
+        if (!settings.contains("any_time"))
             edit.putBoolean("any_time", true);
 
-        if(!settings.contains("language"))  {
+        if (!settings.contains("language"))  {
 
             // get system language
             String lang = Resources.getSystem().getConfiguration().getLocales().get(0).toString();
@@ -119,7 +119,7 @@ public class Application extends android.app.Application {
         /* TODO: SET NOTIFICATION CHANNELS */
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager != null) {
+        if (notificationManager != null) {
 
             String channelId = "Channel-1";
             String channelName = getString(R.string.notification_indicator);
@@ -165,7 +165,7 @@ public class Application extends android.app.Application {
     }
 
     public void registerScreenPowerReceiver() {
-        if(screenPowerReceiver == null) {
+        if (screenPowerReceiver == null) {
             IntentFilter screenStateFilter = new IntentFilter();
             screenStateFilter.addAction(Intent.ACTION_SCREEN_ON);
             screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -175,7 +175,7 @@ public class Application extends android.app.Application {
     }
 
     public void unregisterScreenPowerReceiver() {
-        if(screenPowerReceiver != null) {
+        if (screenPowerReceiver != null) {
             unregisterReceiver(screenPowerReceiver);
             screenPowerReceiver = null;
         }

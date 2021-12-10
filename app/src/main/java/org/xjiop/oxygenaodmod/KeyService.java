@@ -17,7 +17,7 @@ public class KeyService extends AccessibilityService {
 
     private final String TAG = "DBG | KeyService";
 
-    private int CLICK_THRESHOLD = 250;
+    private final int CLICK_THRESHOLD = 250;
     private long CLICK_DELAY;
 
     private PowerManager powerManager;
@@ -31,7 +31,7 @@ public class KeyService extends AccessibilityService {
         Application.getAppContext().registerScreenPowerReceiver();
 
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        if(powerManager != null) {
+        if (powerManager != null) {
             wakeLock = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, getPackageName() + ":double_tap");
             wakeLock.setReferenceCounted(false);
         }
@@ -40,10 +40,10 @@ public class KeyService extends AccessibilityService {
     @Override
     public void onDestroy() {
 
-        if(wakeLock != null && wakeLock.isHeld())
+        if (wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
 
-        if(!Helper.isNotificationPermission())
+        if (!Helper.isNotificationPermission())
             Application.getAppContext().unregisterScreenPowerReceiver();
 
         super.onDestroy();
@@ -65,9 +65,9 @@ public class KeyService extends AccessibilityService {
 
         boolean result = false;
 
-        if(event.getKeyCode() == KeyEvent.KEYCODE_F4 && isScreenOff()) {
-            if(result = (SINGLE_TAP || doubleClick())) {
-                if(wakeLock != null && !wakeLock.isHeld()) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_F4 && isScreenOff()) {
+            if (result = (SINGLE_TAP || doubleClick())) {
+                if (wakeLock != null && !wakeLock.isHeld()) {
 
                     try {
                         wakeLock.acquire();
@@ -76,7 +76,7 @@ public class KeyService extends AccessibilityService {
                         wakeLock.release();
                     }
 
-                    if(VIBRATION) {
+                    if (VIBRATION) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         if (vibrator != null) {
                             vibrator.vibrate(VibrationEffect.createOneShot(1, VibrationEffect.DEFAULT_AMPLITUDE));

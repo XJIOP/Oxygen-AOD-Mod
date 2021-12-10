@@ -26,17 +26,17 @@ public class NotificationReceiver extends BroadcastReceiver {
         //Log.d(TAG, "onReceive");
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if(notificationManager == null)
+        if (notificationManager == null)
             return;
 
         String amount = context.getString(R.string.indicator);
-        if(AMOUNT > 0)
+        if (AMOUNT > 0)
             amount += " (" + INDICATOR_COUNT + " " + context.getString(R.string.of) + " " + AMOUNT + ")";
         else
             amount += " (" + INDICATOR_COUNT + ")";
 
         String text;
-        if(SHOW_NOTIFICATION_COUNTER)
+        if (SHOW_NOTIFICATION_COUNTER)
             text = context.getString(R.string.new_notifications) + ": " + NOTIFICATION_COUNT;
         else
             text = context.getString(R.string.you_have_new_notification);
