@@ -3,12 +3,12 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 30
     defaultConfig {
         applicationId "org.xjiop.oxygenaodmod"
         minSdkVersion 26
-        targetSdkVersion 31
-        versionCode 26
+        targetSdkVersion 30
+        versionCode 27
         versionName "2.5"
     }
     buildTypes {
