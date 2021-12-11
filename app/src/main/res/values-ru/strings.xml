@@ -82,5 +82,10 @@
     <string name="turn_on_screen">Включать экран</string>
     <string name="instead_notifications">Вместо уведомлений</string>
     <string name="remind_later">Напомнить позже</string>
+    <string name="accept">Принять</string>
+    <string name="accessibility_usage" translatable="false">Использование специальных возможностей</string>
+    <string name="accessibility_info" translatable="false">Это приложение использует службу специальных возможностей только для Двойного касания, чтобы открыть экран блокировки. Приложение не собирает и не отправляет какую-либо информацию.</string>
+    <string name="notification_usage" translatable="false">Использование уведомлений</string>
+    <string name="notification_info" translatable="false">Это приложение использует доступ к уведомлениям только для Индикатора уведомлений. Приложение не собирает и не отправляет какую-либо информацию.</string>
     <string name="Language">Язык</string>
 </resources>

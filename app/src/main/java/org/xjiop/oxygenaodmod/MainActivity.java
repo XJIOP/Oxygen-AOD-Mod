@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -142,10 +143,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
 
-        private static final int IGNORE_RESULT = 0;
-        private static final int SCHEDULE_RESULT = 1;
-        private static final int ICON_RESULT = 2;
-        private static final int TEST_RESULT = 3;
+        private static final int IGNORE_RESULT = 1;
+        private static final int ACCESSIBILITY_RESULT = 2;
+        private static final int NOTIFICATION_RESULT = 3;
+        private static final int SCHEDULE_RESULT = 4;
+        private static final int ICON_RESULT = 5;
+        private static final int TEST_RESULT = 6;
+
 
         private Context mContext;
 
@@ -168,8 +172,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
 
-                    Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-                    startActivityForResult(intent, IGNORE_RESULT);
+                    if (Helper.isAccessibilityPermission()) {
+                        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                        startActivityForResult(intent, IGNORE_RESULT);
+                    }
+                    else {
+
+                        ConfirmDialog confirmDialog = ConfirmDialog.newInstance(
+                                getString(R.string.accessibility_usage),
+                                getString(R.string.accessibility_info),
+                                getString(R.string.accept),
+                                getString(R.string.cancel));
+                        confirmDialog.setTargetFragment(SettingsFragment.this, ACCESSIBILITY_RESULT);
+                        Helper.showDialogFragment(mContext, confirmDialog);
+                    }
 
                     return false;
                 }
@@ -179,8 +195,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
 
-                    Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                    startActivityForResult(intent, IGNORE_RESULT);
+                    if (Helper.isNotificationPermission()) {
+                        Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+                        startActivityForResult(intent, IGNORE_RESULT);
+                    }
+                    else {
+
+                        ConfirmDialog confirmDialog = ConfirmDialog.newInstance(
+                                getString(R.string.notification_usage),
+                                getString(R.string.notification_info),
+                                getString(R.string.accept),
+                                getString(R.string.cancel));
+                        confirmDialog.setTargetFragment(SettingsFragment.this, NOTIFICATION_RESULT);
+                        Helper.showDialogFragment(mContext, confirmDialog);
+                    }
 
                     return false;
                 }
@@ -389,6 +417,18 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     if (alarmManager != null) {
                         alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (60 * 1000), pendingIntent);
                         Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.confirmation), getString(R.string.test_notification_descr)));
+                    }
+                }
+                else if(requestCode == ACCESSIBILITY_RESULT) {
+                    if (data.getBooleanExtra("onPositive", false)) {
+                        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+                        startActivityForResult(intent, IGNORE_RESULT);
+                    }
+                }
+                else if(requestCode == NOTIFICATION_RESULT) {
+                    if (data.getBooleanExtra("onPositive", false)) {
+                        Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+                        startActivityForResult(intent, IGNORE_RESULT);
                     }
                 }
             }

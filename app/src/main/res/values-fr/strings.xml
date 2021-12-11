@@ -83,5 +83,6 @@
     <string name="turn_on_screen">Activer l\'écran</string>
     <string name="instead_notifications">Au lieu de notifications</string>
     <string name="remind_later">Rappeler plus tard</string>
+    <string name="accept">Accepter</string>
     <string name="Language">Langue</string>
 </resources>

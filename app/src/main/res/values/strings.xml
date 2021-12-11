@@ -86,6 +86,11 @@
     <string name="turn_on_screen">Turn on screen</string>
     <string name="instead_notifications">Instead of notifications</string>
     <string name="remind_later">Remind later</string>
+    <string name="accept">Accept</string>
+    <string name="accessibility_usage" translatable="false">Accessibility usage</string>
+    <string name="accessibility_info" translatable="false">This app uses Accessibility Service only for Double tap to open the lock screen. The app does not collect or send any kind of information.</string>
+    <string name="notification_usage" translatable="false">Notification usage</string>
+    <string name="notification_info" translatable="false">This app uses Notification Access only for Notification indicator. The app does not collect or send any kind of information.</string>
     <string name="Language">Language</string>
     <string name="english" translatable="false">English</string>
     <string name="spanish" translatable="false">Espanol</string>

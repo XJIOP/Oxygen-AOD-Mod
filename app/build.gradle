@@ -8,12 +8,13 @@ android {
         applicationId "org.xjiop.oxygenaodmod"
         minSdkVersion 26
         targetSdkVersion 31
-        versionCode 25
+        versionCode 26
         versionName "2.5"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

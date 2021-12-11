@@ -82,5 +82,6 @@
     <string name="turn_on_screen">Bildschirm einschalten</string>
     <string name="instead_notifications">Anstelle von Benachrichtigungen</string>
     <string name="remind_later">Später erinnern</string>
+    <string name="accept">Akzeptieren</string>
     <string name="Language">Sprache</string>
 </resources>
