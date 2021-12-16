@@ -21,11 +21,6 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-crashlytics:18.2.6'
     implementation 'androidx.preference:preference:1.1.1'
-    implementation ('com.google.firebase:firebase-core:20.0.0') {
-        exclude module: "play-services-ads-identifier"
-        exclude module: "play-services-measurement"
-        exclude module: "play-services-measurement-sdk"
-    }
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.5'
 }
