@@ -3,12 +3,14 @@ package org.xjiop.oxygenaodmod;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -196,8 +198,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
 
                     if (Helper.isNotificationPermission()) {
-                        Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
-                        startActivityForResult(intent, IGNORE_RESULT);
+                        try {
+                            Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+                            startActivityForResult(intent, IGNORE_RESULT);
+                        }
+                        catch (ActivityNotFoundException e) {
+                            Toast.makeText(mContext, R.string.unknown_error, Toast.LENGTH_SHORT).show();
+                        }
                     }
                     else {
 
@@ -427,8 +434,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 }
                 else if(requestCode == NOTIFICATION_RESULT) {
                     if (data.getBooleanExtra("onPositive", false)) {
-                        Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
-                        startActivityForResult(intent, IGNORE_RESULT);
+                        try {
+                            Intent intent = new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS);
+                            startActivityForResult(intent, IGNORE_RESULT);
+                        }
+                        catch (ActivityNotFoundException e) {
+                            Toast.makeText(mContext, R.string.unknown_error, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
