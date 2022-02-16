@@ -175,8 +175,7 @@ public class NotificationService extends NotificationListenerService {
 
         if (!ANY_TIME) {
             LocalTime now = LocalTime.now();
-            boolean isSchedule = now.isAfter(START_TIME) &&  now.isBefore(END_TIME);
-            if (!isSchedule) {
+            if (now.isBefore(START_TIME) && now.isAfter(END_TIME)) {
                 //Log.d(TAG, " - stopped by schedule");
                 return;
             }
