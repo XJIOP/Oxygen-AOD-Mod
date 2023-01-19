@@ -1,5 +1,6 @@
 package org.xjiop.oxygenaodmod;
 
+import android.accessibilityservice.AccessibilityGestureEvent;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.os.PowerManager;
@@ -12,6 +13,8 @@ import android.view.accessibility.AccessibilityEvent;
 import static org.xjiop.oxygenaodmod.Application.SINGLE_TAP;
 import static org.xjiop.oxygenaodmod.Application.VIBRATION;
 import static org.xjiop.oxygenaodmod.Application.isScreenON;
+
+import androidx.annotation.NonNull;
 
 public class KeyService extends AccessibilityService {
 
@@ -39,6 +42,7 @@ public class KeyService extends AccessibilityService {
 
     @Override
     public void onDestroy() {
+        //Log.d(TAG, "onDestroy");
 
         if (wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
@@ -60,27 +64,35 @@ public class KeyService extends AccessibilityService {
     }
 
     @Override
+    public boolean onGesture(@NonNull AccessibilityGestureEvent gestureEvent) {
+        //Log.d(TAG, "onGesture: " + gestureEvent);
+        return super.onGesture(gestureEvent);
+    }
+
+    @Override
     protected boolean onKeyEvent(KeyEvent event) {
         //Log.d(TAG, "onKeyEvent: " + event);
 
         boolean result = false;
 
-        if (event.getKeyCode() == KeyEvent.KEYCODE_F4 && isScreenOff()) {
-            if (result = (SINGLE_TAP || doubleClick())) {
-                if (wakeLock != null && !wakeLock.isHeld()) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_F4 && isScreenOff()) {
+            result = (SINGLE_TAP || doubleClick());
+            if (result) {
 
-                    try {
-                        wakeLock.acquire(1);
-                    }
-                    finally {
-                        wakeLock.release();
-                    }
+                if (wakeLock != null && !wakeLock.isHeld()) {
 
                     if (VIBRATION) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                         if (vibrator != null) {
                             vibrator.vibrate(VibrationEffect.createOneShot(1, VibrationEffect.DEFAULT_AMPLITUDE));
                         }
+                    }
+
+                    try {
+                        wakeLock.acquire(1);
+                    }
+                    finally {
+                        wakeLock.release();
                     }
                 }
             }
