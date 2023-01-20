@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     }
 
                     INTERVAL = value;
-                    preference.setSummary(newValue.toString() + " " + getString(R.string.sec));
+                    preference.setSummary(newValue + " " + getString(R.string.sec));
 
                     Helper.showDialogFragment(mContext, MessageDialog.newInstance(getString(R.string.attention), getString(R.string.interval_info)));
 
@@ -467,6 +467,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         public void turnOnScreen() {
             if (isResumed()) {
+                findPreference("reset_when_screen_turn_on").setEnabled(!TURN_ON_SCREEN);
                 findPreference("show_notification_counter").setEnabled(!TURN_ON_SCREEN);
                 findPreference("color").setEnabled(!TURN_ON_SCREEN);
                 findPreference("icon").setEnabled(!TURN_ON_SCREEN);

@@ -45,17 +45,17 @@
             app:iconSpaceReserved="false" />
 
         <CheckBoxPreference
-            android:title="@string/reset_when_screen_turn_on"
-            android:key="reset_when_screen_turn_on"
-            android:defaultValue="true"
-            android:dependency="indicator"
-            app:iconSpaceReserved="false" />
-
-        <CheckBoxPreference
             android:title="@string/turn_on_screen"
             android:key="turn_on_screen"
             android:defaultValue="false"
             android:summary="@string/instead_notifications"
+            android:dependency="indicator"
+            app:iconSpaceReserved="false" />
+
+        <CheckBoxPreference
+            android:title="@string/reset_when_screen_turn_on"
+            android:key="reset_when_screen_turn_on"
+            android:defaultValue="false"
             android:dependency="indicator"
             app:iconSpaceReserved="false" />
 

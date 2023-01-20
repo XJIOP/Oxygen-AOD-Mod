@@ -276,7 +276,7 @@ public class NotificationService extends NotificationListenerService {
         NOTIFICATION_COUNT = 0;
         INDICATOR_COUNT = 0;
 
-        if (!RESET_WHEN_SCREEN_TURN_ON) {
+        if (!RESET_WHEN_SCREEN_TURN_ON || TURN_ON_SCREEN) {
             for (StatusBarNotification sbn : getActiveNotifications()) {
                 newNotification(sbn);
             }
