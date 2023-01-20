@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.media.AudioAttributes;
+import android.media.RingtoneManager;
 
 import androidx.preference.PreferenceManager;
 
@@ -70,17 +72,8 @@ public class Application extends android.app.Application {
         if (version != BuildConfig.VERSION_CODE) {
 
             if (version != -1) {
-
-                if (version < 14) {
-
+                if (version < 30) {
                     updateCH = true;
-
-                    try {
-                        Integer.parseInt(settings.getString("amount", "0"));
-                    }
-                    catch (NumberFormatException e) {
-                        edit.putString("amount", "0");
-                    }
                 }
             }
 
@@ -124,10 +117,14 @@ public class Application extends android.app.Application {
             String channelId = "Channel-1";
             String channelName = getString(R.string.notification_indicator);
 
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                    .build();
+
             if (notificationManager.getNotificationChannel(channelId) == null || updateCH) {
                 NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
-                notificationChannel.setSound(null, null);
-                notificationChannel.enableVibration(false);
+                notificationChannel.setSound(null, audioAttributes);
                 notificationChannel.setShowBadge(false);
                 notificationManager.createNotificationChannel(notificationChannel);
             }
@@ -137,6 +134,8 @@ public class Application extends android.app.Application {
 
             if (notificationManager.getNotificationChannel(channelId) == null || updateCH) {
                 NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+                notificationChannel.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION), audioAttributes);
+                notificationChannel.setShowBadge(false);
                 notificationManager.createNotificationChannel(notificationChannel);
             }
         }

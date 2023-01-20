@@ -1,6 +1,5 @@
 package org.xjiop.oxygenaodmod;
 
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -45,12 +44,10 @@ public class NotificationReceiver extends BroadcastReceiver {
         mBuilder.setSmallIcon(ICON)
                 .setContentTitle(amount)
                 .setContentText(text)
-                .setSound(null)
                 .setAutoCancel(true)
                 .setTimeoutAfter(1000)
                 .setColorized(COLOR > 0)
                 .setColor(COLOR)
-                .setCategory(Notification.CATEGORY_REMINDER)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
 
         notificationManager.notify(INDICATOR_NOTIFICATION_ID, mBuilder.build());
