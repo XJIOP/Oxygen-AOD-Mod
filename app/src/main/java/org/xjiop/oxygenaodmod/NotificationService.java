@@ -1,6 +1,8 @@
 package org.xjiop.oxygenaodmod;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Ringtone;
@@ -34,10 +36,11 @@ public class NotificationService extends NotificationListenerService {
     public static int NOTIFICATION_COUNT;
     public static int INDICATOR_COUNT;
 
-    private Handler handler;
+    private final Handler handler = new Handler();
     private PowerManager powerManager;
     private PowerManager.WakeLock wakeLock;
     private PowerManager.WakeLock wakeLockTos;
+    private NotificationChannel notificationChannel;
 
     @Override
     public void onCreate() {
@@ -49,8 +52,6 @@ public class NotificationService extends NotificationListenerService {
 
         notificationService = this;
 
-        handler = new Handler();
-
         Application.getAppContext().registerScreenPowerReceiver();
 
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -61,6 +62,11 @@ public class NotificationService extends NotificationListenerService {
             wakeLockTos = powerManager.newWakeLock(PowerManager.ACQUIRE_CAUSES_WAKEUP | PowerManager.SCREEN_DIM_WAKE_LOCK, getPackageName() + ":turn_on_screen");
             wakeLockTos.setReferenceCounted(false);
         }
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (notificationManager != null) {
+            notificationChannel = notificationManager.getNotificationChannel("Channel-1");
+        }
     }
 
     @Override
@@ -70,18 +76,16 @@ public class NotificationService extends NotificationListenerService {
         NOTIFICATION_COUNT = 0;
         INDICATOR_COUNT = 0;
 
+        handler.removeCallbacksAndMessages(null);
+
         notificationService = null;
+        notificationChannel = null;
 
         if (wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
 
         if (wakeLockTos != null && wakeLockTos.isHeld())
             wakeLockTos.release();
-
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-            handler = null;
-        }
 
         if (!Helper.isAccessibilityPermission())
             Application.getAppContext().unregisterScreenPowerReceiver();
@@ -157,8 +161,7 @@ public class NotificationService extends NotificationListenerService {
                 wakeLock.release();
 
             if (NOTIFICATION_COUNT == 0) {
-                if (handler != null)
-                    handler.removeCallbacksAndMessages(null);
+                handler.removeCallbacksAndMessages(null);
             }
         }
     }
@@ -184,42 +187,45 @@ public class NotificationService extends NotificationListenerService {
         if (!isScreenOff())
             return;
 
-        if (handler != null) {
+        INDICATOR_COUNT++;
 
-            INDICATOR_COUNT++;
+        if (WAKE_LOCK && wakeLock != null && !wakeLock.isHeld())
+            wakeLock.acquire((INTERVAL + 5) * 1000L);
 
-            if (WAKE_LOCK && wakeLock != null && !wakeLock.isHeld())
-                wakeLock.acquire((INTERVAL + 5) * 1000L);
+        handler.removeCallbacksAndMessages(null);
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                if (NOTIFICATION_COUNT > 0) {
+                    if (TURN_ON_SCREEN) {
 
-            handler.removeCallbacksAndMessages(null);
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    if (NOTIFICATION_COUNT > 0) {
-                        if (TURN_ON_SCREEN) {
+                        Uri uri = null;
+                        if (notificationChannel != null) {
+                            uri = notificationChannel.getSound();
+                        }
 
-                            try {
-                                Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                        try {
+                            if (uri != null) {
                                 Ringtone ringtone = RingtoneManager.getRingtone(NotificationService.this, uri);
                                 ringtone.play();
                             }
-                            catch (Exception ignored) {}
+                        }
+                        catch (Exception ignored) {}
 
-                            if (wakeLockTos != null && !wakeLockTos.isHeld()) {
-                                try {
-                                    wakeLockTos.acquire(1);
-                                }
-                                finally {
-                                    wakeLockTos.release();
-                                }
+                        if (wakeLockTos != null && !wakeLockTos.isHeld()) {
+                            try {
+                                wakeLockTos.acquire(1);
+                            }
+                            finally {
+                                wakeLockTos.release();
                             }
                         }
-                        else {
-                            sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
-                        }
+                    }
+                    else {
+                        sendBroadcast(new Intent(NotificationService.this, NotificationReceiver.class));
                     }
                 }
-            }, INTERVAL * 1000L);
-        }
+            }
+        }, INTERVAL * 1000L);
     }
 
     public void stopIndicator() {
@@ -232,8 +238,7 @@ public class NotificationService extends NotificationListenerService {
         if (WAKE_LOCK && wakeLock != null && wakeLock.isHeld())
             wakeLock.release();
 
-        if (handler != null)
-            handler.removeCallbacksAndMessages(null);
+        handler.removeCallbacksAndMessages(null);
     }
 
     private boolean newNotification(StatusBarNotification sbn) {
