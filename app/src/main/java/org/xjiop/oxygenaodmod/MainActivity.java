@@ -1,5 +1,6 @@
 package org.xjiop.oxygenaodmod;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,6 +8,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -14,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -60,21 +65,17 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     .replace(R.id.settings, settingsFragment)
                     .commit();
 
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                    int app_count = settings.getInt("app_rate_count", 0);
-                    if (app_count != -1) {
-                        app_count += 1;
-                        if (app_count % 5 == 0) {
-                            app_count = 0;
-                            Helper.showDialogFragment(MainActivity.this, new AppRateDialog());
-                        }
-                        settings.edit().putInt("app_rate_count", app_count).apply();
-                    }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU ) {
+                if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
                 }
-            });
+                else {
+                    appRate();
+                }
+            }
+            else {
+                appRate();
+            }
         }
     }
 
@@ -82,6 +83,24 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     protected void onDestroy() {
         PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
         super.onDestroy();
+    }
+
+    private void appRate() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                int app_count = settings.getInt("app_rate_count", 0);
+                if (app_count != -1) {
+                    app_count += 1;
+                    if (app_count % 5 == 0) {
+                        app_count = 0;
+                        Helper.showDialogFragment(MainActivity.this, new AppRateDialog());
+                    }
+                    settings.edit().putInt("app_rate_count", app_count).apply();
+                }
+            }
+        });
     }
 
     @Override
