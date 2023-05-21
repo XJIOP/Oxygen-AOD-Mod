@@ -3,13 +3,15 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 30
+    namespace 'org.xjiop.oxygenaodmod'
+    compileSdkVersion 33
+
     defaultConfig {
         applicationId "org.xjiop.oxygenaodmod"
         minSdkVersion 26
-        targetSdkVersion 30
-        versionCode 27
-        versionName "2.5"
+        targetSdkVersion 33
+        versionCode 30
+        versionName "2.6"
     }
     buildTypes {
         release {
@@ -21,7 +23,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-crashlytics:18.2.6'
-    implementation 'com.google.firebase:firebase-analytics:20.0.2'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
+    implementation 'com.google.firebase:firebase-analytics:21.2.2'
+    implementation 'androidx.preference:preference:1.2.0'
 }
